@@ -20,6 +20,8 @@ export async function generateMetadata({
   const localePath = locale === 'pt' ? '' : `/${locale}`
   const canonical = `${SITE_URL}${localePath}/insights`
 
+  const ogImagePath = `/${locale}/opengraph-image`
+
   return {
     title: t('metaTitle'),
     description: t('metaDesc'),
@@ -38,6 +40,13 @@ export async function generateMetadata({
       url: canonical,
       siteName: 'H2V Systems',
       type: 'website',
+      images: [{ url: ogImagePath, width: 1200, height: 630, alt: 'H2V Systems' }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: t('metaTitle'),
+      description: t('metaDesc'),
+      images: [ogImagePath],
     },
   }
 }

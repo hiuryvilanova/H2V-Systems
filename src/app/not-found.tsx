@@ -4,6 +4,15 @@ import Image from 'next/image'
 export default function NotFound() {
   return (
     <html lang="pt">
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>404 | H2V Systems</title>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/logo.png" type="image/png" sizes="32x32" />
+        <link rel="apple-touch-icon" href="/logo.png" sizes="180x180" />
+        <meta name="theme-color" content="#E84B1A" />
+      </head>
       <body style={{ background: '#0d0a08', color: '#FAF0E8', margin: 0, minHeight: '100vh', fontFamily: 'system-ui, sans-serif' }}>
         <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px', position: 'relative', overflow: 'hidden' }}>
           <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: `

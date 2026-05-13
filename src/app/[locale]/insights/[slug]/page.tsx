@@ -40,6 +40,8 @@ export async function generateMetadata({
   const localePath = locale === 'pt' ? '' : `/${locale}`
   const url = `${SITE_URL}${localePath}/insights/${slug}`
 
+  const ogImagePath = `/${locale}/opengraph-image`
+
   return {
     title: post.title,
     description: post.description,
@@ -53,11 +55,13 @@ export async function generateMetadata({
       authors: [post.author],
       publishedTime: post.date,
       tags: post.tags,
+      images: [{ url: ogImagePath, width: 1200, height: 630, alt: post.title }],
     },
     twitter: {
       card: 'summary_large_image',
       title: post.title,
       description: post.description,
+      images: [ogImagePath],
     },
   }
 }

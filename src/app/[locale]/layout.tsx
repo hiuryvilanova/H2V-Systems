@@ -49,6 +49,9 @@ export async function generateMetadata({
 
   const ogLocale = locale === 'pt' ? 'pt_BR' : locale === 'es' ? 'es_ES' : 'en_US'
 
+  /** Imagem OG por idioma (arquivo `opengraph-image.tsx` em `[locale]`). */
+  const ogImagePath = `/${locale}/opengraph-image`
+
   return {
     metadataBase: new URL(SITE_URL),
     title: {
@@ -60,9 +63,19 @@ export async function generateMetadata({
     authors: [{ name: 'Hiury Vilanova', url: SITE_URL }],
     creator: 'Hiury Vilanova',
     robots: { index: true, follow: true, googleBot: { index: true, follow: true, 'max-image-preview': 'large' } },
+    /**
+     * Favicon na aba + favicon nos resultados do Google (mínimo recomendado 48×48).
+     * favicon.ico na raiz + PNG para retina e Apple.
+     */
     icons: {
-      icon: [{ url: '/logo.png', type: 'image/png' }],
-      apple: '/logo.png',
+      icon: [
+        { url: '/favicon.ico', sizes: 'any' },
+        { url: '/favicon.ico', sizes: '48x48', type: 'image/x-icon' },
+        { url: '/logo.png', type: 'image/png', sizes: '32x32' },
+        { url: '/logo.png', type: 'image/png', sizes: '192x192' },
+      ],
+      shortcut: '/favicon.ico',
+      apple: [{ url: '/logo.png', sizes: '180x180', type: 'image/png' }],
     },
     openGraph: {
       title: t('title'),
@@ -71,11 +84,20 @@ export async function generateMetadata({
       url: SITE_URL,
       siteName: 'H2V Systems',
       locale: ogLocale,
+      images: [
+        {
+          url: ogImagePath,
+          width: 1200,
+          height: 630,
+          alt: 'H2V Systems',
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: t('title'),
       description: t('description'),
+      images: [ogImagePath],
     },
     alternates: {
       canonical: locale === 'pt' ? SITE_URL : `${SITE_URL}/${locale}`,
