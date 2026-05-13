@@ -1,0 +1,238 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Design Tokens ─────────────────────────────────────────────────── */
+:root {
+  /* Warm dark backgrounds — complementam o laranja do logo */
+  --bg-0:           #0d0a08;
+  --bg-1:           #141008;
+  --bg-2:           #1c1710;
+  --bg-card:        #231d14;
+  --bg-glass:       rgba(35, 29, 20, 0.62);
+
+  /* Brand orange — extraído do logo H2V */
+  --cyan:           #E84B1A;          /* mantém nome para compatibilidade */
+  --cyan-dim:       rgba(232, 75, 26, 0.13);
+  --cyan-glow:      rgba(232, 75, 26, 0.38);
+  --blue:           #BF3808;          /* laranja escuro para gradientes */
+
+  /* Texto levemente quente */
+  --text-100:       #FAF0E8;
+  --text-70:        #A89880;
+  --text-40:        #5E5048;
+
+  /* Bordas laranja */
+  --border:         rgba(232, 75, 26, 0.16);
+  --border-strong:  rgba(232, 75, 26, 0.44);
+  --shadow-cyan:    0 0 40px rgba(232, 75, 26, 0.22);
+
+  --font-inter:     'Inter', sans-serif;
+  --font-mono:      'JetBrains Mono', monospace;
+}
+
+/* ── Base ──────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 80px;
+}
+
+body {
+  background-color: var(--bg-0);
+  color: var(--text-100);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-width: 320px;
+}
+
+/* Imagens responsivas por padrão */
+img, video { max-width: 100%; height: auto; display: block; }
+
+/* Touch targets de 44x44 mínimo */
+@media (max-width: 768px) {
+  button, a, input, select, textarea { touch-action: manipulation; }
+}
+
+/* Acessibilidade: respeitar preferência de movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus visível para navegação por teclado */
+:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-0); }
+::-webkit-scrollbar-thumb { background: var(--cyan-glow); border-radius: 3px; }
+::selection { background: var(--cyan-dim); color: var(--cyan); }
+
+/* ── Reusable Component Classes ────────────────────────────────────── */
+@layer components {
+
+  .glass-card {
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #fff 0%, var(--cyan) 55%, var(--blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .tag-badge {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: var(--cyan);
+    background: var(--cyan-dim);
+    border: 1px solid var(--border-strong);
+    padding: 5px 12px;
+    border-radius: 100px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+
+  @media (min-width: 640px) {
+    .tag-badge { font-size: 0.72rem; padding: 6px 14px; margin-bottom: 20px; }
+  }
+
+  .service-tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--cyan);
+    background: var(--cyan-dim);
+    border: 1px solid var(--border);
+    padding: 4px 10px;
+    border-radius: 100px;
+  }
+
+  .section-subtitle {
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: var(--text-70);
+    line-height: 1.7;
+  }
+
+  /* Syntax highlight helpers */
+  .c-kw  { color: #e0956e; }
+  .c-fn  { color: #f5c97a; }
+  .c-str { color: #a8c87a; }
+  .c-cm  { color: var(--text-40); font-style: italic; }
+  .c-var { color: var(--cyan); }
+  .c-num { color: #d19a66; }
+}
+
+/* ── Markdown / Insight content ────────────────────────────────────── */
+.insight-content {
+  color: var(--text-100);
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+.insight-content h2 {
+  font-size: clamp(1.3rem, 3vw, 1.65rem);
+  font-weight: 800;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #fff 0%, var(--cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.insight-content h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: var(--text-100);
+}
+
+.insight-content p {
+  margin-bottom: 1.2rem;
+  color: var(--text-70);
+}
+
+.insight-content strong { color: var(--text-100); font-weight: 600; }
+
+.insight-content a {
+  color: var(--cyan);
+  text-decoration: underline;
+  text-decoration-color: var(--cyan-glow);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s;
+}
+.insight-content a:hover { text-decoration-color: var(--cyan); }
+
+.insight-content ul, .insight-content ol {
+  margin: 0 0 1.2rem 0;
+  padding-left: 1.25rem;
+  color: var(--text-70);
+}
+.insight-content li { margin-bottom: 0.5rem; }
+.insight-content li::marker { color: var(--cyan); }
+
+.insight-content code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--cyan-dim);
+  color: var(--cyan);
+  border: 1px solid var(--border);
+}
+
+.insight-content pre {
+  background: var(--bg-1);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.1rem 1.25rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+.insight-content pre code {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: var(--text-100);
+}
+
+.insight-content blockquote {
+  border-left: 3px solid var(--cyan);
+  padding: 0.5rem 0 0.5rem 1rem;
+  margin: 1.5rem 0;
+  color: var(--text-100);
+  font-style: italic;
+}
+
+.insight-content hr {
+  border: 0;
+  height: 1px;
+  background: var(--border);
+  margin: 2.5rem 0;
+}

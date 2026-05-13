@@ -1,0 +1,390 @@
+{
+  "Metadata": {
+    "title": "H2V Systems | Tecnologia de Precisão",
+    "description": "Consultoria e desenvolvimento de software de alta performance. Transformamos desafios operacionais em soluções digitais robustas e escaláveis."
+  },
+  "Nav": {
+    "services": "Serviços",
+    "cases": "Cases",
+    "about": "Sobre",
+    "process": "Processo",
+    "faq": "FAQ",
+    "contact": "Contato",
+    "cta": "Fale Conosco →"
+  },
+  "Hero": {
+    "eyebrow": "H2V Systems / Consultoria & Software House",
+    "title": "Soluções de",
+    "words": ["Alto Impacto", "Alta Performance", "Alta Escala", "Precisão Cirúrgica"],
+    "description": "Na H2V Systems, construímos as fundações digitais para o futuro das empresas. Engenharia de software moderna, escalável e de alta performance.",
+    "ctaPrimary": "Iniciar Projeto →",
+    "ctaSecondary": "Ver Serviços",
+    "scroll": "scroll",
+    "badgePerformance": "Alta Performance",
+    "badgeArchitecture": "Arquitetura Robusta",
+    "badgeScalability": "Escalabilidade",
+    "badgeSecurity": "Segurança Total"
+  },
+  "Stats": {
+    "projectsLabel": "Projetos Entregues",
+    "satisfactionLabel": "Satisfação de Clientes",
+    "reductionLabel": "Redução de Tempo Operacional",
+    "supportLabel": "Suporte & Monitoramento"
+  },
+  "Services": {
+    "tag": "Serviços",
+    "title": "Nossos serviços",
+    "subtitle": "Cada solução é projetada sob medida para o seu contexto, com foco em escalabilidade, manutenibilidade e retorno real para o negócio.",
+    "learnMore": "Saiba mais",
+    "items": [
+      {
+        "title": "Desenvolvimento Customizado",
+        "desc": "Sistemas sob medida que se encaixam perfeitamente nos seus processos, construídos com as melhores práticas de engenharia e código limpo."
+      },
+      {
+        "title": "Aplicações Web & Mobile",
+        "desc": "Interfaces modernas e performáticas, com experiência do usuário como prioridade. PWA, SPA e apps nativos com foco em conversão."
+      },
+      {
+        "title": "Arquitetura & Escalabilidade",
+        "desc": "Projetamos infraestruturas que crescem com o seu negócio. Microsserviços, APIs robustas e cloud-native para suportar qualquer demanda."
+      },
+      {
+        "title": "Banco de Dados & Big Data",
+        "desc": "Modelagem eficiente, otimização de queries e pipelines de dados. Transformamos dados brutos em inteligência acionável para o negócio."
+      },
+      {
+        "title": "Integrações & Automações",
+        "desc": "Conectamos seus sistemas, eliminamos retrabalho e automatizamos processos repetitivos. Do ERP ao CRM, tudo integrado e fluindo."
+      },
+      {
+        "title": "Consultoria Técnica",
+        "desc": "Análise profunda do seu ambiente tecnológico, identificação de gargalos e roadmap claro para a modernização do seu stack."
+      }
+    ]
+  },
+  "About": {
+    "tag": "Sobre Nós",
+    "title": "A identidade",
+    "titleHighlight": "por trás do código",
+    "p1": "A H2V Systems nasce da convergência entre o nome de seu fundador, <strong>Hiury Vilanova</strong>, e a visão de entregar sistemas que funcionam como combustível para a inovação.",
+    "p2": "O <cyan>H2</cyan> simboliza a base, a estrutura e a força. O <cyan>V</cyan> representa a visão e a velocidade que imprimimos em cada linha de código.",
+    "missionTitle": "Missão",
+    "missionDesc": "Desenvolver tecnologia de precisão que simplifique processos complexos e impulsione o crescimento sustentável.",
+    "visionTitle": "Visão",
+    "visionDesc": "Ser referência em sistemas robustos, reconhecida pela excelência técnica e capacidade de resolver problemas reais.",
+    "valuesTitle": "Valores",
+    "valuesDesc": "Transparência radical, excelência na arquitetura de dados e compromisso total com o sucesso do cliente.",
+    "founderLabel": "// Fundada por",
+    "founderDesc": "Engenheiro de Software com experiência em arquitetura de sistemas, desenvolvimento full-stack e liderança técnica de projetos de alto impacto."
+  },
+  "Process": {
+    "tag": "Metodologia",
+    "title": "Do briefing ao",
+    "titleHighlight": "deploy",
+    "subtitle": "Um processo transparente e colaborativo, pensado para entregar valor rápido com qualidade duradoura.",
+    "steps": [
+      {
+        "title": "Descoberta",
+        "desc": "Mergulhamos no seu negócio. Entendemos o problema real, os stakeholders e definimos o escopo com precisão."
+      },
+      {
+        "title": "Arquitetura",
+        "desc": "Projetamos a solução ideal. Stack, infraestrutura, banco de dados e APIs, tudo documentado e validado antes de codar."
+      },
+      {
+        "title": "Desenvolvimento",
+        "desc": "Sprints ágeis com entregas incrementais. Code review, testes automatizados e deploy contínuo."
+      },
+      {
+        "title": "Sustentação",
+        "desc": "Monitoramento 24/7, atualizações de segurança e suporte técnico para o sistema evoluir com você."
+      }
+    ]
+  },
+  "Faq": {
+    "tag": "FAQ",
+    "title": "Perguntas",
+    "titleHighlight": "frequentes",
+    "subtitle": "Respondemos às dúvidas mais comuns antes de você precisar perguntar. Transparência faz parte da nossa cultura.",
+    "noAnswerTitle": "Não encontrou sua resposta?",
+    "noAnswerDesc": "Fale diretamente com a nossa equipe. Respondemos em até 2 horas úteis.",
+    "noAnswerCta": "Enviar mensagem →",
+    "items": [
+      {
+        "q": "Quanto custa desenvolver um sistema personalizado?",
+        "a": "O investimento varia conforme a complexidade e escopo do projeto. Trabalhamos com projetos fechados e contratos mensais de sustentação. Após uma conversa inicial, apresentamos uma proposta detalhada e transparente, sem surpresas."
+      },
+      {
+        "q": "Qual é o prazo médio de desenvolvimento?",
+        "a": "Depende do escopo, mas MVPs simples ficam prontos em 4 a 8 semanas. Sistemas mais complexos levam entre 3 e 6 meses. Nossa metodologia ágil garante entregas incrementais desde as primeiras semanas."
+      },
+      {
+        "q": "Vocês trabalham com manutenção pós-entrega?",
+        "a": "Sim. Oferecemos planos de sustentação mensal com monitoramento, atualizações de segurança, correções de bugs e novas funcionalidades. O sistema cresce junto com o seu negócio."
+      },
+      {
+        "q": "É possível integrar com sistemas que já uso?",
+        "a": "Com certeza. Integrações são uma das nossas especialidades. ERP, CRM, gateways de pagamento, marketplaces, sistemas legados: se tiver API ou banco de dados, conseguimos conectar."
+      },
+      {
+        "q": "Como funciona a comunicação durante o projeto?",
+        "a": "Transparência total. Você tem acesso a reuniões semanais de status, dashboard do projeto, canal direto no Slack/WhatsApp e relatórios de progresso. Nenhuma surpresa no final do mês."
+      },
+      {
+        "q": "Vocês assinam NDA (acordo de confidencialidade)?",
+        "a": "Sim, sempre. A confidencialidade das informações do cliente é inegociável. Assinamos NDA em todos os projetos antes de iniciar qualquer discussão técnica."
+      }
+    ]
+  },
+  "Contact": {
+    "tag": "Contato",
+    "title": "Vamos construir",
+    "titleHighlight": "juntos?",
+    "description": "Conte-nos sobre o seu desafio. Em até 24 horas úteis nossa equipe retorna com uma análise inicial e os próximos passos.",
+    "channelWaLabel": "WhatsApp · Resposta imediata",
+    "channelWaValue": "Falar agora no WhatsApp",
+    "channelEmailLabel": "E-mail · Resposta em até 24h",
+    "channelLinkedinLabel": "LinkedIn · Conecte-se",
+    "channelLinkedinValue": "Hiury Vilanova",
+    "channelLocationLabel": "Localização · Atendimento remoto",
+    "formName": "Nome completo *",
+    "formNamePlaceholder": "Seu nome",
+    "formEmail": "E-mail profissional *",
+    "formEmailPlaceholder": "seu@email.com",
+    "formCompany": "Empresa",
+    "formCompanyPlaceholder": "Nome da empresa",
+    "formPhone": "WhatsApp / Telefone",
+    "formPhonePlaceholder": "(61) 99172-0301",
+    "formService": "Serviço de interesse",
+    "formServicePlaceholder": "Selecione um serviço...",
+    "formMessage": "Descreva seu projeto ou desafio *",
+    "formMessagePlaceholder": "Conte-nos o contexto, o problema que quer resolver...",
+    "formSubmit": "Enviar Briefing →",
+    "formSubmitting": "Enviando...",
+    "formErrorRequired": "Por favor, preencha os campos obrigatórios (*).",
+    "formErrorEmail": "Por favor, insira um e-mail válido.",
+    "formErrorServer": "Não conseguimos enviar agora. Tente novamente ou fale conosco pelo WhatsApp.",
+    "successTitle": "Mensagem recebida!",
+    "successDesc": "Obrigado pelo contato. Nossa equipe retornará em até 24 horas úteis com uma análise inicial do seu projeto.",
+    "servicesOptions": [
+      "Desenvolvimento Customizado",
+      "Aplicação Web ou Mobile",
+      "Arquitetura & Escalabilidade",
+      "Integração de Sistemas",
+      "Consultoria Técnica",
+      "Outro"
+    ]
+  },
+  "Footer": {
+    "brandDesc": "Construímos as fundações digitais para o futuro das empresas. Tecnologia de precisão, entregue com excelência.",
+    "colServices": "Serviços",
+    "colCompany": "Empresa",
+    "colContact": "Contato",
+    "copyright": "© 2026 H2V Systems. Fundada por Hiury Vilanova. Todos os direitos reservados.",
+    "linkDevelopment": "Desenvolvimento",
+    "linkWebMobile": "Web & Mobile",
+    "linkArchitecture": "Arquitetura",
+    "linkIntegrations": "Integrações",
+    "linkConsulting": "Consultoria",
+    "linkAbout": "Sobre",
+    "linkMethodology": "Metodologia"
+  },
+  "Whatsapp": {
+    "tooltip": "Fale conosco agora!"
+  },
+  "A11y": {
+    "skipToContent": "Pular para o conteúdo principal"
+  },
+  "Cookies": {
+    "aria": "Aviso de cookies",
+    "title": "Usamos cookies",
+    "description": "Usamos cookies essenciais para o funcionamento do site e cookies de análise para entender como você navega. Você pode aceitar ou recusar a qualquer momento.",
+    "accept": "Aceitar",
+    "reject": "Recusar",
+    "close": "Fechar"
+  },
+  "Newsletter": {
+    "title": "Insights diretos no seu inbox",
+    "description": "Receba artigos sobre arquitetura, performance e cases reais. Um e-mail por mês, no máximo.",
+    "placeholder": "seu@email.com",
+    "submit": "Inscrever",
+    "submitting": "Inscrevendo...",
+    "success": "Inscrição confirmada! Obrigado.",
+    "errorEmail": "E-mail inválido.",
+    "errorServer": "Não conseguimos inscrever agora. Tente novamente."
+  },
+  "Cases": {
+    "tag": "Cases",
+    "title": "Onde nossa expertise",
+    "titleHighlight": "fez a diferença",
+    "subtitle": "Experiência de mais de 7 anos em projetos críticos de instituições financeiras, governo e tecnologia.",
+    "viewAll": "Trajetória completa →"
+  },
+  "Testimonials": {
+    "tag": "Depoimentos",
+    "title": "O que dizem",
+    "titleHighlight": "sobre nosso trabalho",
+    "subtitle": "Resultados consistentes que falam por si.",
+    "items": [
+      {
+        "quote": "Entregas técnicas impecáveis, com atenção real aos detalhes de arquitetura. Sistemas que escalaram sem dor de cabeça.",
+        "author": "Tech Lead",
+        "role": "Setor financeiro"
+      },
+      {
+        "quote": "Conseguimos reduzir o tempo de processamento em mais de 60% após a reestruturação proposta. Profissionalismo do início ao fim.",
+        "author": "Gerente de TI",
+        "role": "Instituição pública"
+      },
+      {
+        "quote": "Comunicação clara, prazos cumpridos e código de qualidade enterprise. Recomendo sem reservas.",
+        "author": "Product Owner",
+        "role": "Fintech"
+      }
+    ]
+  },
+  "Insights": {
+    "metaTitle": "Insights H2V Systems",
+    "metaDesc": "Artigos sobre arquitetura, performance, segurança e engenharia de software.",
+    "tag": "Insights",
+    "title": "Engenharia que",
+    "titleHighlight": "ensina e provoca",
+    "subtitle": "Artigos sem fluff sobre arquitetura, performance, segurança e os erros que custaram caro para a gente aprender.",
+    "readingTime": "min de leitura",
+    "by": "Por",
+    "back": "← Voltar para insights",
+    "empty": "Em breve, primeiros artigos.",
+    "readMore": "Continuar leitura →"
+  },
+  "ServicePage": {
+    "breadcrumbHome": "Home",
+    "breadcrumbServices": "Serviços",
+    "ctaTitle": "Pronto para começar?",
+    "ctaDesc": "Conte-nos sobre o seu desafio. Em até 24 horas úteis nossa equipe retorna com uma análise inicial.",
+    "ctaButton": "Conversar agora →",
+    "stackTitle": "Stack & tecnologias",
+    "benefitsTitle": "Resultados que entregamos",
+    "faqTitle": "Perguntas frequentes"
+  },
+  "Services_desenvolvimento": {
+    "metaTitle": "Desenvolvimento de Software Customizado",
+    "metaDesc": "Sistemas sob medida em React, Node, Java e Kotlin. Engenharia robusta, código limpo e entregas previsíveis.",
+    "title": "Desenvolvimento de software",
+    "titleHighlight": "sob medida",
+    "subtitle": "Sistemas projetados especificamente para o seu negócio, construídos com as melhores práticas de engenharia e código de qualidade enterprise.",
+    "intro": "Cada empresa tem processos, dores e oportunidades únicos. Soluções genéricas raramente entregam o resultado esperado. Construímos sistemas que se encaixam perfeitamente na sua operação e escalam junto com ela.",
+    "benefits": [
+      "Redução de retrabalho operacional em até 70%",
+      "Time-to-market acelerado com metodologia ágil",
+      "Código próprio sem dependência de fornecedores externos",
+      "Arquitetura preparada para escalar 10x sem refatoração",
+      "Documentação técnica completa e transferência de conhecimento"
+    ],
+    "faq": [
+      { "q": "Quanto tempo leva um projeto?", "a": "MVPs ficam prontos em 4 a 8 semanas. Projetos completos variam de 3 a 6 meses, com entregas incrementais." },
+      { "q": "Vocês usam alguma linguagem específica?", "a": "Escolhemos a stack ideal para cada projeto. Trabalhamos com TypeScript, Java, Kotlin, Python e Go. Sempre tecnologias maduras." },
+      { "q": "Como é a comunicação durante o projeto?", "a": "Status semanal, canal direto no Slack/WhatsApp, dashboard com progresso e demos a cada sprint." }
+    ]
+  },
+  "Services_web-mobile": {
+    "metaTitle": "Aplicações Web & Mobile de Alta Performance",
+    "metaDesc": "Apps Web, PWA, React Native e Flutter. Interfaces modernas com foco em conversão e experiência.",
+    "title": "Aplicações Web",
+    "titleHighlight": "e Mobile",
+    "subtitle": "Interfaces modernas e performáticas com experiência do usuário como prioridade. PWA, SPA e apps nativos com foco em conversão.",
+    "intro": "A interface é a porta de entrada do seu negócio digital. Construímos experiências que carregam rápido, funcionam em qualquer dispositivo e convertem visitantes em clientes.",
+    "benefits": [
+      "Lighthouse score 90+ em performance e acessibilidade",
+      "Aumento médio de 35% na taxa de conversão",
+      "Compatibilidade total com iOS, Android e Web",
+      "PWA instalável sem App Store ou Play Store",
+      "Suporte multi-idioma e modo offline nativo"
+    ],
+    "faq": [
+      { "q": "PWA ou app nativo, qual escolher?", "a": "Depende do caso. PWA é mais barato e cobre 90% das necessidades. Nativo é melhor quando você precisa de recursos profundos do device." },
+      { "q": "Vocês publicam na App Store e Play Store?", "a": "Sim. Cuidamos do processo completo de publicação, validação e atualizações." },
+      { "q": "É possível migrar um app antigo?", "a": "Sim. Fazemos auditoria, planejamento de migração e implementação gradual sem quebrar o que já funciona." }
+    ]
+  },
+  "Services_arquitetura": {
+    "metaTitle": "Arquitetura de Software & Escalabilidade",
+    "metaDesc": "Microsserviços, APIs robustas, cloud-native e infraestrutura preparada para crescer. AWS, Docker, Kubernetes.",
+    "title": "Arquitetura",
+    "titleHighlight": "& escalabilidade",
+    "subtitle": "Projetamos infraestruturas que crescem com o seu negócio. Microsserviços, APIs robustas e cloud-native para suportar qualquer demanda.",
+    "intro": "Sistemas que travam com crescimento custam clientes, faturamento e reputação. Desenhamos arquiteturas que absorvem picos de tráfego, tolerantes a falhas e otimizadas em custo.",
+    "benefits": [
+      "Suporte a milhões de requisições/dia sem degradação",
+      "Redução de custo de infraestrutura em até 50%",
+      "Alta disponibilidade 99,95% com failover automático",
+      "Deploy em minutos com pipeline CI/CD completo",
+      "Observabilidade total com logs, métricas e tracing"
+    ],
+    "faq": [
+      { "q": "Migrar para microsserviços vale a pena?", "a": "Nem sempre. Análise técnica primeiro. Modulith ou monolito bem feito pode atender por anos antes de quebrar em serviços." },
+      { "q": "Multi-cloud ou single-cloud?", "a": "Single-cloud com vendor lock-in moderado entrega 90% do valor com 30% do custo. Multi-cloud só quando há requisito regulatório." },
+      { "q": "Quanto tempo dura uma migração?", "a": "Sistemas legados: 3 a 9 meses com abordagem gradual (strangler fig). Sem big-bang." }
+    ]
+  },
+  "Services_dados": {
+    "metaTitle": "Banco de Dados & Engenharia de Dados",
+    "metaDesc": "Modelagem, otimização de queries, pipelines ETL e Big Data. PostgreSQL, MongoDB, Redis e BigQuery.",
+    "title": "Banco de dados",
+    "titleHighlight": "& Big Data",
+    "subtitle": "Modelagem eficiente, otimização de queries e pipelines de dados. Transformamos dados brutos em inteligência acionável.",
+    "intro": "Dados são o ativo mais valioso da maioria das empresas, e o mais subutilizado. Estruturamos sua base de dados para responder rápido, escalar barato e gerar insights de verdade.",
+    "benefits": [
+      "Queries até 100x mais rápidas com indexação correta",
+      "Pipelines ETL automatizados com Airflow ou n8n",
+      "Dashboards em tempo real com Metabase, Grafana ou Looker",
+      "Backup, replicação e disaster recovery configurados",
+      "Compliance LGPD com criptografia em repouso e em trânsito"
+    ],
+    "faq": [
+      { "q": "SQL ou NoSQL?", "a": "Depende do domínio. SQL para relações fortes. NoSQL para volume alto e schema flexível. Híbrido funciona bem na maioria dos casos." },
+      { "q": "Vocês fazem migração de banco?", "a": "Sim. Oracle para PostgreSQL, MySQL para Postgres, on-premise para cloud. Sempre com zero downtime." },
+      { "q": "Conseguem analisar dados existentes?", "a": "Sim. Auditoria de schema, análise de queries lentas e plano de otimização entregue em até 2 semanas." }
+    ]
+  },
+  "Services_integracoes": {
+    "metaTitle": "Integrações de Sistemas & Automações",
+    "metaDesc": "Conectamos seus sistemas, eliminamos retrabalho e automatizamos processos com RPA, APIs e n8n.",
+    "title": "Integrações",
+    "titleHighlight": "& automações",
+    "subtitle": "Conectamos seus sistemas, eliminamos retrabalho e automatizamos processos repetitivos. Do ERP ao CRM, tudo integrado e fluindo.",
+    "intro": "Toda empresa tem um conjunto de sistemas que não conversam entre si. O resultado é planilha de Excel, copia-cola e erro humano. Automatizamos esse fluxo e devolvemos horas de produtividade ao seu time.",
+    "benefits": [
+      "Economia média de 200 horas/mês em tarefas repetitivas",
+      "Integração com ERPs (SAP, Totvs, Sankhya), CRMs e gateways",
+      "Webhooks em tempo real entre sistemas",
+      "Automação de e-mails, planilhas e relatórios",
+      "Logs de auditoria completos de todas as transações"
+    ],
+    "faq": [
+      { "q": "Meu sistema legado não tem API. Dá para integrar?", "a": "Sim. RPA, scraping autorizado ou acesso direto ao banco quando viável. Sempre dentro da conformidade." },
+      { "q": "Quanto custa uma integração simples?", "a": "Integrações ponto a ponto entre dois sistemas conhecidos: 2 a 4 semanas. Orçamento sob medida após análise." },
+      { "q": "Como vocês garantem que não vai quebrar?", "a": "Testes automatizados, retry com backoff exponencial, dead letter queue e alertas em tempo real para qualquer falha." }
+    ]
+  },
+  "Services_consultoria": {
+    "metaTitle": "Consultoria Técnica & Auditoria de Software",
+    "metaDesc": "Análise profunda do seu ambiente tecnológico, code review, tech audit e roadmap de modernização.",
+    "title": "Consultoria",
+    "titleHighlight": "técnica",
+    "subtitle": "Análise profunda do seu ambiente tecnológico, identificação de gargalos e roadmap claro para a modernização do seu stack.",
+    "intro": "Antes de codar, vale parar para pensar. Auditamos seu código, infraestrutura e processos para mostrar onde está o desperdício, o risco e a oportunidade.",
+    "benefits": [
+      "Diagnóstico técnico completo em até 3 semanas",
+      "Roadmap priorizado com esforço, custo e impacto estimados",
+      "Code review com checklist de segurança, performance e manutenibilidade",
+      "Plano de modernização com etapas viáveis e ROI claro",
+      "Mentoria do time interno em arquitetura e boas práticas"
+    ],
+    "faq": [
+      { "q": "Como funciona o processo de auditoria?", "a": "Análise do código, infra, banco e processos. Entrevistas com o time. Relatório executivo + técnico. Apresentação dos achados e plano de ação." },
+      { "q": "Vocês trabalham junto com o nosso time?", "a": "Sim. Atuamos como squad externa em projetos pontuais ou como mentoria contínua para o time interno." },
+      { "q": "Quanto tempo de contrato?", "a": "Mínimo 1 mês para diagnóstico. Acompanhamento contínuo é mensal, sem fidelidade longa." }
+    ]
+  }
+}
