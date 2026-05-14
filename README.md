@@ -3,7 +3,7 @@
 Site institucional da **H2V Systems** — consultoria e desenvolvimento de software de alta performance. Construído com foco em **arquitetura robusta, performance e SEO**, totalmente internacionalizado (pt-BR, en, es).
 
 🌐 **Produção:** [https://www.h2vsystems.com.br](https://www.h2vsystems.com.br)
-👤 **Fundadora:** [Hiury Vilanova](https://hiuryvilanova.com)
+👤 **Fundador:** [Hiury Vilanova](https://hiuryvilanova.com)
 
 ---
 
