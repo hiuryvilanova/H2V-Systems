@@ -1,7 +1,7 @@
 {
   "Metadata": {
-    "title": "H2V Systems | Tecnologia de Precisão",
-    "description": "Consultoria e desenvolvimento de software de alta performance. Transformamos desafios operacionais em soluções digitais robustas e escaláveis."
+    "title": "H2V Systems | Consultoria e software em produção",
+    "description": "Desenvolvimento, integração e arquitetura com Hiury Vilanova e time — foco em sistema que já roda em ambiente real, com prazo e conversa direta."
   },
   "Nav": {
     "services": "Serviços",
@@ -10,20 +10,18 @@
     "process": "Processo",
     "faq": "FAQ",
     "contact": "Contato",
-    "cta": "Fale Conosco →"
+    "cta": "Fale Conosco"
   },
   "Hero": {
-    "eyebrow": "H2V Systems / Consultoria & Software House",
-    "title": "Soluções de",
-    "words": ["Alto Impacto", "Alta Performance", "Alta Escala", "Precisão Cirúrgica"],
-    "description": "Na H2V Systems, construímos as fundações digitais para o futuro das empresas. Engenharia de software moderna, escalável e de alta performance.",
-    "ctaPrimary": "Iniciar Projeto →",
+    "title": "Engenharia para o que",
+    "titleAccent": "já está no ar.",
+    "description": "Integração com legado, fila que segura pico, relatório que fecha, app novo com prazo real. A gente mede o que dói, propõe o menor passo que resolve e entrega com deploy que você acompanha.",
+    "ctaPrimary": "Iniciar Projeto",
     "ctaSecondary": "Ver Serviços",
-    "scroll": "scroll",
-    "badgePerformance": "Alta Performance",
-    "badgeArchitecture": "Arquitetura Robusta",
-    "badgeScalability": "Escalabilidade",
-    "badgeSecurity": "Segurança Total"
+    "badgePerformance": "Sob carga de verdade",
+    "badgeArchitecture": "API e legado",
+    "badgeScalability": "Entrega em sprint",
+    "badgeSecurity": "O básico bem feito"
   },
   "Stats": {
     "projectsLabel": "Projetos Entregues",
@@ -32,9 +30,8 @@
     "supportLabel": "Suporte & Monitoramento"
   },
   "Services": {
-    "tag": "Serviços",
     "title": "Nossos serviços",
-    "subtitle": "Cada solução é projetada sob medida para o seu contexto, com foco em escalabilidade, manutenibilidade e retorno real para o negócio.",
+    "subtitle": "Sem deck genérico: entendemos o fluxo, cortamos escopo junto e priorizamos o que quebra primeiro.",
     "learnMore": "Saiba mais",
     "items": [
       {
@@ -64,25 +61,24 @@
     ]
   },
   "About": {
-    "tag": "Sobre Nós",
     "title": "A identidade",
     "titleHighlight": "por trás do código",
-    "p1": "A H2V Systems nasce da convergência entre o nome de seu fundador, <strong>Hiury Vilanova</strong>, e a visão de entregar sistemas que funcionam como combustível para a inovação.",
-    "p2": "O <cyan>H2</cyan> simboliza a base, a estrutura e a força. O <cyan>V</cyan> representa a visão e a velocidade que imprimimos em cada linha de código.",
+    "p1": "A H2V Systems é da <strong>Hiury Vilanova</strong> — engenharia aplicada quando o tráfego cresce, o legado atrapalha ou o produto novo precisa sair com data.",
+    "p2": "O <cyan>H2</cyan> e o <cyan>V</cyan> vêm do nome da fundadora: projeto com dono, canal curto e decisão técnica que a gente explica sem glossário de marketing.",
     "missionTitle": "Missão",
-    "missionDesc": "Desenvolver tecnologia de precisão que simplifique processos complexos e impulsione o crescimento sustentável.",
+    "missionDesc": "Diminuir incidente e retrabalho com software que dá para operar — log legível, deploy previsível, escopo que a gente honra.",
     "visionTitle": "Visão",
-    "visionDesc": "Ser referência em sistemas robustos, reconhecida pela excelência técnica e capacidade de resolver problemas reais.",
+    "visionDesc": "Ser o time que você chama quando precisa de alguém que leu o stack trace e propõe o próximo passo sem empurrar refatoração infinita.",
     "valuesTitle": "Valores",
-    "valuesDesc": "Transparência radical, excelência na arquitetura de dados e compromisso total com o sucesso do cliente.",
+    "valuesDesc": "Dizer não quando o prazo não fecha, documentar o combinado e manter WhatsApp e e-mail com resposta em horário útil.",
     "founderLabel": "// Fundada por",
-    "founderDesc": "Engenheiro de Software com experiência em arquitetura de sistemas, desenvolvimento full-stack e liderança técnica de projetos de alto impacto."
+    "founderDesc": "Engenheiro de software com histórico em Java/Kotlin/Spring, React e ambientes onde incidente custa caro — costuma liderar discovery técnico e revisão de PR."
   },
   "Process": {
     "tag": "Metodologia",
     "title": "Do briefing ao",
     "titleHighlight": "deploy",
-    "subtitle": "Um processo transparente e colaborativo, pensado para entregar valor rápido com qualidade duradoura.",
+    "subtitle": "Transparência no que vai sair em cada sprint — você vê entrega, não só promessa de fase.",
     "steps": [
       {
         "title": "Descoberta",
@@ -106,10 +102,10 @@
     "tag": "FAQ",
     "title": "Perguntas",
     "titleHighlight": "frequentes",
-    "subtitle": "Respondemos às dúvidas mais comuns antes de você precisar perguntar. Transparência faz parte da nossa cultura.",
+    "subtitle": "O que costuma surgir na primeira conversa. Se o seu caso for fora do roteiro, escreve no contato.",
     "noAnswerTitle": "Não encontrou sua resposta?",
     "noAnswerDesc": "Fale diretamente com a nossa equipe. Respondemos em até 2 horas úteis.",
-    "noAnswerCta": "Enviar mensagem →",
+    "noAnswerCta": "Enviar mensagem",
     "items": [
       {
         "q": "Quanto custa desenvolver um sistema personalizado?",
@@ -160,7 +156,7 @@
     "formServicePlaceholder": "Selecione um serviço...",
     "formMessage": "Descreva seu projeto ou desafio *",
     "formMessagePlaceholder": "Conte-nos o contexto, o problema que quer resolver...",
-    "formSubmit": "Enviar Briefing →",
+    "formSubmit": "Enviar Briefing",
     "formSubmitting": "Enviando...",
     "formErrorRequired": "Por favor, preencha os campos obrigatórios (*).",
     "formErrorEmail": "Por favor, insira um e-mail válido.",
@@ -215,30 +211,29 @@
     "errorServer": "Não conseguimos inscrever agora. Tente novamente."
   },
   "Cases": {
-    "tag": "Cases",
     "title": "Onde nossa expertise",
     "titleHighlight": "fez a diferença",
     "subtitle": "Experiência de mais de 7 anos em projetos críticos de instituições financeiras, governo e tecnologia.",
-    "viewAll": "Trajetória completa →"
+    "viewAll": "Trajetória completa"
   },
   "Testimonials": {
     "tag": "Depoimentos",
     "title": "O que dizem",
     "titleHighlight": "sobre nosso trabalho",
-    "subtitle": "Resultados consistentes que falam por si.",
+    "subtitle": "Feedback de quem trabalhou com a gente em projeto crítico — nomes genéricos por NDAs.",
     "items": [
       {
-        "quote": "Entregas técnicas impecáveis, com atenção real aos detalhes de arquitetura. Sistemas que escalaram sem dor de cabeça.",
+        "quote": "A gente tinha gargalo em fila e relatório; em duas semanas já estava medindo de novo. Arquitetura explicada sem teatro.",
         "author": "Tech Lead",
         "role": "Setor financeiro"
       },
       {
-        "quote": "Conseguimos reduzir o tempo de processamento em mais de 60% após a reestruturação proposta. Profissionalismo do início ao fim.",
+        "quote": "Reduzimos tempo de processamento forte depois que eles desenharam o fluxo certo — sem vender refatoração do universo.",
         "author": "Gerente de TI",
         "role": "Instituição pública"
       },
       {
-        "quote": "Comunicação clara, prazos cumpridos e código de qualidade enterprise. Recomendo sem reservas.",
+        "quote": "Prazo cumprido, PR com contexto e teste onde importava. Recomendo para time que não tem paciência para slide.",
         "author": "Product Owner",
         "role": "Fintech"
       }
@@ -253,16 +248,16 @@
     "subtitle": "Artigos sem fluff sobre arquitetura, performance, segurança e os erros que custaram caro para a gente aprender.",
     "readingTime": "min de leitura",
     "by": "Por",
-    "back": "← Voltar para insights",
+    "back": "Voltar para insights",
     "empty": "Em breve, primeiros artigos.",
-    "readMore": "Continuar leitura →"
+    "readMore": "Continuar leitura"
   },
   "ServicePage": {
     "breadcrumbHome": "Home",
     "breadcrumbServices": "Serviços",
     "ctaTitle": "Pronto para começar?",
     "ctaDesc": "Conte-nos sobre o seu desafio. Em até 24 horas úteis nossa equipe retorna com uma análise inicial.",
-    "ctaButton": "Conversar agora →",
+    "ctaButton": "Conversar agora",
     "stackTitle": "Stack & tecnologias",
     "benefitsTitle": "Resultados que entregamos",
     "faqTitle": "Perguntas frequentes"

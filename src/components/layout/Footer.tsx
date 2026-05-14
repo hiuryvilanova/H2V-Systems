@@ -42,14 +42,14 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="pt-12 sm:pt-16 pb-8 border-t" style={{ background: 'var(--bg-0)', borderColor: 'var(--border)' }}>
+    <footer className="pt-12 sm:pt-16 pb-8 border-t" style={{ background: 'var(--bg-1)', borderColor: 'var(--border)' }}>
       <div className="max-w-[1200px] mx-auto px-5 sm:px-6">
         <div className="mb-10 sm:mb-14">
           <Newsletter />
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-10 sm:mb-12">
+        <div className="grid grid-cols-1 min-[400px]:grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-10 sm:mb-12">
           {/* Brand */}
-          <div className="col-span-2 sm:col-span-2 lg:col-span-1">
+          <div className="min-[400px]:col-span-2 sm:col-span-2 lg:col-span-1">
             <a href="#hero" className="flex items-center gap-2.5 no-underline mb-4 group w-fit">
               <Image
                 src="/logo.png"
@@ -58,7 +58,7 @@ export default function Footer() {
                 height={36}
                 className="rounded-lg transition-transform duration-300 group-hover:scale-105"
               />
-              <span className="font-mono font-bold text-lg tracking-tight" style={{ color: 'var(--text-100)' }}>
+              <span className="font-sans font-semibold text-lg tracking-tight" style={{ color: 'var(--text-100)' }}>
                 H<span style={{ color: 'var(--cyan)' }}>2</span>V
                 <sub className="text-[0.6rem] ml-0.5" style={{ color: 'var(--text-70)', fontWeight: 400 }}>systems</sub>
               </span>
@@ -70,7 +70,7 @@ export default function Footer() {
 
           {cols.map((col) => (
             <div key={col.title}>
-              <h5 className="text-xs font-semibold uppercase tracking-[0.1em] mb-4 font-mono" style={{ color: 'var(--text-70)' }}>
+              <h5 className="text-xs font-semibold uppercase tracking-[0.12em] mb-4" style={{ color: 'var(--text-70)' }}>
                 {col.title}
               </h5>
               <ul className="flex flex-col gap-2.5 list-none">
@@ -103,7 +103,7 @@ export default function Footer() {
               { Icon: WhatsAppIcon, href: WHATSAPP_LINK, title: 'WhatsApp'  },
             ].map((s) => (
               <a key={s.title} href={s.href} target="_blank" rel="noopener noreferrer" title={s.title} aria-label={s.title}
-                className="w-9 h-9 rounded-lg flex items-center justify-center no-underline transition-all duration-300 hover:-translate-y-0.5 group"
+                className="w-11 h-11 min-h-11 min-w-11 rounded-lg flex items-center justify-center no-underline transition-all duration-300 hover:-translate-y-0.5 group"
                 style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
                 <s.Icon size={15} color="var(--text-70)" className="transition-colors duration-300 group-hover:fill-[var(--cyan)]" />
               </a>

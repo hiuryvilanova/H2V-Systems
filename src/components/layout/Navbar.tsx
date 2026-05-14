@@ -5,11 +5,11 @@ import Image from 'next/image'
 import { useTranslations, useLocale } from 'next-intl'
 import { useRouter, usePathname } from '@/i18n/navigation'
 import { routing, type Locale } from '@/i18n/routing'
+import LocaleFlag from '@/components/ui/LocaleFlag'
 
-const LOCALE_FLAGS: Record<Locale, string> = { pt: '🇧🇷', en: '🇺🇸', es: '🇪🇸' }
 const LOCALE_LABELS: Record<Locale, string> = { pt: 'PT', en: 'EN', es: 'ES' }
 
-function LanguageSwitcher() {
+function LanguageSwitcher({ onOrange }: { onOrange?: boolean }) {
   const locale   = useLocale() as Locale
   const router   = useRouter()
   const pathname = usePathname()
@@ -20,16 +20,22 @@ function LanguageSwitcher() {
     setOpen(false)
   }
 
+  const btnBorder = onOrange ? 'rgba(255,255,255,0.38)' : 'var(--border)'
+  const btnColor  = onOrange ? 'rgba(255,255,255,0.95)' : 'var(--text-70)'
+
   return (
     <div className="relative">
       <button
         onClick={() => setOpen((o) => !o)}
-        className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium
+        className="flex items-center justify-center gap-1.5 min-h-11 min-w-11 px-2 sm:px-3 py-2 rounded-lg text-sm font-medium
           cursor-pointer bg-transparent border transition-all duration-300"
-        style={{ borderColor: 'var(--border)', color: 'var(--text-70)' }}
+        style={{ borderColor: btnBorder, color: btnColor }}
         aria-label="Trocar idioma"
       >
-        <span>{LOCALE_FLAGS[locale]}</span>
+        <LocaleFlag
+          locale={locale}
+          className={onOrange ? 'h-4 w-6 shrink-0 rounded-[2px] ring-1 ring-white/35 shadow-sm' : undefined}
+        />
         <span>{LOCALE_LABELS[locale]}</span>
         <span
           className="text-xs transition-transform duration-200"
@@ -50,10 +56,9 @@ function LanguageSwitcher() {
             className="absolute right-0 top-full mt-2 z-50 rounded-xl overflow-hidden min-w-[120px]
               border shadow-xl"
             style={{
-              background: 'var(--bg-card)',
-              backdropFilter: 'blur(20px)',
-              borderColor: 'var(--border)',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
+              background: '#ffffff',
+              borderColor: 'rgba(15, 23, 42, 0.1)',
+              boxShadow: '0 12px 40px rgba(0,0,0,0.1)',
             }}
           >
             {routing.locales.map((loc) => (
@@ -63,14 +68,14 @@ function LanguageSwitcher() {
                 className="w-full flex items-center gap-2.5 px-4 py-3 text-sm font-medium
                   cursor-pointer bg-transparent border-0 text-left transition-colors duration-200"
                 style={{
-                  color: loc === locale ? 'var(--cyan)' : 'var(--text-70)',
-                  background: loc === locale ? 'var(--cyan-dim)' : 'transparent',
+                  color: loc === locale ? '#c2410c' : '#475569',
+                  background: loc === locale ? 'rgba(194, 65, 12, 0.08)' : 'transparent',
                 }}
               >
-                <span>{LOCALE_FLAGS[loc]}</span>
+                <LocaleFlag locale={loc} />
                 <span>{LOCALE_LABELS[loc]}</span>
                 {loc === locale && (
-                  <span className="ml-auto text-xs" style={{ color: 'var(--cyan)' }}>✓</span>
+                  <span className="ml-auto text-xs" style={{ color: '#c2410c' }}>✓</span>
                 )}
               </button>
             ))}
@@ -110,25 +115,26 @@ export default function Navbar() {
     <>
       <nav
         className={`fixed top-0 left-0 right-0 z-[1000] transition-all duration-300 ${
-          scrolled ? 'py-3' : 'py-5'
+          scrolled ? 'pb-3' : 'pb-5'
         }`}
-        style={
-          scrolled
-            ? {
-                background: 'rgba(13, 10, 8, 0.90)',
-                backdropFilter: 'blur(20px)',
-                WebkitBackdropFilter: 'blur(20px)',
-                borderBottom: '1px solid var(--border)',
-                boxShadow: '0 4px 40px rgba(0,0,0,0.4)',
-              }
-            : {}
-        }
+        style={{
+          paddingTop: scrolled
+            ? 'max(0.75rem, env(safe-area-inset-top, 0px))'
+            : 'max(1.25rem, env(safe-area-inset-top, 0px))',
+          background: scrolled
+            ? 'linear-gradient(135deg, #9a3412 0%, #7c2d12 52%, #651e0e 100%)'
+            : 'linear-gradient(135deg, #c2410c 0%, #9a3412 48%, #7c2d12 100%)',
+          borderBottom: '1px solid rgba(0,0,0,0.08)',
+          boxShadow: scrolled
+            ? '0 8px 28px rgba(0, 0, 0, 0.18)'
+            : '0 2px 16px rgba(0, 0, 0, 0.12)',
+        }}
       >
-        <div className="max-w-[1200px] mx-auto px-5 sm:px-6 flex items-center justify-between gap-3 sm:gap-4">
+        <div className="max-w-[1200px] mx-auto px-5 sm:px-6 flex items-center justify-between gap-2 sm:gap-4 min-w-0">
           {/* Logo */}
           <a
             href="#hero"
-            className="flex items-center gap-2.5 no-underline flex-shrink-0 group"
+            className="flex items-center gap-2 sm:gap-2.5 no-underline flex-shrink-0 min-w-0 group"
             aria-label="H2V Systems — Início"
           >
             <Image
@@ -136,12 +142,12 @@ export default function Navbar() {
               alt="H2V Systems logo"
               width={38}
               height={38}
-              className="rounded-lg transition-transform duration-300 group-hover:scale-105"
+              className="rounded-lg transition-transform duration-300 group-hover:scale-105 shrink-0"
               priority
             />
-            <span className="font-mono font-bold text-lg tracking-tight" style={{ color: 'var(--text-100)' }}>
-              H<span style={{ color: 'var(--cyan)' }}>2</span>V
-              <sub className="text-[0.6rem] ml-0.5" style={{ color: 'var(--text-70)', fontWeight: 400 }}>systems</sub>
+            <span className="font-sans font-semibold text-base sm:text-lg tracking-tight truncate" style={{ color: '#fafaf9' }}>
+              H<span style={{ color: 'rgba(255,255,255,0.88)' }}>2</span>V
+              <sub className="hidden min-[420px]:inline text-[0.6rem] ml-0.5 align-baseline" style={{ color: 'rgba(255,255,255,0.82)', fontWeight: 400 }}>systems</sub>
             </span>
           </a>
 
@@ -153,19 +159,19 @@ export default function Navbar() {
                   href={l.href}
                   className="relative px-4 py-2 rounded-lg text-sm font-medium no-underline
                     transition-colors duration-300 group"
-                  style={{ color: 'var(--text-70)' }}
+                  style={{ color: 'rgba(255,255,255,0.9)' }}
                   onMouseEnter={(e) =>
-                    ((e.currentTarget as HTMLAnchorElement).style.color = 'var(--text-100)')
+                    ((e.currentTarget as HTMLAnchorElement).style.color = '#ffffff')
                   }
                   onMouseLeave={(e) =>
-                    ((e.currentTarget as HTMLAnchorElement).style.color = 'var(--text-70)')
+                    ((e.currentTarget as HTMLAnchorElement).style.color = 'rgba(255,255,255,0.9)')
                   }
                 >
                   {l.label}
                   <span
                     className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 rounded-sm
                       group-hover:w-3/5 transition-all duration-300"
-                    style={{ background: 'var(--cyan)' }}
+                    style={{ background: 'rgba(255,255,255,0.85)' }}
                   />
                 </a>
               </li>
@@ -174,14 +180,15 @@ export default function Navbar() {
 
           {/* Right: CTA + Language switcher */}
           <div className="hidden md:flex items-center gap-3 flex-shrink-0">
-            <LanguageSwitcher />
+            <LanguageSwitcher onOrange />
             <a
               href="#contato"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-white
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg
                 font-semibold text-sm no-underline hover:-translate-y-0.5 transition-all duration-300"
               style={{
-                background: 'linear-gradient(135deg, var(--cyan), var(--blue))',
-                boxShadow: '0 4px 24px rgba(232,75,26,0.45)',
+                background: '#fafaf9',
+                color: '#7c2d12',
+                boxShadow: '0 1px 2px rgba(15,23,42,0.06)',
               }}
             >
               {t('cta')}
@@ -190,10 +197,10 @@ export default function Navbar() {
 
           {/* Hamburger */}
           <div className="md:hidden flex items-center gap-3">
-            <LanguageSwitcher />
+            <LanguageSwitcher onOrange />
             <button
               onClick={() => setMenuOpen((o) => !o)}
-              className="flex flex-col gap-[5px] p-2 bg-transparent border-0 cursor-pointer"
+              className="flex flex-col items-center justify-center gap-[5px] min-h-11 min-w-11 p-2 bg-transparent border-0 cursor-pointer rounded-lg"
               aria-label="Abrir menu"
               aria-expanded={menuOpen}
             >
@@ -201,19 +208,19 @@ export default function Navbar() {
                 className={`block w-6 h-0.5 rounded transition-all duration-300 ${
                   menuOpen ? 'rotate-45 translate-y-[7px]' : ''
                 }`}
-                style={{ background: 'var(--text-100)' }}
+                style={{ background: '#fffef9' }}
               />
               <span
                 className={`block w-6 h-0.5 rounded transition-all duration-300 ${
                   menuOpen ? 'opacity-0' : ''
                 }`}
-                style={{ background: 'var(--text-100)' }}
+                style={{ background: '#fffef9' }}
               />
               <span
                 className={`block w-6 h-0.5 rounded transition-all duration-300 ${
                   menuOpen ? '-rotate-45 -translate-y-[7px]' : ''
                 }`}
-                style={{ background: 'var(--text-100)' }}
+                style={{ background: '#fffef9' }}
               />
             </button>
           </div>
@@ -222,13 +229,15 @@ export default function Navbar() {
 
       {/* Mobile overlay */}
       <div
-        className={`fixed inset-0 z-[999] flex flex-col items-center justify-center gap-6
-          transition-opacity duration-300 md:hidden
+        className={`fixed inset-0 z-[999] flex flex-col items-center justify-center gap-5 sm:gap-6
+          transition-opacity duration-300 md:hidden overflow-y-auto overscroll-y-contain px-6
           ${menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
         style={{
-          background: 'rgba(13, 10, 8, 0.97)',
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)',
+          background: 'rgba(255, 252, 250, 0.97)',
+          backdropFilter: 'blur(16px)',
+          WebkitBackdropFilter: 'blur(16px)',
+          paddingTop: 'max(2rem, env(safe-area-inset-top))',
+          paddingBottom: 'max(2rem, env(safe-area-inset-bottom))',
         }}
       >
         {NAV_LINKS.map((l) => (
@@ -236,8 +245,10 @@ export default function Navbar() {
             key={l.href}
             href={l.href}
             onClick={() => setMenuOpen(false)}
-            className="text-2xl font-bold no-underline transition-colors duration-300 hover:text-[var(--cyan)]"
-            style={{ color: 'var(--text-100)' }}
+            className="text-center text-[clamp(1.15rem,4.5vw,1.5rem)] font-bold no-underline transition-colors duration-300 py-1"
+            style={{ color: '#1a1512' }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#c2410c' }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#1a1512' }}
           >
             {l.label}
           </a>
@@ -245,8 +256,8 @@ export default function Navbar() {
         <a
           href="#contato"
           onClick={() => setMenuOpen(false)}
-          className="mt-4 px-8 py-4 rounded-lg text-white font-semibold no-underline"
-          style={{ background: 'linear-gradient(135deg, var(--cyan), var(--blue))' }}
+          className="mt-2 min-h-12 px-8 py-3.5 rounded-lg font-semibold no-underline text-white inline-flex items-center justify-center text-center"
+          style={{ background: 'var(--cyan)', boxShadow: '0 8px 28px rgba(194,65,12,0.25)' }}
         >
           {t('cta')}
         </a>

@@ -30,11 +30,8 @@ export default function Faq() {
 
           {/* Left */}
           <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.75 }}>
-            <span className="tag-badge">
-              <span className="w-1.5 h-1.5 rounded-full animate-pulse-dot" style={{ background: 'var(--cyan)' }} />
-              {t('tag')}
-            </span>
-            <h2 className="text-[clamp(1.75rem,5vw,3rem)] font-black tracking-tight leading-tight mb-4">
+            <span className="tag-badge">{t('tag')}</span>
+            <h2 className="text-[clamp(1.75rem,5vw,3rem)] font-bold tracking-tight leading-tight mb-4">
               {t('title')}<br />
               <span className="gradient-text">{t('titleHighlight')}</span>
             </h2>
@@ -45,7 +42,7 @@ export default function Faq() {
               <p className="text-sm leading-relaxed mb-5" style={{ color: 'var(--text-70)' }}>{t('noAnswerDesc')}</p>
               <a href="#contato"
                 className="inline-flex items-center gap-2 px-5 sm:px-6 py-3 rounded-lg text-white font-semibold text-sm no-underline hover:-translate-y-0.5 transition-all duration-300"
-                style={{ background: 'linear-gradient(135deg, var(--cyan), var(--blue))', boxShadow: '0 4px 24px rgba(232,75,26,0.45)' }}>
+                style={{ background: 'var(--cyan)', boxShadow: '0 8px 28px rgba(194,65,12,0.2)' }}>
                 {t('noAnswerCta')}
               </a>
             </div>
@@ -63,8 +60,9 @@ export default function Faq() {
                     aria-expanded={isOpen}
                     className="w-full flex justify-between items-center gap-3 px-5 sm:px-6 py-4 sm:py-5 text-left font-semibold text-sm cursor-pointer bg-transparent border-0 transition-colors duration-300"
                     style={{ color: isOpen ? 'var(--cyan)' : 'var(--text-100)' }}>
-                    <span className="flex-1">{faq.q}</span>
-                    <span className="w-7 h-7 min-w-[28px] rounded-full flex items-center justify-center text-xl font-light transition-all duration-300 flex-shrink-0"
+                    <span className="flex-1 min-w-0 pr-2">{faq.q}</span>
+                    <span
+                      className="w-9 h-9 min-w-9 min-h-9 rounded-full flex items-center justify-center text-xl font-light transition-all duration-300 flex-shrink-0"
                       style={{ background: isOpen ? 'var(--cyan)' : 'var(--cyan-dim)', color: isOpen ? 'var(--bg-0)' : 'var(--cyan)', border: '1px solid var(--border)', transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)' }}>
                       +
                     </span>

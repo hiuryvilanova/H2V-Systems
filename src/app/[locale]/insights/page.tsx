@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getTranslations } from 'next-intl/server'
-import { ArrowRight, Calendar, Clock } from 'lucide-react'
+import { Calendar, Clock } from 'lucide-react'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import ProgressBar from '@/components/ui/ProgressBar'
@@ -68,17 +68,16 @@ export default async function InsightsIndex({ params }: { params: Promise<{ loca
       <ProgressBar />
       <Navbar />
 
-      <main id="main" tabIndex={-1}>
-        <section className="relative pt-[120px] sm:pt-[150px] pb-12 sm:pb-16 overflow-hidden">
+      <main id="main" tabIndex={-1} className="w-full min-w-0">
+        <section className="relative pt-[120px] sm:pt-[150px] pb-12 sm:pb-16 overflow-hidden bg-white">
           <div aria-hidden="true" className="absolute inset-0 pointer-events-none"
-            style={{ background: 'radial-gradient(ellipse 60% 50% at 50% 30%, rgba(232,75,26,0.12) 0%, transparent 60%)' }} />
+            style={{ background: 'radial-gradient(ellipse 60% 50% at 50% 30%, rgba(194,65,12,0.06) 0%, transparent 60%)' }} />
 
-          <div className="max-w-[1100px] mx-auto px-5 sm:px-6 relative z-10">
+          <div className="max-w-[1200px] mx-auto px-5 sm:px-6 relative z-10">
             <span className="tag-badge">
-              <span className="w-1.5 h-1.5 rounded-full animate-pulse-dot" style={{ background: 'var(--cyan)' }} />
               {t('tag')}
             </span>
-            <h1 className="text-[clamp(1.9rem,5.5vw,3.4rem)] font-black tracking-tight leading-[1.1] mb-4 max-w-[800px]">
+            <h1 className="text-[clamp(1.9rem,5.5vw,3.4rem)] font-bold tracking-tight leading-[1.1] mb-4 max-w-[800px]">
               {t('title')}
               <br />
               <span className="gradient-text">{t('titleHighlight')}</span>
@@ -90,7 +89,7 @@ export default async function InsightsIndex({ params }: { params: Promise<{ loca
         </section>
 
         <section className="py-12 sm:py-16">
-          <div className="max-w-[1100px] mx-auto px-5 sm:px-6">
+          <div className="max-w-[1200px] mx-auto px-5 sm:px-6">
             {insights.length === 0 ? (
               <p className="text-center text-sm py-16" style={{ color: 'var(--text-70)' }}>{t('empty')}</p>
             ) : (
@@ -121,8 +120,8 @@ export default async function InsightsIndex({ params }: { params: Promise<{ loca
                     <div className="flex flex-wrap gap-1.5 mb-5">
                       {post.tags.slice(0, 3).map((tag) => <span key={tag} className="service-tag">{tag}</span>)}
                     </div>
-                    <span className="inline-flex items-center gap-1.5 text-sm font-semibold" style={{ color: 'var(--cyan)' }}>
-                      {t('readMore')} <ArrowRight size={14} strokeWidth={2.2} className="transition-transform group-hover:translate-x-0.5" />
+                    <span className="inline-flex items-center text-sm font-semibold" style={{ color: 'var(--cyan)' }}>
+                      {t('readMore')}
                     </span>
                   </Link>
                 ))}

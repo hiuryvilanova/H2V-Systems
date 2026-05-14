@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getTranslations } from 'next-intl/server'
-import { ArrowLeft, Calendar, Clock, User } from 'lucide-react'
+import { Calendar, Clock, User } from 'lucide-react'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import ProgressBar from '@/components/ui/ProgressBar'
@@ -105,16 +105,15 @@ export default async function InsightPost({ params }: { params: Promise<PagePara
       <Navbar />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }} />
 
-      <main id="main" tabIndex={-1}>
-        <article className="relative pt-[120px] sm:pt-[150px] pb-16 sm:pb-24">
+      <main id="main" tabIndex={-1} className="w-full min-w-0">
+        <article className="relative pt-[120px] sm:pt-[150px] pb-16 sm:pb-24 bg-white">
           <div aria-hidden="true" className="absolute inset-0 pointer-events-none top-0 h-[400px]"
-            style={{ background: 'radial-gradient(ellipse 60% 50% at 50% 30%, rgba(232,75,26,0.10) 0%, transparent 70%)' }} />
+            style={{ background: 'radial-gradient(ellipse 60% 50% at 50% 30%, rgba(194,65,12,0.06) 0%, transparent 70%)' }} />
 
           <div className="max-w-[760px] mx-auto px-5 sm:px-6 relative z-10">
             <Link href={`${localePath}/insights` as never}
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm mb-6 sm:mb-8 no-underline transition-colors"
+              className="inline-flex items-center text-xs sm:text-sm mb-6 sm:mb-8 no-underline transition-colors hover:text-[var(--cyan)]"
               style={{ color: 'var(--text-70)' }}>
-              <ArrowLeft size={14} strokeWidth={2} />
               {t('back')}
             </Link>
 
@@ -122,7 +121,7 @@ export default async function InsightPost({ params }: { params: Promise<PagePara
               {post.tags.map((tag) => <span key={tag} className="service-tag">{tag}</span>)}
             </div>
 
-            <h1 className="text-[clamp(1.7rem,5vw,3rem)] font-black tracking-tight leading-[1.15] mb-5">
+            <h1 className="text-[clamp(1.7rem,5vw,3rem)] font-bold tracking-tight leading-[1.15] mb-5">
               {post.title}
             </h1>
 

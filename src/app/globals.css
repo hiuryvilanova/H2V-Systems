@@ -2,33 +2,90 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Design Tokens ─────────────────────────────────────────────────── */
+/* ── Design tokens — neutros frios + acento contido (consultoria / B2B premium) ─ */
 :root {
-  /* Warm dark backgrounds — complementam o laranja do logo */
-  --bg-0:           #0d0a08;
-  --bg-1:           #141008;
-  --bg-2:           #1c1710;
-  --bg-card:        #231d14;
-  --bg-glass:       rgba(35, 29, 20, 0.62);
+  --bg-0:           #ffffff;
+  --bg-1:           #f4f4f5;
+  --bg-2:           #e4e4e7;
+  --bg-card:        #ffffff;
+  --bg-glass:       rgba(255, 255, 255, 0.94);
 
-  /* Brand orange — extraído do logo H2V */
-  --cyan:           #E84B1A;          /* mantém nome para compatibilidade */
-  --cyan-dim:       rgba(232, 75, 26, 0.13);
-  --cyan-glow:      rgba(232, 75, 26, 0.38);
-  --blue:           #BF3808;          /* laranja escuro para gradientes */
+  /* Acento marca: laranja queimado (menos “neon”, mais institucional) */
+  --cyan:           #c2410c;
+  --cyan-dim:       rgba(194, 65, 12, 0.08);
+  --cyan-glow:      rgba(194, 65, 12, 0.18);
+  --blue:           #7c2d12;
 
-  /* Texto levemente quente */
-  --text-100:       #FAF0E8;
-  --text-70:        #A89880;
-  --text-40:        #5E5048;
+  --text-100:       #0f172a;
+  --text-70:        #475569;
+  --text-40:        #64748b;
 
-  /* Bordas laranja */
-  --border:         rgba(232, 75, 26, 0.16);
-  --border-strong:  rgba(232, 75, 26, 0.44);
-  --shadow-cyan:    0 0 40px rgba(232, 75, 26, 0.22);
+  --border:         rgba(15, 23, 42, 0.08);
+  --border-strong:  rgba(15, 23, 42, 0.14);
+  --shadow-cyan:    0 12px 40px rgba(15, 23, 42, 0.06);
 
-  --font-inter:     'Inter', sans-serif;
-  --font-mono:      'JetBrains Mono', monospace;
+  /* --font-sans / --font-mono: definidos no <html> via next/font (layout) */
+}
+
+/* Faixas / seções em destaque laranja (navbar reusa parte das variáveis de texto) */
+[data-surface="brand"] {
+  --text-100:       #fffef9;
+  --text-70:        rgba(255, 255, 255, 0.9);
+  --text-40:        rgba(255, 255, 255, 0.65);
+  --border:         rgba(255, 255, 255, 0.22);
+  --border-strong:  rgba(255, 255, 255, 0.42);
+  --cyan:           #ffffff;
+  --cyan-dim:       rgba(255, 255, 255, 0.14);
+  --cyan-glow:      rgba(255, 255, 255, 0.35);
+  --blue:           #ffd4c4;
+  --bg-0:           transparent;
+  --bg-1:           rgba(255, 255, 255, 0.1);
+  --bg-card:        rgba(255, 255, 255, 0.14);
+  --bg-glass:       rgba(255, 255, 255, 0.16);
+  background: linear-gradient(160deg, #b45309 0%, #9a3412 48%, #7c2d12 100%);
+  color: var(--text-100);
+}
+
+[data-surface="brand"] .gradient-text {
+  color: #fafaf9;
+  background: none;
+  -webkit-text-fill-color: currentColor;
+}
+
+[data-surface="brand"] .tag-badge {
+  color: #fffef9;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+[data-surface="brand"] .service-tag {
+  color: #fffef9;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+[data-surface="brand"] .glass-card {
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.12);
+}
+
+[data-surface="brand"] .stat-num {
+  color: #fafaf9;
+  background: none;
+  -webkit-text-fill-color: currentColor;
+}
+
+[data-surface="brand"] .stat-suf {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.stat-num {
+  color: var(--text-100);
+  background: none;
+  -webkit-text-fill-color: currentColor;
+}
+
+.stat-suf {
+  color: var(--cyan);
 }
 
 /* ── Base ──────────────────────────────────────────────────────────── */
@@ -38,7 +95,8 @@ html {
   scroll-behavior: smooth;
   overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
-  scroll-padding-top: 80px;
+  /* Navbar fixa + notch (iOS); fallback quando env() = 0 */
+  scroll-padding-top: calc(5rem + env(safe-area-inset-top, 0px));
 }
 
 body {
@@ -48,6 +106,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-width: 320px;
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
 }
 
 /* Imagens responsivas por padrão */
@@ -76,37 +136,38 @@ img, video { max-width: 100%; height: auto; display: block; }
 }
 
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--bg-0); }
-::-webkit-scrollbar-thumb { background: var(--cyan-glow); border-radius: 3px; }
-::selection { background: var(--cyan-dim); color: var(--cyan); }
+::-webkit-scrollbar-track { background: var(--bg-1); }
+::-webkit-scrollbar-thumb { background: rgba(15, 23, 42, 0.2); border-radius: 3px; }
+::selection { background: rgba(194, 65, 12, 0.14); color: var(--text-100); }
 
 /* ── Reusable Component Classes ────────────────────────────────────── */
 @layer components {
 
   .glass-card {
     background: var(--bg-glass);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--border);
+    box-shadow: var(--shadow-cyan);
   }
 
+  /* Destaque editorial: cor sólida (evita “gradiente de template”) */
   .gradient-text {
-    background: linear-gradient(135deg, #fff 0%, var(--cyan) 55%, var(--blue) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--cyan);
+    background: none;
+    -webkit-text-fill-color: currentColor;
   }
 
   .tag-badge {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    font-weight: 500;
-    color: var(--cyan);
-    background: var(--cyan-dim);
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: var(--text-70);
+    background: var(--bg-1);
     border: 1px solid var(--border-strong);
-    padding: 5px 12px;
-    border-radius: 100px;
-    letter-spacing: 0.08em;
+    padding: 6px 14px;
+    border-radius: 6px;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     display: inline-flex;
     align-items: center;
@@ -115,22 +176,23 @@ img, video { max-width: 100%; height: auto; display: block; }
   }
 
   @media (min-width: 640px) {
-    .tag-badge { font-size: 0.72rem; padding: 6px 14px; margin-bottom: 20px; }
+    .tag-badge { font-size: 0.75rem; padding: 7px 16px; margin-bottom: 20px; }
   }
 
   .service-tag {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--cyan);
-    background: var(--cyan-dim);
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-70);
+    background: var(--bg-1);
     border: 1px solid var(--border);
-    padding: 4px 10px;
-    border-radius: 100px;
+    padding: 5px 11px;
+    border-radius: 6px;
   }
 
   .section-subtitle {
     margin-top: 1rem;
-    font-size: 1rem;
+    font-size: clamp(0.875rem, 0.28rem + 1.5vw, 1rem);
     color: var(--text-70);
     line-height: 1.7;
   }
@@ -144,6 +206,15 @@ img, video { max-width: 100%; height: auto; display: block; }
   .c-num { color: #d19a66; }
 }
 
+/* Terminal escuro no bloco “Sobre” (fundo claro da página) */
+.about-terminal {
+  background: #14110e !important;
+  border: 1px solid rgba(15, 23, 42, 0.35) !important;
+}
+.about-terminal pre { color: #c4b5a4 !important; }
+.about-terminal .c-cm { color: #7d6f62 !important; }
+.about-terminal .c-var { color: #ff8a4c !important; }
+
 /* ── Markdown / Insight content ────────────────────────────────────── */
 .insight-content {
   color: var(--text-100);
@@ -153,14 +224,11 @@ img, video { max-width: 100%; height: auto; display: block; }
 
 .insight-content h2 {
   font-size: clamp(1.3rem, 3vw, 1.65rem);
-  font-weight: 800;
+  font-weight: 700;
   margin-top: 2.5rem;
   margin-bottom: 1rem;
   letter-spacing: -0.02em;
-  background: linear-gradient(135deg, #fff 0%, var(--cyan) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text-100);
 }
 
 .insight-content h3 {

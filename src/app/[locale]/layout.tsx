@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, JetBrains_Mono } from 'next/font/google'
+import { Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, getTranslations } from 'next-intl/server'
 import { notFound } from 'next/navigation'
@@ -12,10 +12,12 @@ import '../globals.css'
 
 const SITE_URL = 'https://www.h2vsystems.com.br'
 
-const inter = Inter({
+/** Tipografia principal: sólida e comum em produtos B2B / consultoria premium */
+const plusJakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-sans',
   display: 'swap',
+  weight: ['400', '500', '600', '700'],
 })
 
 const jetbrainsMono = JetBrains_Mono({
@@ -36,7 +38,9 @@ export function generateStaticParams() {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#E84B1A',
+  themeColor: '#c2410c',
+  /** Permite `env(safe-area-inset-*)` em iPhones com notch e home indicator. */
+  viewportFit: 'cover',
 }
 
 export async function generateMetadata({
@@ -186,7 +190,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <html
       lang={locale}
-      className={`${inter.variable} ${jetbrainsMono.variable}`}
+      className={`${plusJakarta.variable} ${jetbrainsMono.variable}`}
       suppressHydrationWarning
     >
       <head>

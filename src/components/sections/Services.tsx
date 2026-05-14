@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useTranslations, useLocale } from 'next-intl'
-import { ArrowRight, Code2, Globe, Layers, Database, Workflow, Compass } from 'lucide-react'
+import { Code2, Globe, Layers, Database, Workflow, Compass } from 'lucide-react'
 
 const ICONS = [Code2, Globe, Layers, Database, Workflow, Compass]
 const SLUGS = ['desenvolvimento', 'web-mobile', 'arquitetura', 'dados', 'integracoes', 'consultoria'] as const
@@ -25,17 +25,13 @@ export default function Services() {
   return (
     <section id="servicos" className="py-20 sm:py-[100px] lg:py-[120px] relative overflow-hidden">
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse 70% 50% at 80% 50%, rgba(232,75,26,0.09) 0%, transparent 60%)' }} />
+        style={{ background: 'radial-gradient(ellipse 70% 50% at 80% 50%, rgba(194,65,12,0.05) 0%, transparent 60%)' }} />
 
       <div className="max-w-[1200px] mx-auto px-5 sm:px-6 relative z-10">
-        <motion.div className="mb-12 sm:mb-16 max-w-[600px]"
+        <motion.div className="text-center mb-12 sm:mb-16 max-w-[600px] mx-auto"
           initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }} transition={{ duration: 0.7 }}>
-          <span className="tag-badge">
-            <span className="w-1.5 h-1.5 rounded-full animate-pulse-dot" style={{ background: 'var(--cyan)' }} />
-            {t('tag')}
-          </span>
-          <h2 className="text-[clamp(1.75rem,5vw,3rem)] font-black tracking-tight leading-[1.15]">
+          <h2 className="text-[clamp(1.75rem,5vw,3rem)] font-bold tracking-tight leading-[1.15]">
             <span className="gradient-text">{t('title')}</span>
           </h2>
           <p className="section-subtitle">{t('subtitle')}</p>
@@ -70,7 +66,6 @@ export default function Services() {
                 aria-label={`${s.title}: ${t('learnMore')}`}
               >
                 {t('learnMore')}
-                <ArrowRight size={12} strokeWidth={2.2} className="transition-transform duration-300 group-hover/link:translate-x-1" />
               </Link>
             </motion.div>
           ))}

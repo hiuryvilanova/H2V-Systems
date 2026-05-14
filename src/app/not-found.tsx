@@ -48,7 +48,7 @@ export default function NotFound() {
               background: 'linear-gradient(135deg, #E84B1A, #BF3808)',
               boxShadow: '0 4px 24px rgba(232,75,26,0.45)',
             }}>
-              ← Voltar ao início
+              Voltar ao início
             </Link>
           </div>
         </div>

@@ -24,11 +24,9 @@ function Counter({ target, suffix }: { target: number; suffix: string }) {
   }, [inView, target])
 
   return (
-    <div ref={ref} className="text-[2.8rem] font-black font-mono leading-none">
-      <span style={{ background: 'linear-gradient(135deg, var(--text-100), var(--cyan))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-        {count}
-      </span>
-      <span style={{ color: 'var(--cyan)' }}>{suffix}</span>
+    <div ref={ref} className="text-[clamp(1.5rem,9vw,2.8rem)] font-bold leading-none tabular-nums tracking-tight">
+      <span className="stat-num">{count}</span>
+      <span className="stat-suf">{suffix}</span>
     </div>
   )
 }
@@ -44,11 +42,15 @@ export default function Stats() {
   ]
 
   return (
-    <section id="stats" className="py-20 border-y" style={{ borderColor: 'var(--border)', background: 'var(--bg-1)' }}>
-      <div className="max-w-[1200px] mx-auto px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-px" style={{ background: 'var(--border)' }}>
+    <section
+      id="stats"
+      data-surface="brand"
+      className="py-20 border-y border-white/15"
+    >
+      <div className="max-w-[1200px] mx-auto px-5 sm:px-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-px rounded-xl overflow-hidden" style={{ background: 'rgba(255,255,255,0.22)' }}>
           {items.map((s) => (
-            <div key={s.label} className="p-6 sm:p-8 text-center" style={{ background: 'var(--bg-1)' }}>
+            <div key={s.label} className="p-4 sm:p-6 md:p-8 text-center min-w-0" style={{ background: 'rgba(255,255,255,0.1)' }}>
               <Counter target={s.target} suffix={s.suffix} />
               <p className="text-xs sm:text-sm mt-2 px-1 leading-snug" style={{ color: 'var(--text-70)' }}>{s.label}</p>
             </div>

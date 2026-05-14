@@ -16,10 +16,13 @@ export default function BackToTop() {
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
       aria-label="Voltar ao topo"
       className={`
-        fixed bottom-[85px] right-5 sm:bottom-[104px] sm:right-8 z-[9998] w-10 h-10 sm:w-11 sm:h-11 rounded-lg
-        flex items-center justify-center text-base cursor-pointer
+        fixed z-[9998] w-11 h-11 sm:w-11 sm:h-11 rounded-lg
+        flex items-center justify-center text-base cursor-pointer min-h-11 min-w-11
         border transition-all duration-300
         hover:-translate-y-0.5
+        bottom-[calc(1rem+env(safe-area-inset-bottom,0px))]
+        right-[max(1rem,env(safe-area-inset-right,0px))]
+        sm:bottom-[calc(1.25rem+env(safe-area-inset-bottom,0px))] sm:right-8
         ${visible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}
       `}
       style={{

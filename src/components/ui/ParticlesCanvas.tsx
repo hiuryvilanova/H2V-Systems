@@ -12,7 +12,16 @@ interface Particle {
   color: string
 }
 
-export default function ParticlesCanvas() {
+type Props = {
+  /** Linhas entre partículas — estilo “rede tech”; desligado fica mais sóbrio. */
+  showLinks?: boolean
+  /** Partículas mais suaves em fundo claro */
+  soft?: boolean
+  /** Menos partículas e mais discretas — fundo tipo consultoria premium */
+  density?: 'normal' | 'sparse'
+}
+
+export default function ParticlesCanvas({ showLinks = true, soft = false, density = 'normal' }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [enabled, setEnabled] = useState(false)
 
@@ -44,20 +53,25 @@ export default function ParticlesCanvas() {
       H = canvas!.height = window.innerHeight
     }
 
+    const sparse = density === 'sparse'
+    const divisor = sparse ? 52000 : 12000
+    const alphaMul = sparse ? (soft ? 0.12 : 0.22) : soft ? 0.5 : 1
+
     function makeParticle(): Particle {
       return {
         x: Math.random() * W,
         y: Math.random() * H,
-        r: Math.random() * 1.5 + 0.3,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        a: Math.random() * 0.5 + 0.1,
-        color: Math.random() > 0.5 ? '232,75,26' : '255,120,60',
+        r: Math.random() * (sparse ? 1.0 : 1.5) + 0.25,
+        vx: (Math.random() - 0.5) * (sparse ? 0.18 : 0.3),
+        vy: (Math.random() - 0.5) * (sparse ? 0.18 : 0.3),
+        a: (Math.random() * 0.45 + 0.08) * alphaMul,
+        color: Math.random() > 0.55 ? '194,65,12' : '120,113,108',
       }
     }
 
     function init() {
-      const count = Math.floor((W * H) / 12000)
+      const raw = Math.floor((W * H) / divisor)
+      const count = Math.min(sparse ? 48 : 96, Math.max(8, raw))
       particles = Array.from({ length: count }, makeParticle)
     }
 
@@ -72,7 +86,7 @@ export default function ParticlesCanvas() {
             ctx!.beginPath()
             ctx!.moveTo(particles[i].x, particles[i].y)
             ctx!.lineTo(particles[j].x, particles[j].y)
-            ctx!.strokeStyle = `rgba(232,75,26,${0.07 * (1 - dist / maxDist)})`
+            ctx!.strokeStyle = `rgba(120,113,108,${0.04 * (1 - dist / maxDist)})`
             ctx!.lineWidth = 0.5
             ctx!.stroke()
           }
@@ -93,7 +107,7 @@ export default function ParticlesCanvas() {
         ctx!.fillStyle = `rgba(${p.color},${p.a})`
         ctx!.fill()
       }
-      drawConnections()
+      if (showLinks) drawConnections()
       animId = requestAnimationFrame(draw)
     }
 
@@ -117,7 +131,7 @@ export default function ParticlesCanvas() {
       cancelAnimationFrame(animId)
       window.removeEventListener('resize', onResize)
     }
-  }, [enabled])
+  }, [enabled, showLinks, soft, density])
 
   if (!enabled) return null
 

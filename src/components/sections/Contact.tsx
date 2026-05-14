@@ -77,24 +77,26 @@ export default function Contact() {
     <section id="contato" ref={sectionRef} className="py-20 sm:py-[100px] lg:py-[120px] relative overflow-hidden">
       <motion.div aria-hidden="true" className="absolute inset-[-20%] pointer-events-none" style={{ y: bgY }}>
         <div className="absolute inset-0" style={{ background: `
-          radial-gradient(ellipse 60% 50% at 70% 50%, rgba(232,75,26,0.12) 0%, transparent 60%),
+          radial-gradient(ellipse 60% 50% at 70% 50%, rgba(194,65,12,0.06) 0%, transparent 60%),
           radial-gradient(ellipse 40% 40% at 20% 30%, rgba(255,120,60,0.07) 0%, transparent 50%)
         `}} />
       </motion.div>
 
       <div className="max-w-[1200px] mx-auto px-5 sm:px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-10 sm:gap-12 lg:gap-16 items-start">
+        <motion.div
+          className="mb-8 sm:mb-10 lg:mb-12 max-w-[640px]"
+          initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-40px' }} transition={{ duration: 0.65 }}>
+          <span className="tag-badge">{t('tag')}</span>
+          <h2 className="text-[clamp(1.75rem,5vw,3rem)] font-bold tracking-tight leading-[1.15] mb-4">
+            {t('title')}<br />
+            <span className="gradient-text">{t('titleHighlight')}</span>
+          </h2>
+        </motion.div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.35fr] gap-10 sm:gap-12 lg:gap-14 items-start">
 
           {/* Info */}
           <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.75 }}>
-            <span className="tag-badge">
-              <span className="w-1.5 h-1.5 rounded-full animate-pulse-dot" style={{ background: 'var(--cyan)' }} />
-              {t('tag')}
-            </span>
-            <h2 className="text-[clamp(1.6rem,5vw,2.6rem)] font-black tracking-tight mb-4">
-              {t('title')}<br />
-              <span className="gradient-text">{t('titleHighlight')}</span>
-            </h2>
             <p className="text-sm leading-[1.75] mb-8 sm:mb-10" style={{ color: 'var(--text-70)' }}>{t('description')}</p>
 
             <div className="flex flex-col gap-3 sm:gap-4">
@@ -110,7 +112,7 @@ export default function Contact() {
                     </div>
                     <div className="min-w-0 flex-1">
                       <span className="block text-xs" style={{ color: 'var(--text-70)' }}>{ch.label}</span>
-                      <strong className="text-sm block truncate">{ch.value}</strong>
+                      <strong className="text-sm block break-words hyphens-auto">{ch.value}</strong>
                     </div>
                   </>
                 )
@@ -129,8 +131,9 @@ export default function Contact() {
           </motion.div>
 
           {/* Form */}
-          <motion.div className="glass-card rounded-3xl p-6 sm:p-10"
+          <motion.div className="w-full min-w-0 lg:sticky lg:top-28 self-start"
             initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.75 }}>
+            <div className="glass-card rounded-3xl p-6 sm:p-8 h-full">
             {!submitted ? (
               <form onSubmit={handleSubmit} noValidate>
                 {/* Honeypot anti-spam: invisível ao usuário, bot preenche */}
@@ -179,7 +182,7 @@ export default function Contact() {
                 </div>
                 <button type="submit" disabled={loading}
                   className="w-full py-4 rounded-lg text-white font-semibold text-base cursor-pointer border-0 hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed transition-all duration-300"
-                  style={{ background: 'linear-gradient(135deg, var(--cyan), var(--blue))', boxShadow: '0 4px 24px rgba(232,75,26,0.45)' }}>
+                  style={{ background: 'var(--cyan)', boxShadow: '0 8px 28px rgba(194,65,12,0.2)' }}>
                   {loading ? t('formSubmitting') : t('formSubmit')}
                 </button>
               </form>
@@ -192,6 +195,7 @@ export default function Contact() {
                 <p className="text-sm" style={{ color: 'var(--text-70)' }}>{t('successDesc')}</p>
               </div>
             )}
+            </div>
           </motion.div>
         </div>
       </div>

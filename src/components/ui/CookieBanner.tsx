@@ -38,19 +38,21 @@ export default function CookieBanner() {
       role="dialog"
       aria-live="polite"
       aria-label={t('aria')}
-      className="fixed bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-auto sm:max-w-md z-[9997] rounded-2xl p-5 sm:p-6 animate-fade-in"
+      className="fixed z-[9997] rounded-2xl p-5 sm:p-6 animate-fade-in w-[min(100%,calc(100vw-2rem-env(safe-area-inset-left)-env(safe-area-inset-right)))] max-w-md
+        bottom-[max(1rem,env(safe-area-inset-bottom,0px))]
+        left-[max(1rem,env(safe-area-inset-left,0px))]
+        right-[max(1rem,env(safe-area-inset-right,0px))]
+        sm:bottom-6 sm:left-6 sm:right-auto"
       style={{
-        background: 'rgba(13, 10, 8, 0.96)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
-        border: '1px solid var(--border-strong)',
-        boxShadow: '0 8px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(232,75,26,0.15)',
+        background: '#fffef9',
+        border: '1px solid rgba(232, 75, 26, 0.2)',
+        boxShadow: '0 10px 40px rgba(0,0,0,0.08)',
       }}
     >
       <button
         onClick={reject}
         aria-label={t('close')}
-        className="absolute top-3 right-3 w-7 h-7 rounded-full flex items-center justify-center transition-colors duration-200 hover:bg-white/5"
+        className="absolute top-2 right-2 min-h-11 min-w-11 rounded-full flex items-center justify-center transition-colors duration-200 hover:bg-black/[0.04]"
         style={{ color: 'var(--text-70)' }}
       >
         <X size={16} strokeWidth={2} />
@@ -71,15 +73,15 @@ export default function CookieBanner() {
       <div className="flex gap-2 mt-4">
         <button
           onClick={reject}
-          className="flex-1 px-4 py-2.5 rounded-lg text-sm font-medium cursor-pointer transition-all duration-300 hover:bg-white/5"
+          className="flex-1 px-4 py-3 min-h-11 rounded-lg text-sm font-medium cursor-pointer transition-all duration-300 hover:bg-black/[0.03]"
           style={{ background: 'transparent', border: '1px solid var(--border)', color: 'var(--text-70)' }}
         >
           {t('reject')}
         </button>
         <button
           onClick={accept}
-          className="flex-1 px-4 py-2.5 rounded-lg text-sm font-semibold text-white cursor-pointer border-0 transition-all duration-300 hover:-translate-y-0.5"
-          style={{ background: 'linear-gradient(135deg, var(--cyan), var(--blue))', boxShadow: '0 4px 16px rgba(232,75,26,0.3)' }}
+          className="flex-1 px-4 py-3 min-h-11 rounded-lg text-sm font-semibold text-white cursor-pointer border-0 transition-all duration-300 hover:-translate-y-0.5"
+          style={{ background: 'var(--cyan)', boxShadow: '0 8px 24px rgba(194,65,12,0.2)' }}
         >
           {t('accept')}
         </button>

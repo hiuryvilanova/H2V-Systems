@@ -13,7 +13,7 @@ export default function SkipToContent() {
       style={{
         background: 'var(--cyan)',
         color: '#fff',
-        boxShadow: '0 4px 24px rgba(232,75,26,0.55)',
+        boxShadow: '0 8px 28px rgba(194,65,12,0.25)',
       }}
     >
       {t('skipToContent')}

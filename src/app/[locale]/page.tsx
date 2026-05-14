@@ -25,7 +25,7 @@ export default function Home() {
     <>
       <ProgressBar />
       <Navbar />
-      <main id="main" tabIndex={-1}>
+      <main id="main" tabIndex={-1} className="w-full min-w-0">
         <Hero />
         <Stats />
         <GlowDivider />

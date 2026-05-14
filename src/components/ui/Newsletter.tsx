@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useTranslations } from 'next-intl'
-import { Mail, CheckCircle2, Send } from 'lucide-react'
+import { Mail, CheckCircle2 } from 'lucide-react'
 import { useToast } from '@/components/ui/Toast'
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -76,10 +76,9 @@ export default function Newsletter() {
             />
             <button
               type="submit" disabled={loading}
-              className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-white font-semibold text-sm cursor-pointer border-0 disabled:opacity-70 disabled:cursor-not-allowed transition-all duration-300 hover:-translate-y-0.5"
-              style={{ background: 'linear-gradient(135deg, var(--cyan), var(--blue))', boxShadow: '0 4px 16px rgba(232,75,26,0.3)' }}
+              className="inline-flex items-center justify-center px-4 py-2.5 min-h-11 rounded-lg text-white font-semibold text-sm cursor-pointer border-0 disabled:opacity-70 disabled:cursor-not-allowed transition-all duration-300 hover:-translate-y-0.5 w-full sm:w-auto shrink-0"
+              style={{ background: 'var(--cyan)', boxShadow: '0 8px 24px rgba(194,65,12,0.2)' }}
             >
-              <Send size={14} strokeWidth={2} />
               {loading ? t('submitting') : t('submit')}
             </button>
           </div>

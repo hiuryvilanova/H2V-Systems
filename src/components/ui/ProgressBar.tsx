@@ -20,8 +20,8 @@ export default function ProgressBar() {
       className="fixed top-0 left-0 z-[2000] h-[3px] transition-[width] duration-100"
       style={{
         width: `${progress}%`,
-        background: 'linear-gradient(90deg, var(--cyan), var(--blue))',
-        boxShadow: '0 0 10px var(--cyan-glow)',
+        background: 'var(--cyan)',
+        boxShadow: '0 0 12px rgba(194,65,12,0.35)',
       }}
     />
   )

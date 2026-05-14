@@ -21,7 +21,7 @@ export default function About() {
   return (
     <section id="sobre" ref={sectionRef} className="py-20 sm:py-[100px] lg:py-[120px] relative overflow-hidden" style={{ background: 'var(--bg-1)' }}>
       <motion.div aria-hidden="true" className="absolute inset-[-20%] pointer-events-none" style={{ y: bgY }}>
-        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 60% 50% at 20% 50%, rgba(232,75,26,0.08) 0%, transparent 60%)' }} />
+        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 60% 50% at 20% 50%, rgba(194,65,12,0.045) 0%, transparent 60%)' }} />
       </motion.div>
 
       <div className="max-w-[1200px] mx-auto px-5 sm:px-6 relative z-10">
@@ -29,11 +29,7 @@ export default function About() {
 
           {/* Left */}
           <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: '-60px' }} transition={{ duration: 0.75 }}>
-            <span className="tag-badge">
-              <span className="w-1.5 h-1.5 rounded-full animate-pulse-dot" style={{ background: 'var(--cyan)' }} />
-              {t('tag')}
-            </span>
-            <h2 className="text-[clamp(1.75rem,5vw,3rem)] font-black tracking-tight leading-[1.15] mb-5 sm:mb-6">
+            <h2 className="text-[clamp(1.75rem,5vw,3rem)] font-bold tracking-tight leading-[1.15] mb-5 sm:mb-6">
               {t('title')}<br />
               <span className="gradient-text">{t('titleHighlight')}</span>
             </h2>
@@ -71,8 +67,7 @@ export default function About() {
           {/* Right */}
           <div className="flex flex-col gap-4">
             <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: '-60px' }} transition={{ duration: 0.75 }}
-              className="rounded-2xl p-4 sm:p-7 relative overflow-hidden"
-              style={{ background: 'var(--bg-0)', border: '1px solid var(--border)' }}>
+              className="about-terminal rounded-2xl p-4 sm:p-7 relative overflow-hidden">
               <div aria-hidden="true" className="absolute top-0 left-0 right-0 h-px"
                 style={{ background: 'linear-gradient(90deg, transparent, var(--cyan), transparent)' }} />
               <div className="flex gap-2 mb-5">
@@ -88,13 +83,13 @@ export default function About() {
                 {'  stack:    [\n    '}<span className="c-str">{"'Java'"}</span>{', '}<span className="c-str">{"'Kotlin'"}</span>{', '}<span className="c-str">{"'Spring'"}</span>{',\n    '}<span className="c-str">{"'React'"}</span>{', '}<span className="c-str">{"'Node'"}</span>{', '}<span className="c-str">{"'AWS'"}</span>{', '}<span className="c-str">{"'Cloud'"}</span>{'\n  ],\n'}
                 {'  values:   [\n    '}<span className="c-str">{"'transparency'"}</span>{',\n    '}<span className="c-str">{"'excellence'"}</span>{',\n    '}<span className="c-str">{"'client_success'"}</span>{',\n  ],\n\n  '}
                 <span className="c-fn">{'deliver'}</span>{'(project) {\n    '}<span className="c-kw">{'return'}</span>{' project\n      .plan().build()\n      .test().deploy('}<span className="c-str">{"'production'"}</span>{');\n  }\n};\n\n'}
-                <span className="c-cm">{'// → Powering digital foundations'}</span>
+                <span className="c-cm">{'// Powering digital foundations'}</span>
               </pre>
             </motion.div>
 
             <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: '-60px' }} transition={{ duration: 0.75, delay: 0.15 }}
               className="glass-card rounded-2xl p-5 sm:p-6">
-              <h4 className="text-xs font-mono font-semibold uppercase tracking-[0.1em] mb-3" style={{ color: 'var(--cyan)' }}>
+              <h4 className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] mb-3" style={{ color: 'var(--cyan)' }}>
                 {t('founderLabel')}
               </h4>
               <p className="text-sm leading-[1.65]" style={{ color: 'var(--text-70)' }}>
