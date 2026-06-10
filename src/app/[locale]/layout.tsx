@@ -8,6 +8,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import { routing } from '@/i18n/routing'
 import { ToastProvider } from '@/components/ui/Toast'
 import SkipToContent from '@/components/ui/SkipToContent'
+import SWRegister from '@/components/ui/SWRegister'
 import '../globals.css'
 
 const SITE_URL = 'https://www.h2vsystems.com.br'
@@ -187,6 +188,116 @@ export default async function LocaleLayout({ children, params }: Props) {
     },
   }
 
+  const localBusinessLd = {
+    '@context': 'https://schema.org',
+    '@type': ['LocalBusiness', 'ProfessionalService'],
+    '@id': `${SITE_URL}/#localbusiness`,
+    name: 'H2V Systems',
+    image: `${SITE_URL}/logo.png`,
+    logo: `${SITE_URL}/logo.png`,
+    url: SITE_URL,
+    telephone: '+55-61-99172-0301',
+    email: 'hiuryhenrique2012@gmail.com',
+    priceRange: '$$$',
+    description: 'Consultoria e desenvolvimento de software de alta performance — engenharia de sistemas, arquitetura cloud, microsserviços e modernização de legados.',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Brasília',
+      addressRegion: 'DF',
+      postalCode: '70000-000',
+      addressCountry: 'BR',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: -15.7942,
+      longitude: -47.8822,
+    },
+    areaServed: [
+      { '@type': 'Country', name: 'Brazil' },
+      { '@type': 'Country', name: 'United States' },
+      { '@type': 'Country', name: 'Spain' },
+    ],
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        opens: '09:00',
+        closes: '19:00',
+      },
+    ],
+    sameAs: [
+      'https://www.linkedin.com/in/hiuryvilanova',
+      'https://github.com/hiuryvilanova',
+      'https://hiuryvilanova.com',
+    ],
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Serviços de Engenharia de Software H2V Systems',
+      itemListElement: [
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Desenvolvimento Customizado',
+            serviceType: 'Software Development',
+            description: 'Construção de sistemas sob medida em Java, Kotlin, TypeScript e Python com Clean Architecture.',
+            url: `${SITE_URL}/servicos/desenvolvimento`,
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Aplicações Web & Mobile',
+            serviceType: 'Web and Mobile Development',
+            description: 'Aplicações performáticas com Next.js, React Native e Flutter, focadas em UX e SEO técnico.',
+            url: `${SITE_URL}/servicos/web-mobile`,
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Arquitetura & Escalabilidade',
+            serviceType: 'Software Architecture',
+            description: 'Desenho de microsserviços, mensageria distribuída (Kafka), Kubernetes e cloud híbrida.',
+            url: `${SITE_URL}/servicos/arquitetura`,
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Engenharia de Dados',
+            serviceType: 'Data Engineering',
+            description: 'Pipelines ETL, data lakes (S3/ClickHouse) e dashboards com PostgreSQL, MongoDB e Redis.',
+            url: `${SITE_URL}/servicos/dados`,
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Integrações de Sistemas',
+            serviceType: 'System Integration',
+            description: 'REST/GraphQL APIs, Webhooks, RPA e automações n8n entre sistemas legados e modernos.',
+            url: `${SITE_URL}/servicos/integracoes`,
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Consultoria Técnica',
+            serviceType: 'Technical Consulting',
+            description: 'Code review, auditoria de cloud, DevOps e formação de times de engenharia.',
+            url: `${SITE_URL}/servicos/consultoria`,
+          },
+        },
+      ],
+    },
+  }
+
   return (
     <html
       lang={locale}
@@ -205,6 +316,10 @@ export default async function LocaleLayout({ children, params }: Props) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd) }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessLd) }}
+        />
       </head>
       <body className="font-sans">
         <NextIntlClientProvider messages={messages}>
@@ -213,6 +328,7 @@ export default async function LocaleLayout({ children, params }: Props) {
             {children}
           </ToastProvider>
         </NextIntlClientProvider>
+        <SWRegister />
         <Analytics />
         <SpeedInsights />
       </body>

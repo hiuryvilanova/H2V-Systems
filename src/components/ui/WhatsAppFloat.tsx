@@ -22,9 +22,7 @@ export default function WhatsAppFloat() {
       onMouseLeave={() => setHovered(false)}
       className="fixed z-[9999] w-[52px] h-[52px] sm:w-[60px] sm:h-[60px] rounded-full
         flex items-center justify-center animate-float hover:scale-110 transition-transform duration-300
-        bottom-[max(1.25rem,env(safe-area-inset-bottom,0px))]
-        left-[max(1.25rem,env(safe-area-inset-left,0px))]
-        sm:bottom-8 sm:left-8"
+        whatsapp-float-pos"
       style={{
         background: 'linear-gradient(135deg, #25d366, #128c7e)',
         boxShadow: '0 4px 24px rgba(37, 211, 102, 0.5)',

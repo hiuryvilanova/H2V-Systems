@@ -7,6 +7,8 @@ export const GITHUB_URL      = 'https://github.com/hiuryvilanova'
 export const FOUNDER_SITE    = 'https://hiuryvilanova.com'
 export const LOCATION        = 'Brasília, DF · Brasil'
 export const SITE_URL        = 'https://h2vsystems.com.br'
+export const CAL_LINK        = 'https://cal.com/hiuryvilanova'
+
 
 export const NAV_LINKS = [
   { href: '#servicos',  label: 'Serviços'  },

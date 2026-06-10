@@ -113,6 +113,15 @@ body {
 
 /* Imagens responsivas por padrão */
 img, video { max-width: 100%; height: auto; display: block; }
+iframe { max-width: 100%; }
+
+/* Quebrar strings longas (URLs, e-mails) em mobile para não estourar containers */
+@media (max-width: 640px) {
+  h1, h2, h3, h4, p, li, a, span, label, blockquote {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+}
 
 /* Touch targets de 44x44 mínimo */
 @media (max-width: 768px) {
@@ -408,4 +417,223 @@ img, video { max-width: 100%; height: auto; display: block; }
   height: 1px;
   background: var(--border);
   margin: 2.5rem 0;
+}
+
+/* Advanced interactive glow classes */
+.card-interactive-glow {
+  position: relative;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.card-interactive-glow::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--cyan), transparent, var(--blue));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.card-interactive-glow:hover::before {
+  opacity: 1;
+}
+
+/* Interactive Simulator animations */
+.simulator-option-card {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid var(--border);
+}
+
+.simulator-option-card:hover {
+  border-color: rgba(234, 88, 12, 0.35);
+  background: rgba(234, 88, 12, 0.04);
+}
+
+.simulator-option-card.selected {
+  border-color: var(--cyan);
+  background: rgba(234, 88, 12, 0.08);
+  box-shadow: 0 0 24px rgba(234, 88, 12, 0.1);
+}
+
+/* ── Dynamic Glassmorphism: borda brilhante que segue o mouse ────────── */
+.spotlight-card {
+  position: relative;
+  isolation: isolate;
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+}
+
+.spotlight-card::before,
+.spotlight-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  z-index: 1;
+}
+
+/* Camada 1: borda que "acende" no ponto do cursor (mask para virar borda) */
+.spotlight-card::before {
+  padding: 1.5px;
+  background: radial-gradient(
+    260px circle at var(--mouse-x) var(--mouse-y),
+    rgba(249, 115, 22, 0.85),
+    rgba(249, 115, 22, 0.18) 25%,
+    transparent 60%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* Camada 2: brilho interno difuso */
+.spotlight-card::after {
+  background: radial-gradient(
+    480px circle at var(--mouse-x) var(--mouse-y),
+    rgba(234, 88, 12, 0.08),
+    transparent 65%
+  );
+  z-index: 0;
+}
+
+.spotlight-card:hover::before,
+.spotlight-card:hover::after {
+  opacity: 1;
+}
+
+/* Garante que conteúdo do card fica acima dos pseudo-elementos */
+.spotlight-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* ── Form input states: validação em tempo real ──────────────────────── */
+.input-base {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(10, 10, 10, 0.7);
+  border: 1px solid rgb(38, 38, 38);
+  border-radius: 0.75rem;
+  color: #fff;
+  outline: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.input-base::placeholder { color: rgb(115, 115, 115); }
+
+.input-base:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 4px rgba(234, 88, 12, 0.1);
+  background: rgb(10, 10, 10);
+}
+
+.input-base.is-valid {
+  border-color: rgb(16, 185, 129);
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.08), 0 0 12px rgba(16, 185, 129, 0.18);
+}
+
+.input-base.is-invalid {
+  border-color: rgb(239, 68, 68);
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+  animation: input-shake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes input-shake {
+  10%, 90% { transform: translateX(-1px); }
+  20%, 80% { transform: translateX(2px); }
+  30%, 50%, 70% { transform: translateX(-4px); }
+  40%, 60% { transform: translateX(4px); }
+}
+
+/* ── Posições "fixed" dos botões flutuantes ────────────────────────────
+ * Em Tailwind JIT, classes arbitrary com vírgula dentro de `max()` ou
+ * `min()` (necessárias para `env(safe-area-inset-*)`) quebram o parser
+ * e o elemento perde o `position: fixed`. Por isso o posicionamento de
+ * todos os flutuantes vive aqui em CSS puro.
+ */
+.whatsapp-float-pos {
+  bottom: max(1.25rem, env(safe-area-inset-bottom, 0px));
+  left: max(1.25rem, env(safe-area-inset-left, 0px));
+}
+@media (min-width: 640px) {
+  .whatsapp-float-pos {
+    bottom: 2rem;
+    left: 2rem;
+  }
+}
+
+.back-to-top-pos {
+  bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+  right: max(1rem, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 640px) {
+  .back-to-top-pos {
+    bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+    right: 2rem;
+  }
+}
+
+/* Cookie banner: em mobile sobe 5.25rem para não cobrir o WhatsApp float */
+.cookie-banner-pos {
+  width: min(100%, calc(100vw - 2rem - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)));
+  bottom: calc(5.25rem + env(safe-area-inset-bottom, 0px));
+  left: max(1rem, env(safe-area-inset-left, 0px));
+  right: max(1rem, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 640px) {
+  .cookie-banner-pos {
+    width: auto;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    right: auto;
+  }
+}
+
+/* Toast: em mobile sobe 5rem para ficar acima do WhatsApp float */
+.toast-stack-pos {
+  bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
+}
+@media (min-width: 640px) {
+  .toast-stack-pos {
+    bottom: 1.25rem;
+  }
+}
+
+/* Hero: padding-top respeita o notch quando aplicável (iPhones com safe-area-inset-top) */
+.hero-content-pad {
+  padding-top: max(6.5rem, calc(6.5rem + env(safe-area-inset-top, 0px)));
+}
+@media (min-width: 640px) {
+  .hero-content-pad {
+    padding-top: max(8.5rem, calc(8.5rem + env(safe-area-inset-top, 0px)));
+  }
+}
+
+/* ── Page transitions ─────────────────────────────────────────────────
+ * IMPORTANTE: usar apenas `opacity` (sem `transform`, `filter`, `perspective`
+ * ou `will-change: transform`). Qualquer um deles cria containing block que
+ * quebra `position: fixed` da Navbar e dos botões flutuantes.
+ */
+@keyframes page-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.page-transition {
+  animation: page-fade-in 0.4s ease-out both;
 }

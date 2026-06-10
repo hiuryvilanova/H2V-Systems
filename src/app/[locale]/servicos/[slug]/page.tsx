@@ -92,14 +92,54 @@ export default async function ServicePage({ params }: { params: Promise<PagePara
     ],
   }
 
+  const serviceTypeMap: Record<ServiceSlug, string> = {
+    'desenvolvimento': 'Custom Software Development',
+    'web-mobile':      'Web and Mobile App Development',
+    'arquitetura':     'Software Architecture & Cloud Engineering',
+    'dados':           'Data Engineering & ETL',
+    'integracoes':     'System Integration & API Engineering',
+    'consultoria':     'Technical Consulting & Code Audit',
+  }
+
   const serviceLd = {
     '@context': 'https://schema.org',
     '@type': 'Service',
+    '@id': `${pageUrl}#service`,
     name: t('metaTitle'),
     description: t('metaDesc'),
-    provider: { '@type': 'Organization', name: 'H2V Systems', url: SITE_URL },
-    areaServed: ['BR', 'US', 'ES'],
+    serviceType: serviceTypeMap[slug],
+    category: 'Software Engineering',
     url: pageUrl,
+    image: `${SITE_URL}/logo.png`,
+    provider: {
+      '@type': 'Organization',
+      '@id': `${SITE_URL}/#organization`,
+      name: 'H2V Systems',
+      url: SITE_URL,
+      logo: `${SITE_URL}/logo.png`,
+    },
+    areaServed: [
+      { '@type': 'Country', name: 'Brazil' },
+      { '@type': 'Country', name: 'United States' },
+      { '@type': 'Country', name: 'Spain' },
+    ],
+    availableLanguage: ['pt-BR', 'en-US', 'es-ES'],
+    audience: {
+      '@type': 'BusinessAudience',
+      audienceType: 'Enterprise, Scale-ups, Mid-market companies',
+    },
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: t('metaTitle'),
+      itemListElement: benefits.slice(0, 6).map((b, i) => ({
+        '@type': 'Offer',
+        position: i + 1,
+        itemOffered: {
+          '@type': 'Service',
+          name: b,
+        },
+      })),
+    },
   }
 
   const faqLd = {

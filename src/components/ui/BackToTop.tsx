@@ -20,9 +20,7 @@ export default function BackToTop() {
         flex items-center justify-center text-base cursor-pointer min-h-11 min-w-11
         border transition-all duration-300
         hover:-translate-y-0.5
-        bottom-[calc(1rem+env(safe-area-inset-bottom,0px))]
-        right-[max(1rem,env(safe-area-inset-right,0px))]
-        sm:bottom-[calc(1.25rem+env(safe-area-inset-bottom,0px))] sm:right-8
+        back-to-top-pos
         ${visible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}
       `}
       style={{

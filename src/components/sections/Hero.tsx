@@ -45,7 +45,7 @@ export default function Hero() {
       <div aria-hidden="true" className="gradient-orb gradient-orb-2 w-[400px] h-[400px] -bottom-32 -left-32 animate-float" style={{ animationDuration: '8s', animationDelay: '2s' }} />
 
       <div className="max-w-[1200px] xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-5 sm:px-6 relative z-10 w-full min-w-0">
-        <motion.div className="pt-[max(6.5rem,calc(6.5rem+env(safe-area-inset-top,0px)))] sm:pt-[max(8.5rem,calc(8.5rem+env(safe-area-inset-top,0px)))] pb-16 sm:pb-24 max-w-[820px] xl:max-w-[1000px] min-w-0 mx-auto text-center" style={{ y: contentY }} variants={stagger} initial="hidden" animate="visible">
+        <motion.div className="hero-content-pad pb-16 sm:pb-24 max-w-[820px] xl:max-w-[1000px] min-w-0 mx-auto text-center" style={{ y: contentY }} variants={stagger} initial="hidden" animate="visible">
 
           <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-orange-500/30 bg-orange-500/10 text-orange-400 text-xs font-semibold uppercase tracking-wider mb-6 animate-float">
             <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />

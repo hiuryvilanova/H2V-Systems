@@ -33,15 +33,14 @@ function ServiceCard({
   learnMoreText: string
 }) {
   const Icon = ICONS[index]
-  const [coords, setCoords] = useState({ x: 0, y: 0 })
   const [hovered, setHovered] = useState(false)
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect()
-    setCoords({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    })
+    const x = ((e.clientX - rect.left) / rect.width) * 100
+    const y = ((e.clientY - rect.top) / rect.height) * 100
+    e.currentTarget.style.setProperty('--mouse-x', `${x}%`)
+    e.currentTarget.style.setProperty('--mouse-y', `${y}%`)
   }
 
   return (
@@ -54,22 +53,13 @@ function ServiceCard({
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="group glass-card rounded-3xl p-8 sm:p-10 xl:p-12 relative overflow-hidden cursor-default border border-neutral-900 bg-neutral-900/35 backdrop-blur-sm transition-all duration-300 hover:border-orange-500/25 hover:bg-neutral-900/50 hover:shadow-[0_12px_40px_rgba(249,115,22,0.04)] flex flex-col h-full justify-between"
+      className="group glass-card spotlight-card rounded-3xl p-8 sm:p-10 xl:p-12 relative overflow-hidden cursor-default border border-neutral-900 bg-neutral-900/35 backdrop-blur-sm transition-all duration-300 hover:bg-neutral-900/50 hover:shadow-[0_12px_40px_rgba(249,115,22,0.04)] flex flex-col h-full justify-between"
     >
       {/* Top glowing line */}
       <div
         aria-hidden="true"
         className="absolute top-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
         style={{ background: 'linear-gradient(90deg, transparent, var(--cyan), transparent)' }}
-      />
-
-      {/* Dynamic Cursor Spotlight Overlay */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-0"
-        style={{
-          background: `radial-gradient(350px circle at ${coords.x}px ${coords.y}px, rgba(194, 65, 12, 0.07), transparent 80%)`,
-        }}
       />
 
       {/* Content wrapper */}

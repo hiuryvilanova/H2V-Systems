@@ -10,16 +10,20 @@ const isProd = process.env.NODE_ENV === 'production'
 const ContentSecurityPolicy = [
   "default-src 'self'",
   // Next inline scripts + Vercel + analytics. unsafe-inline necessário para Next.js
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://va.vercel-scripts.com https://vitals.vercel-insights.com",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://va.vercel-scripts.com https://vitals.vercel-insights.com https://app.cal.com",
   // Inline styles permitidos (CSS-in-JS / next/font / framer-motion)
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' data: https://fonts.gstatic.com",
   "img-src 'self' data: blob: https:",
-  "connect-src 'self' https://*.vercel-insights.com https://*.vercel-analytics.com https://vitals.vercel-insights.com",
+  "connect-src 'self' https://*.vercel-insights.com https://*.vercel-analytics.com https://vitals.vercel-insights.com https://cal.com https://app.cal.com",
+  // Cal.com embed iframe
+  "frame-src 'self' https://cal.com https://app.cal.com",
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self'",
   "object-src 'none'",
+  // Service worker scope
+  "worker-src 'self'",
   isProd ? 'upgrade-insecure-requests' : '',
 ]
   .filter(Boolean)

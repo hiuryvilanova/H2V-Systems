@@ -1,9 +1,9 @@
 'use client'
 
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, useCallback } from 'react'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { useTranslations, useLocale } from 'next-intl'
-import { Target, Eye, Gem, Play, Terminal, RotateCw } from 'lucide-react'
+import { Target, Eye, Gem, Play, Terminal } from 'lucide-react'
 
 export default function About() {
   const t = useTranslations('About')
@@ -15,7 +15,26 @@ export default function About() {
 
   const [isRunning, setIsRunning] = useState(false)
   const [consoleLines, setConsoleLines] = useState<string[]>([])
-  const [currentLineIndex, setCurrentLineIndex] = useState(-1)
+  const [cmdInput, setCmdInput] = useState('')
+  const [cmdHistory, setCmdHistory] = useState<string[]>([])
+  const [historyIdx, setHistoryIdx] = useState(-1)
+  const inputRef = useRef<HTMLInputElement>(null)
+  const outputRef = useRef<HTMLDivElement>(null)
+  const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([])
+
+  const KNOWN_COMMANDS = ['help', 'stack', 'deliver', 'contact', 'clear', 'whoami', 'date'] as const
+
+  const clearScheduledLines = useCallback(() => {
+    timeoutsRef.current.forEach(clearTimeout)
+    timeoutsRef.current = []
+  }, [])
+
+  const scheduleLine = useCallback((fn: () => void, delay: number) => {
+    const id = setTimeout(fn, delay)
+    timeoutsRef.current.push(id)
+  }, [])
+
+  useEffect(() => () => clearScheduledLines(), [clearScheduledLines])
 
   const scriptLines = locale === 'pt' ? [
     'h2v.deliver(new Project("HighScaleSystem"));',
@@ -43,34 +62,161 @@ export default function About() {
     '>> [SUCCESS] Delivery completed with absolute predictability! (Uptime: 99.99%)'
   ]
 
-  const runCode = () => {
+  const runCommand = (cmd: string) => {
     if (isRunning) return
-    setIsRunning(true)
-    setConsoleLines([])
-    setCurrentLineIndex(0)
-  }
 
-  const resetConsole = () => {
-    setIsRunning(false)
-    setConsoleLines([])
-    setCurrentLineIndex(-1)
-  }
-
-  useEffect(() => {
-    if (currentLineIndex < 0 || currentLineIndex >= scriptLines.length) {
-      if (currentLineIndex >= scriptLines.length) {
-        setIsRunning(false)
-      }
+    if (cmd === 'clear') {
+      clearScheduledLines()
+      setConsoleLines([])
+      setIsRunning(false)
       return
     }
 
-    const timer = setTimeout(() => {
-      setConsoleLines((prev) => [...prev, scriptLines[currentLineIndex]])
-      setCurrentLineIndex((prev) => prev + 1)
-    }, currentLineIndex === 0 ? 300 : 700)
+    clearScheduledLines()
+    setIsRunning(true)
 
-    return () => clearTimeout(timer)
-  }, [currentLineIndex])
+    setConsoleLines((prev) => [...prev, cmd])
+
+    let output: string[] = []
+    if (cmd === 'help') {
+      output = locale === 'pt' ? [
+        '>> Comandos disponíveis:',
+        '>>   help     - Mostra esta ajuda',
+        '>>   stack    - Exibe as tecnologias principais',
+        '>>   deliver  - Executa o pipeline de implantação',
+        '>>   contact  - Informações de contato direto',
+        '>>   clear    - Limpa o terminal'
+      ] : locale === 'es' ? [
+        '>> Comandos disponibles:',
+        '>>   help     - Muestra esta ayuda',
+        '>>   stack    - Muestra las tecnologías principales',
+        '>>   deliver  - Ejecuta el pipeline de despliegue',
+        '>>   contact  - Información de contacto directo',
+        '>>   clear    - Limpia la consola'
+      ] : [
+        '>> Available commands:',
+        '>>   help     - Show this help message',
+        '>>   stack    - View core technologies',
+        '>>   deliver  - Run deployment pipeline',
+        '>>   contact  - View direct contact details',
+        '>>   clear    - Clear console'
+      ]
+    } else if (cmd === 'stack') {
+      output = [
+        '>> Stack principal:',
+        '>>   - Backend: Java, Kotlin, Spring Boot, Node.js',
+        '>>   - Frontend: TypeScript, React, Next.js (Turbopack)',
+        '>>   - Infraestrutura: AWS Cloud, Docker, Kubernetes, Terraform',
+        '>>   - Mensageria/Dados: Apache Kafka, PostgreSQL, Redis, MongoDB'
+      ]
+    } else if (cmd === 'contact') {
+      output = locale === 'pt' ? [
+        '>> Informações de Contato:',
+        '>>   - E-mail: hiuryhenrique2012@gmail.com',
+        '>>   - Telefone: +55 (61) 99172-0301',
+        '>>   - WhatsApp: Ativo no canto esquerdo da tela'
+      ] : locale === 'es' ? [
+        '>> Información de Contacto:',
+        '>>   - Correo: hiuryhenrique2012@gmail.com',
+        '>>   - Teléfono: +55 (61) 99172-0301',
+        '>>   - WhatsApp: Activo en la esquina inferior izquierda'
+      ] : [
+        '>> Contact Information:',
+        '>>   - Email: hiuryhenrique2012@gmail.com',
+        '>>   - Phone: +55 (61) 99172-0301',
+        '>>   - WhatsApp: Active on the bottom-left corner'
+      ]
+    } else if (cmd === 'whoami') {
+      output = [
+        '>> guest@h2vsystems ~ ',
+        '>>   visitor (read-only shell)',
+        '>>   permissions: explore | type "help" for command list'
+      ]
+    } else if (cmd === 'date') {
+      const now = new Date().toISOString().replace('T', ' ').slice(0, 19)
+      output = [`>> ${now} UTC`]
+    } else if (cmd === 'deliver') {
+      const pipelineLines = scriptLines.slice(1)
+      let tempIndex = 0
+      const nextLine = () => {
+        if (tempIndex >= pipelineLines.length) {
+          setIsRunning(false)
+          return
+        }
+        const line = pipelineLines[tempIndex]
+        if (line) setConsoleLines((prev) => [...prev, line])
+        tempIndex++
+        scheduleLine(nextLine, 600)
+      }
+      scheduleLine(nextLine, 300)
+      return
+    } else {
+      const msg = locale === 'pt'
+        ? `>> [ERROR] Comando "${cmd}" não reconhecido. Digite "help" para listar.`
+        : locale === 'es'
+        ? `>> [ERROR] Comando "${cmd}" no reconocido. Escribe "help" para listar.`
+        : `>> [ERROR] Command "${cmd}" not recognized. Type "help" to list.`
+      output = [msg]
+    }
+
+    let tempIndex = 0
+    const nextLine = () => {
+      if (tempIndex >= output.length) {
+        setIsRunning(false)
+        return
+      }
+      const line = output[tempIndex]
+      if (line) setConsoleLines((prev) => [...prev, line])
+      tempIndex++
+      scheduleLine(nextLine, 200)
+    }
+    scheduleLine(nextLine, 150)
+  }
+
+  const runCode = () => {
+    runCommand('deliver')
+  }
+
+  const submitInput = () => {
+    const raw = cmdInput.trim()
+    if (!raw || isRunning) return
+    setCmdHistory((prev) => [...prev, raw])
+    setHistoryIdx(-1)
+    setCmdInput('')
+    runCommand(raw.toLowerCase())
+  }
+
+  const onInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      submitInput()
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault()
+      if (cmdHistory.length === 0) return
+      const next = historyIdx < 0 ? cmdHistory.length - 1 : Math.max(0, historyIdx - 1)
+      setHistoryIdx(next)
+      setCmdInput(cmdHistory[next] ?? '')
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault()
+      if (historyIdx < 0) return
+      const next = historyIdx + 1
+      if (next >= cmdHistory.length) {
+        setHistoryIdx(-1)
+        setCmdInput('')
+      } else {
+        setHistoryIdx(next)
+        setCmdInput(cmdHistory[next] ?? '')
+      }
+    } else if (e.key === 'Tab') {
+      e.preventDefault()
+      const match = KNOWN_COMMANDS.find((c) => c.startsWith(cmdInput.toLowerCase()))
+      if (match) setCmdInput(match)
+    }
+  }
+
+  useEffect(() => {
+    if (outputRef.current) outputRef.current.scrollTop = outputRef.current.scrollHeight
+  }, [consoleLines, isRunning])
 
   const values = [
     { icon: Target, title: t('missionTitle'), desc: t('missionDesc') },
@@ -84,8 +230,8 @@ export default function About() {
         <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 60% 50% at 20% 50%, rgba(194,65,12,0.045) 0%, transparent 60%)' }} />
       </motion.div>
 
-      <div className="max-w-[1200px] xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-5 sm:px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 xl:gap-28 items-center">
+      <div className="max-w-[1200px] xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-5 sm:px-6 relative z-10 min-w-0">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 xl:gap-28 items-center min-w-0">
 
           {/* Left */}
           <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: '-60px' }} transition={{ duration: 0.75 }}>
@@ -125,9 +271,9 @@ export default function About() {
           </motion.div>
 
           {/* Right */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-6 min-w-0">
             <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: '-60px' }} transition={{ duration: 0.75 }}
-              className="about-terminal rounded-2xl overflow-hidden border border-neutral-800 shadow-[0_20px_50px_rgba(0,0,0,0.35)] bg-[#0d0b0a]">
+              className="about-terminal rounded-2xl overflow-hidden border border-neutral-800 shadow-[0_20px_50px_rgba(0,0,0,0.35)] bg-[#0d0b0a] min-w-0 w-full max-w-full">
               {/* macOS style top bar */}
               <div className="flex items-center justify-between px-4 py-3 bg-[#13100e] border-b border-neutral-800/65 select-none">
                 <div className="flex gap-2">
@@ -148,15 +294,15 @@ export default function About() {
                   <span>{isRunning ? 'RUNNING...' : 'RUN'}</span>
                 </button>
               </div>
-              <div className="flex font-mono text-[0.74rem] sm:text-[0.84rem] leading-[1.8] p-4 sm:p-6 overflow-x-auto whitespace-pre">
+              <div className="flex font-mono text-[0.74rem] sm:text-[0.84rem] leading-[1.8] p-4 sm:p-6 overflow-x-auto min-w-0 w-full">
                 {/* Line Numbers */}
-                <div className="text-neutral-700 select-none text-right pr-4 border-r border-neutral-800/40 flex flex-col">
+                <div className="text-neutral-700 select-none text-right pr-4 border-r border-neutral-800/40 flex flex-col flex-shrink-0">
                   {Array.from({ length: 14 }).map((_, i) => (
                     <span key={i} className="block w-4">{i + 1}</span>
                   ))}
                 </div>
                 {/* Code Block */}
-                <pre className="pl-4 text-left flex-1" style={{ color: '#d4beab' }}>
+                <pre className="pl-4 text-left flex-1 min-w-0 whitespace-pre" style={{ color: '#d4beab' }}>
                   <span className="text-[#8e8073] italic">{'// H2V Systems — Core Philosophy\n'}</span>
                   <span className="text-[#e0956e]">{'const '}</span><span className="text-[#ff8a4c]">{'h2v'}</span>{' = {\n'}
                   {'  founder:  '}<span className="text-[#a8c87a]">{"'Hiury Vilanova'"}</span>{',\n'}
@@ -169,7 +315,7 @@ export default function About() {
 
               {/* Console drawer */}
               <AnimatePresence>
-                {consoleLines.length > 0 && (
+                {(consoleLines.length > 0 || isRunning) && (
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: 'auto', opacity: 1 }}
@@ -177,33 +323,45 @@ export default function About() {
                     transition={{ duration: 0.3 }}
                     className="border-t border-neutral-800 bg-[#070605] p-4 font-mono text-[0.7rem] sm:text-[0.78rem] leading-relaxed text-neutral-300"
                   >
-                    <div className="flex items-center justify-between text-neutral-500 border-b border-neutral-800/40 pb-2 mb-3">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-neutral-500 border-b border-neutral-800/40 pb-2.5 mb-3">
                       <span className="flex items-center gap-1.5 uppercase font-bold text-[9px] tracking-wider text-neutral-500">
                         <Terminal size={10} className="text-orange-500" />
                         Console Output
                       </span>
-                      <button
-                        onClick={resetConsole}
-                        className="text-[9px] hover:text-white transition-colors"
-                      >
-                        Clear
-                      </button>
+                      <div className="flex flex-wrap items-center gap-1.5 text-[9px] font-mono">
+                        <span className="text-neutral-600 uppercase font-semibold">Executar:</span>
+                        {['help', 'stack', 'deliver', 'contact', 'clear'].map((cmd) => (
+                          <button
+                            key={cmd}
+                            onClick={() => runCommand(cmd)}
+                            disabled={isRunning}
+                            className="px-1.5 py-0.5 rounded bg-neutral-900 border border-neutral-800 hover:border-orange-500/30 hover:text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                          >
+                            {cmd}
+                          </button>
+                        ))}
+                      </div>
                     </div>
-                    <div className="flex flex-col gap-1.5 select-text">
+                    <div
+                      ref={outputRef}
+                      onClick={() => inputRef.current?.focus()}
+                      className="flex flex-col gap-1.5 select-text max-h-[220px] overflow-y-auto cursor-text"
+                    >
                       {consoleLines.map((line, idx) => {
-                        const isError = line.includes('[ERROR]')
-                        const isSuccess = line.includes('[SUCCESS]') || line.includes('[SUCESSO]') || line.includes('[ÉXITO]')
-                        const isInput = !line.startsWith('>>')
+                        const text = typeof line === 'string' ? line : ''
+                        const isError = text.includes('[ERROR]')
+                        const isSuccess = text.includes('[SUCCESS]') || text.includes('[SUCESSO]') || text.includes('[ÉXITO]')
+                        const isInput = !text.startsWith('>>')
                         
                         let colorClass = 'text-neutral-400 font-medium'
                         if (isInput) colorClass = 'text-orange-300 font-semibold'
                         else if (isSuccess) colorClass = 'text-emerald-400 font-semibold'
                         else if (isError) colorClass = 'text-red-400 font-semibold'
-                        else if (line.includes('[OK]')) colorClass = 'text-[#fafaf9]'
+                        else if (text.includes('[OK]')) colorClass = 'text-[#fafaf9]'
 
                         return (
                           <div key={idx} className={colorClass}>
-                            {isInput ? '$ ' : ''}{line}
+                            {isInput ? '$ ' : ''}{text}
                           </div>
                         )
                       })}
@@ -212,6 +370,28 @@ export default function About() {
                           <span>$</span>
                           <span className="w-1.5 h-3 bg-orange-500 inline-block align-middle" />
                         </div>
+                      )}
+
+                      {/* Interactive prompt */}
+                      {!isRunning && (
+                        <form
+                          onSubmit={(e) => { e.preventDefault(); submitInput() }}
+                          className="flex items-center gap-2 mt-1.5"
+                        >
+                          <span className="text-orange-400 font-bold select-none">$</span>
+                          <input
+                            ref={inputRef}
+                            type="text"
+                            value={cmdInput}
+                            onChange={(e) => setCmdInput(e.target.value)}
+                            onKeyDown={onInputKeyDown}
+                            spellCheck={false}
+                            autoComplete="off"
+                            aria-label="Terminal input"
+                            placeholder={locale === 'pt' ? 'digite "help"...' : locale === 'es' ? 'escribe "help"...' : 'type "help"...'}
+                            className="flex-1 bg-transparent outline-none border-0 text-orange-200 placeholder-neutral-700 font-mono text-[0.7rem] sm:text-[0.78rem] caret-orange-500"
+                          />
+                        </form>
                       )}
                     </div>
                   </motion.div>

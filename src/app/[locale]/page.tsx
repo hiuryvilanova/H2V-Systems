@@ -17,6 +17,7 @@ const Process      = dynamic(() => import('@/components/sections/Process'))
 const Testimonials = dynamic(() => import('@/components/sections/Testimonials'))
 const Faq          = dynamic(() => import('@/components/sections/Faq'))
 const Contact      = dynamic(() => import('@/components/sections/Contact'))
+const ArchitectureSimulator = dynamic(() => import('@/components/sections/ArchitectureSimulator'))
 
 // UI utilitário não-crítico: defer pra depois da hidratação inicial.
 const CookieBanner = dynamic(() => import('@/components/ui/CookieBanner'))
@@ -33,6 +34,8 @@ export default function Home() {
         <PainPoints />
         <GlowDivider />
         <Services />
+        <GlowDivider />
+        <ArchitectureSimulator />
         <GlowDivider />
         <Cases />
         <GlowDivider />

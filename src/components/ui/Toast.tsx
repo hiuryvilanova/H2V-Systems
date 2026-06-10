@@ -84,8 +84,8 @@ export function ToastProvider({ children }: { children: ReactNode }) {
       <div
         aria-live="polite"
         aria-atomic="true"
-        className="fixed z-[1500] bottom-5 left-1/2 -translate-x-1/2 sm:left-auto sm:right-5 sm:translate-x-0
-          flex flex-col items-end gap-2 pointer-events-none w-[calc(100vw-2.5rem)] max-w-sm"
+        className="fixed z-[10000] left-1/2 -translate-x-1/2 sm:left-auto sm:right-5 sm:translate-x-0
+          flex flex-col items-end gap-2 pointer-events-none w-[calc(100vw-2.5rem)] max-w-sm toast-stack-pos"
       >
         <AnimatePresence initial={false}>
           {toasts.map((toast) => (

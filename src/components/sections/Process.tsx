@@ -1,6 +1,7 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import { Search, Layers, Code2, Settings } from 'lucide-react'
 import { WhatsAppIcon } from '@/components/ui/BrandIcons'
@@ -11,6 +12,14 @@ const PROCESS_ICONS = [Search, Layers, Code2, Settings]
 export default function Process() {
   const t     = useTranslations('Process')
   const steps = t.raw('steps') as Array<{ title: string; desc: string; highlight: string }>
+
+  const containerRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start end', 'end center']
+  })
+
+  const scaleX = useTransform(scrollYProgress, [0.1, 0.85], [0, 1])
 
   return (
     <section id="processo" className="py-20 sm:py-[100px] lg:py-[120px] relative overflow-hidden bg-neutral-950 border-t border-neutral-900">
@@ -33,17 +42,14 @@ export default function Process() {
         </motion.div>
 
         {/* Timeline Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 relative">
+        <div ref={containerRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 relative">
           
           {/* Connecting line in background (Desktop only) */}
           <div aria-hidden="true"
             className="absolute top-8 lg:top-10 xl:top-12 left-[12%] right-[12%] h-[2px] hidden lg:block bg-neutral-900"
           >
             <motion.div 
-              initial={{ width: 0 }}
-              whileInView={{ width: '100%' }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.5, ease: 'easeInOut' }}
+              style={{ scaleX, originX: 0 }}
               className="h-full bg-gradient-to-r from-orange-600 via-amber-500 to-red-600 shadow-[0_0_8px_rgba(249,115,22,0.4)]"
             />
           </div>

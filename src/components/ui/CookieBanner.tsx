@@ -38,11 +38,7 @@ export default function CookieBanner() {
       role="dialog"
       aria-live="polite"
       aria-label={t('aria')}
-      className="fixed z-[9997] rounded-2xl p-5 sm:p-6 animate-fade-in w-[min(100%,calc(100vw-2rem-env(safe-area-inset-left)-env(safe-area-inset-right)))] max-w-md
-        bottom-[max(1rem,env(safe-area-inset-bottom,0px))]
-        left-[max(1rem,env(safe-area-inset-left,0px))]
-        right-[max(1rem,env(safe-area-inset-right,0px))]
-        sm:bottom-6 sm:left-6 sm:right-auto"
+      className="fixed z-[9997] rounded-2xl p-5 sm:p-6 animate-fade-in max-w-md cookie-banner-pos"
       style={{
         background: 'rgba(18, 18, 20, 0.96)',
         border: '1px solid var(--border)',

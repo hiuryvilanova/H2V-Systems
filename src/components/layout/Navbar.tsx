@@ -158,7 +158,7 @@ export default function Navbar() {
           </a>
 
           {/* Desktop links */}
-          <ul className="hidden md:flex items-center gap-1 list-none flex-1 justify-center">
+          <ul className="hidden lg:flex items-center gap-1 list-none flex-1 justify-center">
             {NAV_LINKS.map((l) => (
               <li key={l.href}>
                 <a
@@ -185,7 +185,7 @@ export default function Navbar() {
           </ul>
 
           {/* Right: CTA + Language switcher */}
-          <div className="hidden md:flex items-center gap-3 flex-shrink-0">
+          <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
             <LanguageSwitcher onOrange />
             <a
               href="#contato"
@@ -202,7 +202,7 @@ export default function Navbar() {
           </div>
 
           {/* Hamburger */}
-          <div className="md:hidden flex items-center gap-3">
+          <div className="lg:hidden flex items-center gap-3">
             <LanguageSwitcher onOrange />
             <button
               onClick={() => setMenuOpen((o) => !o)}
@@ -236,7 +236,7 @@ export default function Navbar() {
       {/* Mobile overlay */}
       <div
         className={`fixed inset-0 z-[999] flex flex-col items-center justify-center gap-5 sm:gap-6
-          transition-opacity duration-300 md:hidden overflow-y-auto overscroll-y-contain px-6
+          transition-opacity duration-300 lg:hidden overflow-y-auto overscroll-y-contain px-6
           ${menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
         style={{
           background: 'rgba(10, 10, 10, 0.98)',
