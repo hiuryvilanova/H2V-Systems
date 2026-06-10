@@ -202,6 +202,11 @@
     "tabSchedule": "Agendar Reunião",
     "scheduleHint": "Preencha nome e e-mail acima para pré-preencher o agendamento.",
     "scheduleReady": "Tudo certo. Escolha um horário abaixo para falar com um especialista.",
+    "scheduleOpenExternal": "Abrir agenda em nova aba",
+    "scheduleSuccessTitle": "Reunião agendada!",
+    "scheduleSuccessDesc": "Você receberá em instantes um e-mail com o convite e o link da videochamada. Até lá!",
+    "scheduleSuccessBack": "Enviar uma mensagem também",
+    "scheduleSuccessToast": "Reunião confirmada — confira seu e-mail.",
     "servicesOptions": [
       "Desenvolvimento Customizado",
       "Aplicações Web ou Mobile",

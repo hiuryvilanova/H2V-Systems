@@ -202,6 +202,11 @@
     "tabSchedule": "Book a Meeting",
     "scheduleHint": "Enter your name and email above to pre-fill the booking.",
     "scheduleReady": "All set. Pick a slot below to talk to a specialist.",
+    "scheduleOpenExternal": "Open agenda in new tab",
+    "scheduleSuccessTitle": "Meeting booked!",
+    "scheduleSuccessDesc": "You'll receive an email shortly with the calendar invite and the video call link. See you soon!",
+    "scheduleSuccessBack": "Send a message too",
+    "scheduleSuccessToast": "Meeting confirmed — check your email.",
     "servicesOptions": [
       "Custom Development",
       "Web or Mobile Apps",

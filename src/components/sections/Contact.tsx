@@ -1,12 +1,16 @@
 'use client'
 
-import { useState, useRef, useMemo } from 'react'
+import { useState, useRef, useMemo, useCallback } from 'react'
+import dynamic from 'next/dynamic'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { useTranslations, useLocale } from 'next-intl'
-import { Mail, CheckCircle, MapPin, MessageSquare, Calendar } from 'lucide-react'
+import { Mail, CheckCircle, MapPin, MessageSquare, Calendar, ExternalLink } from 'lucide-react'
 import { WhatsAppIcon, LinkedInIcon } from '@/components/ui/BrandIcons'
 import { useToast } from '@/components/ui/Toast'
 import { WHATSAPP_LINK, WHATSAPP_DISPLAY, EMAIL, LINKEDIN_URL, LOCATION, CAL_LINK } from '@/lib/constants'
+
+// Cal.com embed só carrega quando o usuário muda para a aba "Agendar".
+const CalEmbed = dynamic(() => import('@/components/ui/CalEmbed'), { ssr: false })
 
 type FormState = {
   nome: string; email: string; empresa: string;
@@ -61,6 +65,7 @@ export default function Contact() {
   const [touched, setTouched] = useState<Record<FieldKey, boolean>>({ nome: false, email: false, empresa: false, telefone: false, mensagem: false })
   const [submitted, setSubmitted] = useState(false)
   const [loading,   setLoading]   = useState(false)
+  const [scheduledOk, setScheduledOk] = useState(false)
 
   const validate = (k: FieldKey, v: string): boolean => {
     if (k === 'nome')     return v.trim().length >= 2
@@ -135,15 +140,27 @@ export default function Contact() {
     }
   }
 
-  const calSrc = useMemo(() => {
-    const path = CAL_LINK.replace(/^https?:\/\/cal\.com\//, '')
-    const params = new URLSearchParams({ embed: 'true', layout: 'month_view', theme: 'dark' })
+  const calPath = useMemo(() => CAL_LINK.replace(/^https?:\/\/cal\.com\//, ''), [])
+
+  /** Link "abrir em nova aba" com prefill manual via querystring (funciona em qualquer booking page). */
+  const calExternalUrl = useMemo(() => {
+    const u = new URL(CAL_LINK)
     if (canScheduleDirect) {
-      params.set('name', form.nome.trim())
-      params.set('email', form.email.trim())
+      u.searchParams.set('name', form.nome.trim())
+      u.searchParams.set('email', form.email.trim())
     }
-    return `https://cal.com/${path}?${params.toString()}`
+    u.searchParams.set('utm_source',   'h2vsystems')
+    u.searchParams.set('utm_medium',   'website')
+    u.searchParams.set('utm_campaign', 'contact_section')
+    return u.toString()
   }, [canScheduleDirect, form.nome, form.email])
+
+  const calLocale = locale === 'pt' ? 'pt-BR' : locale === 'es' ? 'es' : 'en'
+
+  const handleBookingSuccessful = useCallback(() => {
+    setScheduledOk(true)
+    toast.success(t('scheduleSuccessToast'))
+  }, [toast, t])
 
   type IconCmp = (props: { size?: number; strokeWidth?: number; color?: string }) => React.ReactElement
   const channels: Array<{ icon: IconCmp; brand?: boolean; label: string; value: string; href?: string }> = [
@@ -330,7 +347,7 @@ export default function Contact() {
                   </motion.form>
                 )}
 
-                {!submitted && mode === 'schedule' && (
+                {!submitted && mode === 'schedule' && !scheduledOk && (
                   <motion.div
                     key="schedule-tab"
                     initial={{ opacity: 0, y: 8 }}
@@ -341,41 +358,91 @@ export default function Contact() {
                   >
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="flex flex-col gap-2">
-                        <label htmlFor="cs-nome" className="text-xs font-semibold uppercase tracking-wider text-neutral-400">{t('formName')}</label>
-                        <input id="cs-nome" className={`input-base ${fieldState('nome')}`} type="text" name="nome" placeholder={t('formNamePlaceholder')} value={form.nome} onChange={handleChange} onBlur={handleBlur} />
+                        <label htmlFor="cs-nome" className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
+                          {t('formName')} <span className="text-orange-500/80">*</span>
+                        </label>
+                        <input
+                          id="cs-nome"
+                          className={`input-base ${fieldState('nome')}`}
+                          type="text" name="nome" required
+                          placeholder={t('formNamePlaceholder')}
+                          value={form.nome} onChange={handleChange} onBlur={handleBlur}
+                          aria-invalid={fieldState('nome') === 'is-invalid'}
+                        />
                       </div>
                       <div className="flex flex-col gap-2">
-                        <label htmlFor="cs-email" className="text-xs font-semibold uppercase tracking-wider text-neutral-400">{t('formEmail')}</label>
-                        <input id="cs-email" className={`input-base ${fieldState('email')}`} type="email" name="email" placeholder={t('formEmailPlaceholder')} value={form.email} onChange={handleChange} onBlur={handleBlur} />
+                        <label htmlFor="cs-email" className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
+                          {t('formEmail')} <span className="text-orange-500/80">*</span>
+                        </label>
+                        <input
+                          id="cs-email"
+                          className={`input-base ${fieldState('email')}`}
+                          type="email" name="email" required
+                          placeholder={t('formEmailPlaceholder')}
+                          value={form.email} onChange={handleChange} onBlur={handleBlur}
+                          aria-invalid={fieldState('email') === 'is-invalid'}
+                        />
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-2 text-[11px] sm:text-xs font-medium">
-                      <CheckCircle size={14} className={canScheduleDirect ? 'text-emerald-400' : 'text-neutral-600'} />
-                      <span className={canScheduleDirect ? 'text-emerald-300' : 'text-neutral-500'}>
+                    <div
+                      className={`flex items-start gap-2.5 text-[11px] sm:text-xs font-medium px-3.5 py-2.5 rounded-lg border transition-colors ${
+                        canScheduleDirect
+                          ? 'border-emerald-500/25 bg-emerald-500/5 text-emerald-300'
+                          : 'border-neutral-800 bg-neutral-950/60 text-neutral-500'
+                      }`}
+                      role="status"
+                      aria-live="polite"
+                    >
+                      <CheckCircle size={14} className={`flex-shrink-0 mt-0.5 ${canScheduleDirect ? 'text-emerald-400' : 'text-neutral-600'}`} />
+                      <span className="leading-snug">
                         {canScheduleDirect ? labels.scheduleReady : labels.scheduleHint}
                       </span>
                     </div>
 
                     <div className="rounded-2xl overflow-hidden border border-neutral-800 bg-neutral-950">
-                      <iframe
-                        title="Cal.com — H2V Systems"
-                        src={calSrc}
-                        loading="lazy"
-                        className="w-full block"
-                        style={{ height: 'clamp(520px, 70vh, 720px)', border: 0, colorScheme: 'dark' }}
-                        allow="payment; camera; microphone; clipboard-read; clipboard-write"
+                      <CalEmbed
+                        calLink={calPath}
+                        locale={calLocale}
+                        prefill={canScheduleDirect ? { name: form.nome.trim(), email: form.email.trim() } : undefined}
+                        onBookingSuccessful={handleBookingSuccessful}
                       />
                     </div>
 
                     <a
-                      href={CAL_LINK}
+                      href={calExternalUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-center text-[11px] sm:text-xs text-neutral-500 hover:text-orange-400 transition-colors no-underline"
+                      className="inline-flex items-center justify-center gap-2 mx-auto px-5 py-2.5 rounded-lg text-xs font-semibold text-neutral-300 bg-neutral-900 border border-neutral-800 hover:border-orange-500/30 hover:text-orange-400 hover:bg-neutral-800/60 transition-all no-underline"
                     >
-                      cal.com ↗
+                      <ExternalLink size={13} />
+                      <span>{t('scheduleOpenExternal')}</span>
                     </a>
+                  </motion.div>
+                )}
+
+                {!submitted && mode === 'schedule' && scheduledOk && (
+                  <motion.div
+                    key="schedule-success"
+                    initial={{ opacity: 0, scale: 0.96 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="text-center py-10 relative z-10"
+                  >
+                    <div className="flex justify-center mb-6">
+                      <Calendar size={56} strokeWidth={1.5} className="text-emerald-400 animate-pulse" />
+                    </div>
+                    <h3 className="text-2xl font-bold mb-3 text-white">{t('scheduleSuccessTitle')}</h3>
+                    <p className="text-sm text-neutral-400 leading-relaxed max-w-[380px] mx-auto mb-6">
+                      {t('scheduleSuccessDesc')}
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => { setScheduledOk(false); setMode('message') }}
+                      className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-bold text-sm bg-neutral-900 hover:bg-neutral-800 text-neutral-200 border border-neutral-800 transition-all cursor-pointer"
+                    >
+                      <MessageSquare size={14} />
+                      <span>{t('scheduleSuccessBack')}</span>
+                    </button>
                   </motion.div>
                 )}
 
