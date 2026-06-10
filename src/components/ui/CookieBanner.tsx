@@ -44,15 +44,17 @@ export default function CookieBanner() {
         right-[max(1rem,env(safe-area-inset-right,0px))]
         sm:bottom-6 sm:left-6 sm:right-auto"
       style={{
-        background: '#fffef9',
-        border: '1px solid rgba(232, 75, 26, 0.2)',
-        boxShadow: '0 10px 40px rgba(0,0,0,0.08)',
+        background: 'rgba(18, 18, 20, 0.96)',
+        border: '1px solid var(--border)',
+        boxShadow: '0 10px 40px rgba(0, 0, 0, 0.5)',
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
       }}
     >
       <button
         onClick={reject}
         aria-label={t('close')}
-        className="absolute top-2 right-2 min-h-11 min-w-11 rounded-full flex items-center justify-center transition-colors duration-200 hover:bg-black/[0.04]"
+        className="absolute top-2 right-2 min-h-11 min-w-11 rounded-full flex items-center justify-center transition-colors duration-200 hover:bg-white/[0.04]"
         style={{ color: 'var(--text-70)' }}
       >
         <X size={16} strokeWidth={2} />
@@ -63,7 +65,7 @@ export default function CookieBanner() {
           <Cookie size={18} strokeWidth={1.75} color="var(--cyan)" />
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="text-sm font-bold mb-1">{t('title')}</h3>
+          <h3 className="text-sm font-bold mb-1 text-white">{t('title')}</h3>
           <p className="text-xs leading-relaxed" style={{ color: 'var(--text-70)' }}>
             {t('description')}
           </p>
@@ -73,7 +75,7 @@ export default function CookieBanner() {
       <div className="flex gap-2 mt-4">
         <button
           onClick={reject}
-          className="flex-1 px-4 py-3 min-h-11 rounded-lg text-sm font-medium cursor-pointer transition-all duration-300 hover:bg-black/[0.03]"
+          className="flex-1 px-4 py-3 min-h-11 rounded-lg text-sm font-medium cursor-pointer transition-all duration-300 hover:bg-white/[0.03]"
           style={{ background: 'transparent', border: '1px solid var(--border)', color: 'var(--text-70)' }}
         >
           {t('reject')}
@@ -81,7 +83,7 @@ export default function CookieBanner() {
         <button
           onClick={accept}
           className="flex-1 px-4 py-3 min-h-11 rounded-lg text-sm font-semibold text-white cursor-pointer border-0 transition-all duration-300 hover:-translate-y-0.5"
-          style={{ background: 'var(--cyan)', boxShadow: '0 8px 24px rgba(194,65,12,0.2)' }}
+          style={{ background: 'var(--cyan)', boxShadow: '0 8px 24px rgba(234,88,12,0.2)' }}
         >
           {t('accept')}
         </button>

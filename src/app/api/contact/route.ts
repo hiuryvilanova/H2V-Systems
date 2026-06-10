@@ -15,7 +15,7 @@ type ContactPayload = {
 }
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-const TO_EMAIL    = process.env.CONTACT_TO_EMAIL  || 'hiuryvilanova2012@gmail.com'
+const TO_EMAIL    = process.env.CONTACT_TO_EMAIL  || 'hiuryhenrique2012@gmail.com'
 const FROM_EMAIL  = process.env.CONTACT_FROM_EMAIL || 'H2V Systems <onboarding@resend.dev>'
 
 const WINDOW_MS = 60_000

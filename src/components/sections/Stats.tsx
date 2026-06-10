@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { useInView } from 'framer-motion'
+import { useInView, motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 
 function Counter({ target, suffix }: { target: number; suffix: string }) {
@@ -11,11 +11,11 @@ function Counter({ target, suffix }: { target: number; suffix: string }) {
 
   useEffect(() => {
     if (!inView) return
-    const dur   = 1800
+    const dur   = 2000
     const start = performance.now()
     const tick  = (now: number) => {
       const progress = Math.min((now - start) / dur, 1)
-      const ease     = 1 - Math.pow(1 - progress, 3)
+      const ease     = 1 - Math.pow(1 - progress, 4) // Quartic out ease for ultra-smooth settling
       setCount(Math.floor(ease * target))
       if (progress < 1) requestAnimationFrame(tick)
       else setCount(target)
@@ -24,10 +24,60 @@ function Counter({ target, suffix }: { target: number; suffix: string }) {
   }, [inView, target])
 
   return (
-    <div ref={ref} className="text-[clamp(1.5rem,9vw,2.8rem)] font-bold leading-none tabular-nums tracking-tight">
-      <span className="stat-num">{count}</span>
-      <span className="stat-suf">{suffix}</span>
+    <div ref={ref} className="text-[clamp(2rem,7vw,3.25rem)] font-extrabold leading-none tabular-nums tracking-tight mb-2">
+      <span className="text-white drop-shadow-[0_2px_10px_rgba(251,146,60,0.15)]">{count}</span>
+      <span className="text-orange-400 drop-shadow-[0_2px_10px_rgba(251,146,60,0.15)]">{suffix}</span>
     </div>
+  )
+}
+
+function StatCard({ s, index }: { s: { target: number; suffix: string; label: string }; index: number }) {
+  const [coords, setCoords] = useState({ x: 0, y: 0 })
+  const [hovered, setHovered] = useState(false)
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    setCoords({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    })
+  }
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      whileHover={{ y: -4, scale: 1.02 }}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="p-6 sm:p-8 rounded-2xl border border-neutral-800/80 bg-neutral-900/40 backdrop-blur-md flex flex-col justify-center items-center text-center min-w-0 transition-all duration-300 hover:border-orange-500/35 hover:bg-neutral-900/50 hover:shadow-[0_8px_32px_rgba(249,115,22,0.06)] group relative overflow-hidden"
+    >
+      {/* Top glowing line */}
+      <div
+        aria-hidden="true"
+        className="absolute top-0 left-0 right-0 h-[1.5px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        style={{ background: 'linear-gradient(90deg, transparent, var(--cyan), transparent)' }}
+      />
+
+      {/* Spotlight effect */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-0"
+        style={{
+          background: `radial-gradient(150px circle at ${coords.x}px ${coords.y}px, rgba(194, 65, 12, 0.08), transparent 80%)`,
+        }}
+      />
+
+      <div className="relative z-10">
+        <Counter target={s.target} suffix={s.suffix} />
+        <p className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-neutral-400 mt-2 px-1 leading-snug group-hover:text-neutral-200 transition-colors duration-300">
+          {s.label}
+        </p>
+      </div>
+    </motion.div>
   )
 }
 
@@ -35,25 +85,25 @@ export default function Stats() {
   const t = useTranslations('Stats')
 
   const items = [
-    { target: 50,  suffix: '+',  label: t('projectsLabel')    },
-    { target: 98,  suffix: '%',  label: t('satisfactionLabel') },
-    { target: 3,   suffix: 'x',  label: t('reductionLabel')    },
-    { target: 24,  suffix: '/7', label: t('supportLabel')      },
+    { target: 50,  suffix: '+',   label: t('projectsLabel')    },
+    { target: 99,  suffix: '.9%', label: t('satisfactionLabel') },
+    { target: 50,  suffix: '%',   label: t('reductionLabel')    },
+    { target: 24,  suffix: '/7',  label: t('supportLabel')      },
   ]
 
   return (
     <section
       id="stats"
-      data-surface="brand"
-      className="py-20 border-y border-white/15"
+      className="py-16 sm:py-20 relative overflow-hidden bg-neutral-950 border-y border-neutral-900"
     >
-      <div className="max-w-[1200px] mx-auto px-5 sm:px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-px rounded-xl overflow-hidden" style={{ background: 'rgba(255,255,255,0.22)' }}>
-          {items.map((s) => (
-            <div key={s.label} className="p-4 sm:p-6 md:p-8 text-center min-w-0" style={{ background: 'rgba(255,255,255,0.1)' }}>
-              <Counter target={s.target} suffix={s.suffix} />
-              <p className="text-xs sm:text-sm mt-2 px-1 leading-snug" style={{ color: 'var(--text-70)' }}>{s.label}</p>
-            </div>
+      {/* Background glow points */}
+      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-80 h-80 rounded-full bg-orange-950/15 blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-80 h-80 rounded-full bg-red-950/15 blur-[100px] pointer-events-none" />
+
+      <div className="max-w-[1200px] xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-5 sm:px-6 relative z-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 xl:gap-10">
+          {items.map((s, i) => (
+            <StatCard key={s.label} s={s} index={i} />
           ))}
         </div>
       </div>

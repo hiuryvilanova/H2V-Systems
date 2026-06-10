@@ -54,11 +54,13 @@ function LanguageSwitcher({ onOrange }: { onOrange?: boolean }) {
           />
           <div
             className="absolute right-0 top-full mt-2 z-50 rounded-xl overflow-hidden min-w-[120px]
-              border shadow-xl"
+              border shadow-2xl"
             style={{
-              background: '#ffffff',
-              borderColor: 'rgba(15, 23, 42, 0.1)',
-              boxShadow: '0 12px 40px rgba(0,0,0,0.1)',
+              background: 'rgba(18, 18, 20, 0.95)',
+              borderColor: 'var(--border)',
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
+              boxShadow: '0 12px 40px rgba(0,0,0,0.5)',
             }}
           >
             {routing.locales.map((loc) => (
@@ -68,14 +70,14 @@ function LanguageSwitcher({ onOrange }: { onOrange?: boolean }) {
                 className="w-full flex items-center gap-2.5 px-4 py-3 text-sm font-medium
                   cursor-pointer bg-transparent border-0 text-left transition-colors duration-200"
                 style={{
-                  color: loc === locale ? '#c2410c' : '#475569',
-                  background: loc === locale ? 'rgba(194, 65, 12, 0.08)' : 'transparent',
+                  color: loc === locale ? 'var(--cyan)' : 'var(--text-70)',
+                  background: loc === locale ? 'rgba(234, 88, 12, 0.12)' : 'transparent',
                 }}
               >
                 <LocaleFlag locale={loc} />
                 <span>{LOCALE_LABELS[loc]}</span>
                 {loc === locale && (
-                  <span className="ml-auto text-xs" style={{ color: '#c2410c' }}>✓</span>
+                  <span className="ml-auto text-xs" style={{ color: 'var(--cyan)' }}>✓</span>
                 )}
               </button>
             ))}
@@ -122,15 +124,19 @@ export default function Navbar() {
             ? 'max(0.75rem, env(safe-area-inset-top, 0px))'
             : 'max(1.25rem, env(safe-area-inset-top, 0px))',
           background: scrolled
-            ? 'linear-gradient(135deg, #9a3412 0%, #7c2d12 52%, #651e0e 100%)'
-            : 'linear-gradient(135deg, #c2410c 0%, #9a3412 48%, #7c2d12 100%)',
-          borderBottom: '1px solid rgba(0,0,0,0.08)',
+            ? 'rgba(10, 10, 10, 0.82)'
+            : 'rgba(10, 10, 10, 0.45)',
+          backdropFilter: 'blur(16px)',
+          WebkitBackdropFilter: 'blur(16px)',
+          borderBottom: scrolled
+            ? '1px solid rgba(255, 255, 255, 0.08)'
+            : '1px solid rgba(255, 255, 255, 0.02)',
           boxShadow: scrolled
-            ? '0 8px 28px rgba(0, 0, 0, 0.18)'
-            : '0 2px 16px rgba(0, 0, 0, 0.12)',
+            ? '0 10px 30px rgba(0, 0, 0, 0.4)'
+            : 'none',
         }}
       >
-        <div className="max-w-[1200px] mx-auto px-5 sm:px-6 flex items-center justify-between gap-2 sm:gap-4 min-w-0">
+        <div className="max-w-[1200px] xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-5 sm:px-6 flex items-center justify-between gap-2 sm:gap-4 min-w-0">
           {/* Logo */}
           <a
             href="#hero"
@@ -233,7 +239,7 @@ export default function Navbar() {
           transition-opacity duration-300 md:hidden overflow-y-auto overscroll-y-contain px-6
           ${menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
         style={{
-          background: 'rgba(255, 252, 250, 0.97)',
+          background: 'rgba(10, 10, 10, 0.98)',
           backdropFilter: 'blur(16px)',
           WebkitBackdropFilter: 'blur(16px)',
           paddingTop: 'max(2rem, env(safe-area-inset-top))',
@@ -246,9 +252,9 @@ export default function Navbar() {
             href={l.href}
             onClick={() => setMenuOpen(false)}
             className="text-center text-[clamp(1.15rem,4.5vw,1.5rem)] font-bold no-underline transition-colors duration-300 py-1"
-            style={{ color: '#1a1512' }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#c2410c' }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#1a1512' }}
+            style={{ color: '#fafaf9' }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = 'var(--cyan)' }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#fafaf9' }}
           >
             {l.label}
           </a>
@@ -257,7 +263,7 @@ export default function Navbar() {
           href="#contato"
           onClick={() => setMenuOpen(false)}
           className="mt-2 min-h-12 px-8 py-3.5 rounded-lg font-semibold no-underline text-white inline-flex items-center justify-center text-center"
-          style={{ background: 'var(--cyan)', boxShadow: '0 8px 28px rgba(194,65,12,0.25)' }}
+          style={{ background: 'var(--cyan)', boxShadow: '0 8px 28px rgba(234,88,12,0.25)' }}
         >
           {t('cta')}
         </a>

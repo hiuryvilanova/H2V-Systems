@@ -126,7 +126,7 @@ export default async function ServicePage({ params }: { params: Promise<PagePara
           <div aria-hidden="true" className="absolute inset-0 pointer-events-none"
             style={{ background: 'radial-gradient(ellipse 60% 50% at 70% 40%, rgba(194,65,12,0.06) 0%, transparent 60%)' }} />
 
-          <div className="max-w-[1200px] mx-auto px-5 sm:px-6 relative z-10">
+          <div className="max-w-[1200px] xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-5 sm:px-6 relative z-10">
             {/* Breadcrumb */}
             <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-xs mb-6 sm:mb-8" style={{ color: 'var(--text-70)' }}>
               <Link href={`${localePath}/` as never} className="hover:text-[var(--cyan)] transition-colors">
@@ -168,7 +168,7 @@ export default async function ServicePage({ params }: { params: Promise<PagePara
 
         {/* Intro + Benefits */}
         <section className="py-12 sm:py-16 relative">
-          <div className="max-w-[1200px] mx-auto px-5 sm:px-6">
+          <div className="max-w-[1200px] xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-5 sm:px-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
               <div>
                 <p className="text-sm sm:text-base leading-[1.85]" style={{ color: 'var(--text-70)' }}>
@@ -193,7 +193,7 @@ export default async function ServicePage({ params }: { params: Promise<PagePara
 
         {/* Stack */}
         <section className="py-10 sm:py-14 relative">
-          <div className="max-w-[1200px] mx-auto px-5 sm:px-6">
+          <div className="max-w-[1200px] xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-5 sm:px-6">
             <h2 className="text-xs font-semibold uppercase tracking-[0.14em] mb-5" style={{ color: 'var(--cyan)' }}>
               {tShared('stackTitle')}
             </h2>
@@ -207,7 +207,7 @@ export default async function ServicePage({ params }: { params: Promise<PagePara
 
         {/* FAQ */}
         <section className="py-14 sm:py-20 relative">
-          <div className="max-w-[1200px] mx-auto px-5 sm:px-6">
+          <div className="max-w-[1200px] xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-5 sm:px-6">
             <h2 className="text-[clamp(1.4rem,3.5vw,2rem)] font-bold tracking-tight mb-8 max-w-[860px]">
               <span className="gradient-text">{tShared('faqTitle')}</span>
             </h2>
@@ -237,7 +237,7 @@ export default async function ServicePage({ params }: { params: Promise<PagePara
         <section className="py-16 sm:py-24 relative overflow-hidden">
           <div aria-hidden="true" className="absolute inset-0 pointer-events-none"
             style={{ background: 'radial-gradient(ellipse 70% 50% at 50% 50%, rgba(194,65,12,0.06) 0%, transparent 70%)' }} />
-          <div className="max-w-[1200px] mx-auto px-5 sm:px-6 text-center relative z-10">
+          <div className="max-w-[1200px] xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-5 sm:px-6 text-center relative z-10">
             <h2 className="text-[clamp(1.6rem,4.5vw,2.4rem)] font-bold tracking-tight mb-4">
               {tShared('ctaTitle')}
             </h2>

@@ -25,8 +25,8 @@ export default function Faq() {
           }),
         }}
       />
-      <div className="max-w-[1200px] mx-auto px-5 sm:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-16 items-start">
+      <div className="max-w-[1200px] xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-5 sm:px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-20 xl:gap-28 items-start">
 
           {/* Left */}
           <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.75 }}>
@@ -53,8 +53,8 @@ export default function Faq() {
             {faqs.map((faq, i) => {
               const isOpen = open === i
               return (
-                <div key={i} className="rounded-2xl overflow-hidden transition-colors duration-300"
-                  style={{ background: 'var(--bg-card)', border: `1px solid ${isOpen ? 'var(--border-strong)' : 'var(--border)'}` }}>
+                <div key={i} className="rounded-2xl overflow-hidden transition-all duration-300 hover:border-orange-500/35 hover:shadow-[0_8px_24px_rgba(234,88,12,0.03)]"
+                  style={{ background: 'var(--bg-card)', border: `1px solid ${isOpen ? 'var(--cyan)' : 'var(--border)'}` }}>
                   <button
                     onClick={() => setOpen(isOpen ? null : i)}
                     aria-expanded={isOpen}

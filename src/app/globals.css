@@ -4,30 +4,30 @@
 
 /* ── Design tokens — neutros frios + acento contido (consultoria / B2B premium) ─ */
 :root {
-  --bg-0:           #ffffff;
-  --bg-1:           #f4f4f5;
-  --bg-2:           #e4e4e7;
-  --bg-card:        #ffffff;
-  --bg-glass:       rgba(255, 255, 255, 0.94);
+  --bg-0:           #0a0a0a;
+  --bg-1:           #121214;
+  --bg-2:           #1a1a1e;
+  --bg-card:        #121214;
+  --bg-glass:       rgba(10, 10, 10, 0.8);
 
-  /* Acento marca: laranja queimado (menos “neon”, mais institucional) */
-  --cyan:           #c2410c;
-  --cyan-dim:       rgba(194, 65, 12, 0.08);
-  --cyan-glow:      rgba(194, 65, 12, 0.18);
-  --blue:           #7c2d12;
+  /* Acento marca: laranja premium vibrante */
+  --cyan:           #ea580c;
+  --cyan-dim:       rgba(234, 88, 12, 0.08);
+  --cyan-glow:      rgba(234, 88, 12, 0.22);
+  --blue:           #c2410c;
 
-  --text-100:       #0f172a;
-  --text-70:        #475569;
-  --text-40:        #64748b;
+  --text-100:       #fafaf9;
+  --text-70:        #a1a1aa;
+  --text-40:        #71717a;
 
-  --border:         rgba(15, 23, 42, 0.08);
-  --border-strong:  rgba(15, 23, 42, 0.14);
-  --shadow-cyan:    0 12px 40px rgba(15, 23, 42, 0.06);
+  --border:         rgba(255, 255, 255, 0.08);
+  --border-strong:  rgba(255, 255, 255, 0.15);
+  --shadow-cyan:    0 12px 40px rgba(0, 0, 0, 0.5);
 
   /* --font-sans / --font-mono: definidos no <html> via next/font (layout) */
 }
 
-/* Faixas / seções em destaque laranja (navbar reusa parte das variáveis de texto) */
+/* Faixas / seções em destaque laranja */
 [data-surface="brand"] {
   --text-100:       #fffef9;
   --text-70:        rgba(255, 255, 255, 0.9);
@@ -42,7 +42,7 @@
   --bg-1:           rgba(255, 255, 255, 0.1);
   --bg-card:        rgba(255, 255, 255, 0.14);
   --bg-glass:       rgba(255, 255, 255, 0.16);
-  background: linear-gradient(160deg, #b45309 0%, #9a3412 48%, #7c2d12 100%);
+  background: linear-gradient(160deg, #171513 0%, #0c0a09 100%);
   color: var(--text-100);
 }
 
@@ -50,6 +50,7 @@
   color: #fafaf9;
   background: none;
   -webkit-text-fill-color: currentColor;
+  animation: none;
 }
 
 [data-surface="brand"] .tag-badge {
@@ -135,9 +136,10 @@ img, video { max-width: 100%; height: auto; display: block; }
   border-radius: 4px;
 }
 
-::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: var(--bg-1); }
-::-webkit-scrollbar-thumb { background: rgba(15, 23, 42, 0.2); border-radius: 3px; }
+::-webkit-scrollbar-thumb { background: rgba(194, 65, 12, 0.35); border-radius: 6px; border: 2px solid var(--bg-1); transition: background 0.3s; }
+::-webkit-scrollbar-thumb:hover { background: var(--cyan); }
 ::selection { background: rgba(194, 65, 12, 0.14); color: var(--text-100); }
 
 /* ── Reusable Component Classes ────────────────────────────────────── */
@@ -145,17 +147,120 @@ img, video { max-width: 100%; height: auto; display: block; }
 
   .glass-card {
     background: var(--bg-glass);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--border);
-    box-shadow: var(--shadow-cyan);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03), inset 0 1px 2px rgba(255, 255, 255, 0.8);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  /* Destaque editorial: cor sólida (evita “gradiente de template”) */
+  .glass-card:hover {
+    border-color: rgba(194, 65, 12, 0.25);
+    box-shadow: 0 12px 40px rgba(194, 65, 12, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.9);
+  }
+
+  /* Grid backgrounds & glows to bring pages to life */
+  .bg-grid-pattern {
+    background-size: 50px 50px;
+    background-image: 
+      linear-gradient(to right, rgba(194, 65, 12, 0.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(194, 65, 12, 0.035) 1px, transparent 1px);
+  }
+
+  .glow-point {
+    filter: blur(120px);
+    border-radius: 50%;
+    pointer-events: none;
+    position: absolute;
+    z-index: 0;
+    opacity: 0.8;
+  }
+
+  /* Destaque editorial: shimmer gradient animado premium */
   .gradient-text {
-    color: var(--cyan);
-    background: none;
-    -webkit-text-fill-color: currentColor;
+    background: linear-gradient(
+      90deg,
+      #ea580c 0%,
+      #f59e0b 25%,
+      #ea580c 50%,
+      #ef4444 75%,
+      #ea580c 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 4s ease-in-out infinite;
+  }
+
+  /* Animated gradient orb backgrounds */
+  .gradient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 0;
+    animation: gradient-shift 8s ease infinite;
+    background-size: 200% 200%;
+  }
+
+  .gradient-orb-1 {
+    background: linear-gradient(135deg, rgba(234,88,12,0.12), rgba(239,68,68,0.08));
+  }
+
+  .gradient-orb-2 {
+    background: linear-gradient(135deg, rgba(245,158,11,0.08), rgba(234,88,12,0.06));
+  }
+
+  /* Glow-pulse card hover effect */
+  .glow-card {
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .glow-card:hover {
+    box-shadow: 0 0 30px rgba(234,88,12,0.12), 0 20px 60px rgba(0,0,0,0.3);
+  }
+
+  /* Animated underline for links */
+  .animated-underline {
+    position: relative;
+    text-decoration: none;
+  }
+
+  .animated-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--cyan);
+    transition: width 0.3s ease;
+  }
+
+  .animated-underline:hover::after {
+    width: 100%;
+  }
+
+  /* Animated border gradient */
+  .border-gradient {
+    position: relative;
+    border: 1px solid transparent;
+    background-clip: padding-box;
+  }
+
+  .border-gradient::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(234,88,12,0.3), transparent 50%, rgba(234,88,12,0.15));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
   }
 
   .tag-badge {

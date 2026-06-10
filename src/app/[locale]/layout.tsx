@@ -133,7 +133,7 @@ export default async function LocaleLayout({ children, params }: Props) {
     logo: `${SITE_URL}/logo.png`,
     image: `${SITE_URL}/logo.png`,
     description: 'Consultoria e desenvolvimento de software de alta performance. Transformamos desafios operacionais em soluções digitais robustas e escaláveis.',
-    email: 'hiuryvilanova2012@gmail.com',
+    email: 'hiuryhenrique2012@gmail.com',
     telephone: '+55-61-99172-0301',
     address: {
       '@type': 'PostalAddress',
@@ -145,7 +145,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       '@type': 'Person',
       name: 'Hiury Vilanova',
       url: 'https://hiuryvilanova.com',
-      jobTitle: 'Software Engineer & Systems Analyst',
+      jobTitle: 'Systems Analyst',
       sameAs: [
         'https://www.linkedin.com/in/hiuryvilanova',
         'https://github.com/hiuryvilanova',
@@ -158,7 +158,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       '@type': 'ContactPoint',
       contactType: 'customer support',
       telephone: '+55-61-99172-0301',
-      email: 'hiuryvilanova2012@gmail.com',
+      email: 'hiuryhenrique2012@gmail.com',
       availableLanguage: ['Portuguese', 'English', 'Spanish'],
     },
     sameAs: [

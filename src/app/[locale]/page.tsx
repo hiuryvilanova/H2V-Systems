@@ -10,6 +10,7 @@ import BackToTop from '@/components/ui/BackToTop'
 import WhatsAppFloat from '@/components/ui/WhatsAppFloat'
 
 // Seções abaixo da fold: carregadas sob demanda para reduzir First Load JS.
+const PainPoints   = dynamic(() => import('@/components/sections/PainPoints'))
 const Cases        = dynamic(() => import('@/components/sections/Cases'))
 const About        = dynamic(() => import('@/components/sections/About'))
 const Process      = dynamic(() => import('@/components/sections/Process'))
@@ -28,6 +29,8 @@ export default function Home() {
       <main id="main" tabIndex={-1} className="w-full min-w-0">
         <Hero />
         <Stats />
+        <GlowDivider />
+        <PainPoints />
         <GlowDivider />
         <Services />
         <GlowDivider />

@@ -13,7 +13,7 @@ export default function Testimonials() {
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none"
         style={{ background: 'radial-gradient(ellipse 55% 50% at 85% 40%, rgba(194,65,12,0.05) 0%, transparent 55%)' }} />
 
-      <div className="max-w-[1200px] mx-auto px-5 sm:px-6 relative z-10">
+      <div className="max-w-[1200px] xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-5 sm:px-6 relative z-10">
         <motion.div className="text-center mb-12 sm:mb-16 max-w-[600px] mx-auto"
           initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }} transition={{ duration: 0.7 }}>
@@ -23,12 +23,12 @@ export default function Testimonials() {
           <p className="section-subtitle">{t('subtitle')}</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {items.map((item, i) => (
             <motion.figure key={i}
               initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }} transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="glass-card rounded-2xl sm:rounded-3xl p-6 sm:p-8 relative flex flex-col">
+              className="glass-card rounded-2xl sm:rounded-3xl p-8 sm:p-10 xl:p-12 relative flex flex-col justify-between">
 
               <Quote
                 size={28}

@@ -73,7 +73,7 @@ export default async function InsightsIndex({ params }: { params: Promise<{ loca
           <div aria-hidden="true" className="absolute inset-0 pointer-events-none"
             style={{ background: 'radial-gradient(ellipse 60% 50% at 50% 30%, rgba(194,65,12,0.06) 0%, transparent 60%)' }} />
 
-          <div className="max-w-[1200px] mx-auto px-5 sm:px-6 relative z-10">
+          <div className="max-w-[1200px] xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-5 sm:px-6 relative z-10">
             <span className="tag-badge">
               {t('tag')}
             </span>
@@ -89,7 +89,7 @@ export default async function InsightsIndex({ params }: { params: Promise<{ loca
         </section>
 
         <section className="py-12 sm:py-16">
-          <div className="max-w-[1200px] mx-auto px-5 sm:px-6">
+          <div className="max-w-[1200px] xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-5 sm:px-6">
             {insights.length === 0 ? (
               <p className="text-center text-sm py-16" style={{ color: 'var(--text-70)' }}>{t('empty')}</p>
             ) : (

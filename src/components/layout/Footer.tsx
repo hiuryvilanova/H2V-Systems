@@ -43,7 +43,7 @@ export default function Footer() {
 
   return (
     <footer className="pt-12 sm:pt-16 pb-8 border-t" style={{ background: 'var(--bg-1)', borderColor: 'var(--border)' }}>
-      <div className="max-w-[1200px] mx-auto px-5 sm:px-6">
+      <div className="max-w-[1200px] xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-5 sm:px-6">
         <div className="mb-10 sm:mb-14">
           <Newsletter />
         </div>
