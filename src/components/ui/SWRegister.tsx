@@ -10,7 +10,8 @@ export default function SWRegister() {
 
     const register = () => {
       navigator.serviceWorker
-        .register('/sw.js', { scope: '/' })
+        // ?v=<build> muda a cada deploy → o navegador instala o SW novo e limpa caches antigos.
+        .register(`/sw.js?v=${encodeURIComponent(process.env.NEXT_PUBLIC_BUILD_ID ?? 'dev')}`, { scope: '/' })
         .catch(() => {
           // Silencioso: falha de SW não deve quebrar o app
         })

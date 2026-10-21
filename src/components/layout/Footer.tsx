@@ -52,7 +52,7 @@ export default function Footer() {
           <div className="min-[400px]:col-span-2 sm:col-span-2 lg:col-span-1">
             <a href="#hero" className="flex items-center gap-2.5 no-underline mb-4 group w-fit">
               <Image
-                src="/logo.png"
+                src="/logo-mark.png"
                 alt="H2V Systems logo"
                 width={36}
                 height={36}

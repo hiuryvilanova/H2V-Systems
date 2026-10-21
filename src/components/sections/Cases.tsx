@@ -67,6 +67,8 @@ function CaseLogoMedia({ name, logo, hovered }: { name: string; logo: CaseLogo; 
         <img
           src={a}
           alt=""
+          loading="lazy"
+          decoding="async"
           className={`h-5 w-auto max-w-[45%] object-contain transition-all duration-500 ${
             hovered ? 'scale-[1.06]' : 'scale-100'
           }`}
@@ -76,6 +78,8 @@ function CaseLogoMedia({ name, logo, hovered }: { name: string; logo: CaseLogo; 
         <img
           src={b}
           alt=""
+          loading="lazy"
+          decoding="async"
           className={`h-5 w-auto max-w-[45%] object-contain transition-all duration-500 ${
             hovered ? 'scale-[1.06]' : 'scale-100'
           }`}

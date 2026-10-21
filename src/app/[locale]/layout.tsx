@@ -74,13 +74,12 @@ export async function generateMetadata({
      */
     icons: {
       icon: [
-        { url: '/favicon.ico', sizes: 'any' },
-        { url: '/favicon.ico', sizes: '48x48', type: 'image/x-icon' },
-        { url: '/logo.png', type: 'image/png', sizes: '32x32' },
-        { url: '/logo.png', type: 'image/png', sizes: '192x192' },
+        { url: '/favicon.ico', sizes: '16x16 32x32 48x48', type: 'image/x-icon' },
+        { url: '/icon-192.png', type: 'image/png', sizes: '192x192' },
+        { url: '/icon-512.png', type: 'image/png', sizes: '512x512' },
       ],
       shortcut: '/favicon.ico',
-      apple: [{ url: '/logo.png', sizes: '180x180', type: 'image/png' }],
+      apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
     },
     openGraph: {
       title: t('title'),
@@ -305,7 +304,6 @@ export default async function LocaleLayout({ children, params }: Props) {
       suppressHydrationWarning
     >
       <head>
-        <link rel="preload" as="image" href="/logo.png" fetchPriority="high" />
         <link rel="dns-prefetch" href="https://va.vercel-scripts.com" />
         <link rel="dns-prefetch" href="https://vitals.vercel-insights.com" />
         <script

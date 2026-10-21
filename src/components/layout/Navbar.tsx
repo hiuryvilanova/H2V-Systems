@@ -144,7 +144,7 @@ export default function Navbar() {
             aria-label="H2V Systems — Início"
           >
             <Image
-              src="/logo.png"
+              src="/logo-mark.png"
               alt="H2V Systems logo"
               width={38}
               height={38}

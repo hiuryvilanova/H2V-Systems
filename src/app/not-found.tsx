@@ -9,8 +9,8 @@ export default function NotFound() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>404 | H2V Systems</title>
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/logo.png" type="image/png" sizes="32x32" />
-        <link rel="apple-touch-icon" href="/logo.png" sizes="180x180" />
+        <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
         <meta name="theme-color" content="#E84B1A" />
       </head>
       <body style={{ background: '#0d0a08', color: '#FAF0E8', margin: 0, minHeight: '100vh', fontFamily: 'system-ui, sans-serif' }}>
@@ -21,7 +21,7 @@ export default function NotFound() {
             `, pointerEvents: 'none' }} />
 
           <div style={{ position: 'relative', zIndex: 1, textAlign: 'center', maxWidth: '480px' }}>
-            <Image src="/logo.png" alt="H2V Systems" width={64} height={64} style={{ margin: '0 auto 24px', borderRadius: '12px' }} />
+            <Image src="/logo-mark.png" alt="H2V Systems" width={64} height={64} style={{ margin: '0 auto 24px', borderRadius: '12px' }} />
 
             <h1 style={{ fontSize: 'clamp(4.5rem, 14vw, 8rem)', fontWeight: 900, margin: 0, lineHeight: 1,
                 background: 'linear-gradient(90deg, #FF6B35, #E84B1A, #BF3808)',
@@ -30,7 +30,7 @@ export default function NotFound() {
             </h1>
 
             <p style={{ fontFamily: 'monospace', fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: '#E84B1A', margin: '8px 0 16px' }}>
-              // Página não encontrada
+              {'// Página não encontrada'}
             </p>
 
             <h2 style={{ fontSize: '1.4rem', fontWeight: 700, margin: '0 0 12px' }}>

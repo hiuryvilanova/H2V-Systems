@@ -1,9 +1,8 @@
 'use client'
 
-import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
-import { AlertTriangle, ShieldCheck, HelpCircle, Activity, Zap, Users } from 'lucide-react'
+import { ShieldCheck, HelpCircle, Activity, Zap, Users } from 'lucide-react'
 
 const PAIN_ICONS = [Users, Activity, HelpCircle, Zap]
 

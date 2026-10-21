@@ -7,15 +7,17 @@
  *   • Demais GET: stale-while-revalidate
  */
 
-const VERSION = 'v1.0.0'
+// Versão vem do query string do registro (/sw.js?v=<build>), atualizada a cada deploy.
+const VERSION = new URL(self.location.href).searchParams.get('v') || 'v1'
 const STATIC_CACHE = `h2v-static-${VERSION}`
 const RUNTIME_CACHE = `h2v-runtime-${VERSION}`
 const PAGES_CACHE = `h2v-pages-${VERSION}`
 
 const PRECACHE_URLS = [
   '/offline.html',
-  '/logo.png',
+  '/logo-mark.png',
   '/favicon.ico',
+  '/icon-192.png',
   '/manifest.webmanifest',
 ]
 

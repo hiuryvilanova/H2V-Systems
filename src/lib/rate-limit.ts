@@ -17,8 +17,17 @@ type RateLimitResult = {
 
 const memoryStore = new Map<string, { count: number; firstAt: number }>()
 
+const MEMORY_MAX_KEYS = 5_000
+
 function memoryCheck(key: string, windowMs: number, max: number): RateLimitResult {
   const now = Date.now()
+
+  // Evita crescimento ilimitado do Map em instâncias de longa duração.
+  if (memoryStore.size > MEMORY_MAX_KEYS) {
+    for (const [k, v] of memoryStore) {
+      if (now - v.firstAt >= windowMs) memoryStore.delete(k)
+    }
+  }
   const rec = memoryStore.get(key)
 
   if (!rec || now - rec.firstAt >= windowMs) {
@@ -52,7 +61,13 @@ async function upstashCheck(
     const incrJson = (await incrRes.json()) as { result: number }
     const count = incrJson.result
 
-    if (count === 1) {
+    // Garante TTL mesmo se um EXPIRE anterior tiver falhado (evita chave "eterna" bloqueando o IP).
+    // NX: só define se a chave ainda não tiver TTL.
+    const ttlRes = await fetch(`${url}/expire/${encodeURIComponent(key)}/${windowSec}/NX`, {
+      headers: { Authorization: `Bearer ${token}` },
+      cache: 'no-store',
+    })
+    if (!ttlRes.ok && count === 1) {
       await fetch(`${url}/expire/${encodeURIComponent(key)}/${windowSec}`, {
         headers: { Authorization: `Bearer ${token}` },
         cache: 'no-store',
@@ -84,8 +99,23 @@ export async function checkRateLimit(
   return memoryCheck(key, options.windowMs, options.max)
 }
 
+/**
+ * IP do cliente para fins de rate limit.
+ *
+ * O primeiro valor de `x-forwarded-for` é controlado pelo cliente (pode ser forjado
+ * para burlar o limite). Preferimos os headers definidos pela própria plataforma:
+ *   • `x-real-ip` / `x-vercel-forwarded-for` (Vercel sobrescreve, não confia no cliente)
+ *   • senão, o ÚLTIMO IP do `x-forwarded-for` (adicionado pelo proxy mais próximo).
+ */
 export function getClientIp(req: Request): string {
-  const xff = req.headers.get('x-forwarded-for')
-  if (xff) return xff.split(',')[0].trim()
-  return req.headers.get('x-real-ip') || 'unknown'
+  const h = req.headers
+  const direct = h.get('x-vercel-forwarded-for') || h.get('x-real-ip')
+  if (direct) return direct.split(',')[0].trim()
+
+  const xff = h.get('x-forwarded-for')
+  if (xff) {
+    const parts = xff.split(',').map((p) => p.trim()).filter(Boolean)
+    if (parts.length) return parts[parts.length - 1]
+  }
+  return 'unknown'
 }

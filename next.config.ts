@@ -7,10 +7,17 @@ const withBundleAnalyzer = bundleAnalyzer({ enabled: process.env.ANALYZE === 'tr
 
 const isProd = process.env.NODE_ENV === 'production'
 
+/** Identificador do build — usado para versionar o service worker a cada deploy. */
+const BUILD_ID =
+  process.env.VERCEL_GIT_COMMIT_SHA?.slice(0, 7) ||
+  process.env.VERCEL_DEPLOYMENT_ID ||
+  Date.now().toString(36)
+
 const ContentSecurityPolicy = [
   "default-src 'self'",
-  // Next inline scripts + Vercel + analytics. unsafe-inline necessário para Next.js
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://va.vercel-scripts.com https://vitals.vercel-insights.com https://app.cal.com",
+  // Next inline scripts + Vercel + analytics. unsafe-inline necessário para Next.js.
+  // 'unsafe-eval' só no dev (React Refresh/Turbopack) — em produção não é necessário.
+  `script-src 'self' 'unsafe-inline'${isProd ? '' : " 'unsafe-eval'"} https://va.vercel-scripts.com https://vitals.vercel-insights.com https://app.cal.com`,
   // Inline styles permitidos (CSS-in-JS / next/font / framer-motion)
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' data: https://fonts.gstatic.com",
@@ -44,6 +51,10 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   compress: true,
 
+  env: {
+    NEXT_PUBLIC_BUILD_ID: BUILD_ID,
+  },
+
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [],
@@ -54,6 +65,14 @@ const nextConfig: NextConfig = {
       {
         source: '/:path*',
         headers: securityHeaders,
+      },
+      {
+        // O navegador precisa sempre revalidar o SW para pegar novos deploys.
+        source: '/sw.js',
+        headers: [
+          { key: 'Cache-Control', value: 'no-cache, no-store, must-revalidate' },
+          { key: 'Service-Worker-Allowed', value: '/' },
+        ],
       },
     ]
   },

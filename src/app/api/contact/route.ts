@@ -1,80 +1,90 @@
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import { checkRateLimit, getClientIp } from '@/lib/rate-limit'
+import {
+  LIMITS,
+  cleanLine,
+  cleanText,
+  escapeHtml,
+  isValidEmail,
+  rateLimitHeaders,
+  readJson,
+} from '@/lib/validation'
 
 export const runtime = 'nodejs'
 
 type ContactPayload = {
-  nome:     string
-  email:    string
-  empresa?: string
-  telefone?: string
-  servico?:  string
-  mensagem: string
-  hp?:       string
+  nome?:     unknown
+  email?:    unknown
+  empresa?:  unknown
+  telefone?: unknown
+  servico?:  unknown
+  mensagem?: unknown
+  hp?:       unknown
 }
 
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-const TO_EMAIL    = process.env.CONTACT_TO_EMAIL  || 'hiuryhenrique2012@gmail.com'
-const FROM_EMAIL  = process.env.CONTACT_FROM_EMAIL || 'H2V Systems <onboarding@resend.dev>'
+const TO_EMAIL   = process.env.CONTACT_TO_EMAIL   || 'hiuryhenrique2012@gmail.com'
+const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL || 'H2V Systems <onboarding@resend.dev>'
 
 const WINDOW_MS = 60_000
 const MAX_PER_WINDOW = 5
-
-function escapeHtml(s: string) {
-  return s
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;')
-}
 
 export async function POST(req: Request) {
   try {
     const ip = getClientIp(req)
     const rl = await checkRateLimit(ip, { windowMs: WINDOW_MS, max: MAX_PER_WINDOW, bucket: 'contact' })
     if (!rl.ok) {
-      return NextResponse.json(
-        { ok: false, error: 'Too many requests' },
-        {
-          status: 429,
-          headers: {
-            'Retry-After':            String(Math.ceil((rl.reset - Date.now()) / 1000)),
-            'X-RateLimit-Remaining':  String(rl.remaining),
-            'X-RateLimit-Reset':      String(rl.reset),
-          },
-        },
-      )
+      return NextResponse.json({ ok: false, error: 'Too many requests' }, { status: 429, headers: rateLimitHeaders(rl) })
     }
 
-    const data = (await req.json()) as ContactPayload
+    const raw = await readJson<ContactPayload>(req)
+    if (!raw) {
+      return NextResponse.json({ ok: false, error: 'Invalid request body' }, { status: 400 })
+    }
 
-    if (data.hp && data.hp.length > 0) {
+    // Honeypot: bots preenchem o campo oculto — respondemos 200 sem enviar nada.
+    if (typeof raw.hp === 'string' && raw.hp.length > 0) {
       return NextResponse.json({ ok: true })
     }
 
-    if (!data.nome?.trim() || !data.email?.trim() || !data.mensagem?.trim()) {
+    const data = {
+      nome:     cleanLine(raw.nome, LIMITS.nome),
+      email:    cleanLine(raw.email, LIMITS.email).toLowerCase(),
+      empresa:  cleanLine(raw.empresa, LIMITS.empresa),
+      telefone: cleanLine(raw.telefone, LIMITS.telefone),
+      servico:  cleanLine(raw.servico, LIMITS.servico),
+      mensagem: cleanText(raw.mensagem),
+    }
+
+    if (!data.nome || !data.email || !data.mensagem) {
       return NextResponse.json({ ok: false, error: 'Missing required fields' }, { status: 400 })
     }
-    if (!EMAIL_REGEX.test(data.email)) {
+    if (!isValidEmail(data.email)) {
       return NextResponse.json({ ok: false, error: 'Invalid email' }, { status: 400 })
     }
-    if (data.mensagem.length > 5000) {
+    if (data.mensagem.length > LIMITS.mensagem) {
       return NextResponse.json({ ok: false, error: 'Message too long' }, { status: 400 })
     }
 
     const apiKey = process.env.RESEND_API_KEY
     if (!apiKey) {
+      if (process.env.NODE_ENV === 'production') {
+        console.error('[contact] RESEND_API_KEY ausente em produção — mensagem NÃO foi entregue.')
+        return NextResponse.json({ ok: false, error: 'Email service not configured' }, { status: 503 })
+      }
       console.log('[contact] RESEND_API_KEY not set; logging submission instead:', {
-        nome: data.nome, email: data.email, empresa: data.empresa,
-        telefone: data.telefone, servico: data.servico,
+        ...data,
         mensagem: data.mensagem.slice(0, 200) + (data.mensagem.length > 200 ? '...' : ''),
       })
       return NextResponse.json({ ok: true, mode: 'dev' })
     }
 
     const resend = new Resend(apiKey)
+
+    const row = (label: string, value: string) =>
+      value
+        ? `<tr><td style="padding: 8px 0; color: #888; width: 130px;">${label}</td><td style="padding: 8px 0;">${escapeHtml(value)}</td></tr>`
+        : ''
 
     const html = `
       <div style="font-family: system-ui, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -85,10 +95,10 @@ export async function POST(req: Request) {
         <div style="background: #fafafa; padding: 24px; border: 1px solid #eee; border-top: 0; border-radius: 0 0 12px 12px;">
           <table style="width: 100%; border-collapse: collapse;">
             <tr><td style="padding: 8px 0; color: #888; width: 130px;">Nome</td><td style="padding: 8px 0; font-weight: 600;">${escapeHtml(data.nome)}</td></tr>
-            <tr><td style="padding: 8px 0; color: #888;">E-mail</td><td style="padding: 8px 0;"><a href="mailto:${escapeHtml(data.email)}">${escapeHtml(data.email)}</a></td></tr>
-            ${data.empresa ? `<tr><td style="padding: 8px 0; color: #888;">Empresa</td><td style="padding: 8px 0;">${escapeHtml(data.empresa)}</td></tr>` : ''}
-            ${data.telefone ? `<tr><td style="padding: 8px 0; color: #888;">Telefone</td><td style="padding: 8px 0;">${escapeHtml(data.telefone)}</td></tr>` : ''}
-            ${data.servico ? `<tr><td style="padding: 8px 0; color: #888;">Serviço</td><td style="padding: 8px 0;">${escapeHtml(data.servico)}</td></tr>` : ''}
+            <tr><td style="padding: 8px 0; color: #888;">E-mail</td><td style="padding: 8px 0;"><a href="mailto:${encodeURIComponent(data.email).replace('%40', '@')}">${escapeHtml(data.email)}</a></td></tr>
+            ${row('Empresa', data.empresa)}
+            ${row('Telefone', data.telefone)}
+            ${row('Serviço', data.servico)}
           </table>
           <div style="margin-top: 16px; padding: 16px; background: white; border-radius: 8px; border-left: 4px solid #E84B1A;">
             <div style="color: #888; font-size: 13px; margin-bottom: 8px;">Mensagem</div>
@@ -98,12 +108,25 @@ export async function POST(req: Request) {
       </div>
     `
 
+    const text = [
+      `Nome: ${data.nome}`,
+      `E-mail: ${data.email}`,
+      ...(data.empresa  ? [`Empresa: ${data.empresa}`]   : []),
+      ...(data.telefone ? [`Telefone: ${data.telefone}`] : []),
+      ...(data.servico  ? [`Serviço: ${data.servico}`]   : []),
+      '',
+      data.mensagem,
+    ].join('\n')
+
+    const subject = `[H2V Systems] ${data.nome}${data.empresa ? ` (${data.empresa})` : ''}`.slice(0, 200)
+
     const { error } = await resend.emails.send({
       from: FROM_EMAIL,
       to: TO_EMAIL,
       replyTo: data.email,
-      subject: `[H2V Systems] ${data.nome}${data.empresa ? ` (${data.empresa})` : ''}`,
+      subject,
       html,
+      text,
     })
 
     if (error) {

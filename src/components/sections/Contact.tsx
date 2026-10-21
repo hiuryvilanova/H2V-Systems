@@ -294,22 +294,22 @@ export default function Contact() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                       <div className="flex flex-col gap-2">
                         <label htmlFor="c-nome" className="text-xs font-semibold uppercase tracking-wider text-neutral-400">{t('formName')}</label>
-                        <input id="c-nome" className={`input-base ${fieldState('nome')}`} type="text" name="nome" placeholder={t('formNamePlaceholder')} required value={form.nome} onChange={handleChange} onBlur={handleBlur} aria-invalid={fieldState('nome') === 'is-invalid'} />
+                        <input id="c-nome" className={`input-base ${fieldState('nome')}`} type="text" name="nome" maxLength={120} autoComplete="name" placeholder={t('formNamePlaceholder')} required value={form.nome} onChange={handleChange} onBlur={handleBlur} aria-invalid={fieldState('nome') === 'is-invalid'} />
                       </div>
                       <div className="flex flex-col gap-2">
                         <label htmlFor="c-email" className="text-xs font-semibold uppercase tracking-wider text-neutral-400">{t('formEmail')}</label>
-                        <input id="c-email" className={`input-base ${fieldState('email')}`} type="email" name="email" placeholder={t('formEmailPlaceholder')} required value={form.email} onChange={handleChange} onBlur={handleBlur} aria-invalid={fieldState('email') === 'is-invalid'} />
+                        <input id="c-email" className={`input-base ${fieldState('email')}`} type="email" name="email" maxLength={254} autoComplete="email" placeholder={t('formEmailPlaceholder')} required value={form.email} onChange={handleChange} onBlur={handleBlur} aria-invalid={fieldState('email') === 'is-invalid'} />
                       </div>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                       <div className="flex flex-col gap-2">
                         <label htmlFor="c-empresa" className="text-xs font-semibold uppercase tracking-wider text-neutral-400">{t('formCompany')}</label>
-                        <input id="c-empresa" className={`input-base ${fieldState('empresa')}`} type="text" name="empresa" placeholder={t('formCompanyPlaceholder')} value={form.empresa} onChange={handleChange} onBlur={handleBlur} />
+                        <input id="c-empresa" className={`input-base ${fieldState('empresa')}`} type="text" name="empresa" maxLength={160} autoComplete="organization" placeholder={t('formCompanyPlaceholder')} value={form.empresa} onChange={handleChange} onBlur={handleBlur} />
                       </div>
                       <div className="flex flex-col gap-2">
                         <label htmlFor="c-telefone" className="text-xs font-semibold uppercase tracking-wider text-neutral-400">{t('formPhone')}</label>
-                        <input id="c-telefone" className={`input-base ${fieldState('telefone')}`} type="tel" name="telefone" placeholder={t('formPhonePlaceholder')} value={form.telefone} onChange={handleChange} onBlur={handleBlur} />
+                        <input id="c-telefone" className={`input-base ${fieldState('telefone')}`} type="tel" name="telefone" maxLength={40} autoComplete="tel" placeholder={t('formPhonePlaceholder')} value={form.telefone} onChange={handleChange} onBlur={handleBlur} />
                       </div>
                     </div>
 
@@ -326,7 +326,7 @@ export default function Contact() {
 
                     <div className="flex flex-col gap-2">
                       <label htmlFor="c-mensagem" className="text-xs font-semibold uppercase tracking-wider text-neutral-400">{t('formMessage')}</label>
-                      <textarea id="c-mensagem" className={`input-base min-h-[130px] resize-none ${fieldState('mensagem')}`} name="mensagem" required placeholder={t('formMessagePlaceholder')} value={form.mensagem} onChange={handleChange} onBlur={handleBlur} aria-invalid={fieldState('mensagem') === 'is-invalid'} />
+                      <textarea id="c-mensagem" className={`input-base min-h-[130px] resize-none ${fieldState('mensagem')}`} name="mensagem" required maxLength={5000} placeholder={t('formMessagePlaceholder')} value={form.mensagem} onChange={handleChange} onBlur={handleBlur} aria-invalid={fieldState('mensagem') === 'is-invalid'} />
                     </div>
 
                     <button type="submit" disabled={loading}
@@ -364,7 +364,7 @@ export default function Contact() {
                         <input
                           id="cs-nome"
                           className={`input-base ${fieldState('nome')}`}
-                          type="text" name="nome" required
+                          type="text" name="nome" required maxLength={120}
                           placeholder={t('formNamePlaceholder')}
                           value={form.nome} onChange={handleChange} onBlur={handleBlur}
                           aria-invalid={fieldState('nome') === 'is-invalid'}
@@ -377,7 +377,7 @@ export default function Contact() {
                         <input
                           id="cs-email"
                           className={`input-base ${fieldState('email')}`}
-                          type="email" name="email" required
+                          type="email" name="email" required maxLength={254}
                           placeholder={t('formEmailPlaceholder')}
                           value={form.email} onChange={handleChange} onBlur={handleBlur}
                           aria-invalid={fieldState('email') === 'is-invalid'}
