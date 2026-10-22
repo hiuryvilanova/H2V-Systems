@@ -310,9 +310,9 @@ export default async function LocaleLayout({ children, params }: Props) {
           <ToastProvider>
             {children}
           </ToastProvider>
+          <CookieBanner />
         </NextIntlClientProvider>
         <SWRegister />
-        <CookieBanner />
         <AnalyticsGate />
       </body>
     </html>
