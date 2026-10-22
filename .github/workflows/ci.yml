@@ -20,7 +20,8 @@ jobs:
           node-version: 22
           cache: npm
 
-      - run: npm ci
+      - run: npm ci --no-audit --no-fund --loglevel=http
+        timeout-minutes: 10
       - run: npm run typecheck
       - run: npm run lint
       - run: npm run build
