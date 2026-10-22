@@ -21,7 +21,7 @@ export default function NotFound() {
             `, pointerEvents: 'none' }} />
 
           <div style={{ position: 'relative', zIndex: 1, textAlign: 'center', maxWidth: '480px' }}>
-            <Image src="/logo-mark.png" alt="H2V Systems" width={64} height={64} style={{ margin: '0 auto 24px', borderRadius: '12px' }} />
+            <Image src="/logo-mark.png" alt="Logotipo da H2V Systems" width={64} height={64} style={{ margin: '0 auto 24px', borderRadius: '12px' }} />
 
             <h1 style={{ fontSize: 'clamp(4.5rem, 14vw, 8rem)', fontWeight: 900, margin: 0, lineHeight: 1,
                 background: 'linear-gradient(90deg, #FF6B35, #E84B1A, #BF3808)',

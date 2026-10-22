@@ -21,12 +21,15 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: false, error: 'Too many requests' }, { status: 429, headers: rateLimitHeaders(rl) })
     }
 
-    const body = await readJson<{ email?: unknown; hp?: unknown }>(req, 2_000)
+    const body = await readJson<{ email?: unknown; hp?: unknown; lgpdConsent?: unknown }>(req, 2_000)
     if (!body) {
       return NextResponse.json({ ok: false, error: 'Invalid request body' }, { status: 400 })
     }
     if (typeof body.hp === 'string' && body.hp.length > 0) {
       return NextResponse.json({ ok: true })
+    }
+    if (body.lgpdConsent !== true) {
+      return NextResponse.json({ ok: false, error: 'Consent required' }, { status: 400 })
     }
 
     const email = cleanLine(body.email, LIMITS.email).toLowerCase()

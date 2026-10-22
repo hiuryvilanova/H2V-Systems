@@ -13,10 +13,10 @@
     "cta": "Hablar con un Especialista"
   },
   "Hero": {
-    "badgeTop": "Disponibilidad Técnica Inmediata",
+    "badgeTop": "Consultoría técnica con cita previa",
     "title": "Ingeniería de precisión para",
     "titleAccent": "sistemas de alto impacto.",
-    "description": "Ingeniería de software robusta, transparente y con previsibilidad absoluta.",
+    "description": "Ingeniería de software robusta, transparente y con fuerte previsibilidad en las entregas.",
     "ctaPrimary": "Agendar Diagnóstico",
     "ctaSecondary": "Ver Especialidades",
     "badgePerformance": "Rendimiento Extremo",
@@ -25,10 +25,12 @@
     "badgeSecurity": "Seguridad Enterprise"
   },
   "Stats": {
-    "projectsLabel": "Sistemas Críticos Entregados",
-    "satisfactionLabel": "Uptime & SLA de Entrega",
-    "reductionLabel": "Optimización de Costos Cloud",
-    "supportLabel": "Soporte & DevOps 24/7"
+    "srTitle": "Metas operativas y trayectoria de ingeniería",
+    "projectsLabel": "Sistemas críticos entregados (trayectoria del fundador)",
+    "satisfactionLabel": "SLA de uptime proyectado para nuevas plataformas",
+    "reductionLabel": "Ahorro típico en FinOps cloud en proyectos seleccionados",
+    "supportLabel": "Ventana de atención bajo contrato",
+    "disclaimer": "Los números arriba reflejan metas operativas y la trayectoria profesional acumulada del fundador en proyectos corporativos y gubernamentales. Los resultados reales varían según alcance, arquitectura y madurez de la operación del cliente."
   },
   "PainPoints": {
     "tag": "Cuellos de Botella de TI",
@@ -44,7 +46,7 @@
       },
       {
         "pain": "Lentitudes & Cortes de Producción",
-        "solution": "Auditoría minuciosa de bases de datos y mensajería distribuida (Kafka), eliminando caídas del sistema."
+        "solution": "Auditoría de bases de datos y mensajería distribuida (Kafka), con el objetivo de reducir inestabilidades en producción."
       },
       {
         "pain": "Falta de Responsabilidad en el Entorno",
@@ -75,7 +77,7 @@
       },
       {
         "title": "Bases de Datos & Big Data",
-        "desc": "Modelado avanzado, optimización de consultas y pipelines de datos escalables. Garantizamos integridad de datos bajo alta carga y cumplimiento total de normativas."
+        "desc": "Modelado avanzado, optimización de consultas y pipelines de datos escalables. Diseñamos para preservar la integridad de los datos bajo alta carga y seguir las normativas aplicables a cada proyecto."
       },
       {
         "title": "Integraciones & Automatización",
@@ -91,7 +93,7 @@
     "title": "Ingeniería de precisión,",
     "titleHighlight": "cero fricción operativa",
     "p1": "H2V Systems, fundada por el analista de sistemas <strong>Hiury Vilanova</strong>, está enfocada en resolver cuellos de botella de alta escala, modernización de legados y desarrollo técnico de alta complejidad.",
-    "p2": "La marca tiene como pilar la <cyan>transparencia absoluta</cyan>: comunicación directa entre ingenieros y clientes, decisiones técnicas justificadas científicamente y entregas guiadas por datos.",
+    "p2": "La marca se sustenta en la <cyan>transparencia de extremo a extremo</cyan>: comunicación directa entre ingenieros y clientes, decisiones técnicas justificadas por datos y entregas rastreables en cada iteración.",
     "missionTitle": "Misión",
     "missionDesc": "Consolidar la infraestructura tecnológica de nuestros clientes a través de código robusto, documentación precisa y despliegues previsibles.",
     "visionTitle": "Visión",
@@ -127,7 +129,7 @@
       {
         "title": "DevOps & Evolución",
         "desc": "Monitoreo proactivo 24/7, telemetría completa, optimización de costos en la nube y soporte técnico especializado.",
-        "highlight": "Uptime garantizado. Costos bajo control."
+        "highlight": "Objetivo alto de uptime. Costos bajo control."
       }
     ]
   },
@@ -158,11 +160,11 @@
       },
       {
         "q": "¿Cómo puedo realizar el seguimiento de la evolución del proyecto?",
-        "a": "Garantizamos visibilidad total a través de reuniones de alineación, paneles de progreso integrados en Jira/GitLab y acceso directo a repositorios de homologación."
+        "a": "Mantenemos un alto nivel de visibilidad del proyecto mediante reuniones de alineación, paneles de progreso integrados en Jira/GitLab y acceso directo a los repositorios de homologación."
       },
       {
         "q": "¿Ofrecen soporte post-implantación?",
-        "a": "Sí, contamos con contratos estructurados de soporte y monitoreo (SLA) para garantizar la estabilidad y evolución del sistema a largo plazo."
+        "a": "Sí. Cuando se acuerda en la propuesta, ofrecemos contratos de soporte y monitoreo con metas de atención (SLA) definidas por escrito — no como promesa genérica de este sitio."
       }
     ]
   },
@@ -190,7 +192,11 @@
     "formMessage": "Describe tu escenario y desafíos *",
     "formMessagePlaceholder": "Describe brevemente el contexto del sistema, tecnologías involucradas y el problema principal...",
     "formSubmit": "Enviar por WhatsApp + E-mail",
-    "formSubmitHint": "Al enviar, abrimos el WhatsApp del especialista con tu mensaje pre-rellenado y también enviamos una copia por e-mail.",
+    "formSubmitHint": "Al enviar, abrimos el WhatsApp del especialista con tu mensaje pre-rellenado y también enviamos una copia por e-mail. Empresa, teléfono y servicio son opcionales.",
+    "formConsent": "Autorizo el tratamiento de los datos de este formulario solo para responder este contacto, según la",
+    "formConsentLink": "Política de privacidad",
+    "formErrorConsent": "Confirma el consentimiento para que podamos enviar tu mensaje.",
+    "schedulePrivacy": "La reserva la procesa Cal.com. Nombre y e-mail sirven solo para prellenar el horario. Detalles en la",
     "formSubmitting": "Procesando...",
     "formErrorRequired": "Por favor, completa los campos obligatorios (*).",
     "formErrorEmail": "Introduce una dirección de e-mail corporativo válida.",
@@ -228,7 +234,12 @@
     "linkIntegrations": "Integraciones",
     "linkConsulting": "Consultoría",
     "linkAbout": "Sobre Nosotros",
-    "linkMethodology": "Metodología"
+    "linkMethodology": "Metodología",
+    "legalNav": "Documentos legales",
+    "linkPrivacy": "Privacidad",
+    "linkTerms": "Términos",
+    "linkRefund": "Reembolso",
+    "linkCookies": "Configurar cookies"
   },
   "Whatsapp": {
     "tooltip": "¡Habla con nuestro equipo técnico!",
@@ -240,10 +251,11 @@
   "Cookies": {
     "aria": "Aviso de Consentimiento de Cookies",
     "title": "Consentimiento de Cookies",
-    "description": "Utilizamos cookies necesarias para el funcionamiento técnico y cookies analíticas para optimizar tu experiencia de navegación.",
-    "accept": "Aceptar Todas",
-    "reject": "Rechazar",
-    "close": "Cerrar"
+    "description": "Usamos cookies esenciales para que el sitio funcione. Las cookies analíticas (Vercel Analytics y Speed Insights) solo se cargan si aceptas — no usamos publicidad.",
+    "accept": "Aceptar analítica",
+    "reject": "Solo esenciales",
+    "close": "Cerrar",
+    "privacyLink": "Leer la política de privacidad"
   },
   "Newsletter": {
     "title": "Informativo Técnico H2V",
@@ -253,13 +265,49 @@
     "submitting": "Procesando...",
     "success": "¡Suscripción realizada con éxito! Bienvenido.",
     "errorEmail": "Introduce una dirección de e-mail válida.",
-    "errorServer": "No fue posible completar la suscripción. Intenta de nuevo más tarde."
+    "errorServer": "No fue posible completar la suscripción. Intenta de nuevo más tarde.",
+    "errorConsent": "Confirma el consentimiento para recibir el informativo.",
+    "consent": "Acepto recibir el informativo técnico en el e-mail indicado, según la",
+    "consentLink": "Política de privacidad"
   },
   "Cases": {
-    "title": "Historial de ingeniería",
-    "titleHighlight": "comprobada",
-    "subtitle": "Experiencia sólida en el desarrollo y optimización de plataformas críticas en el mercado corporativo y gubernamental.",
-    "viewAll": "Ver Trayectoria Completa"
+    "title": "Trayectoria del fundador",
+    "headlineLead": "Dónde Hiury Vilanova",
+    "headlineAccent": "trabajó como desarrollador",
+    "subtitle": "Organizaciones en las que el fundador trabajó como desarrollador — en equipos internos o asignado por una consultora. De esa trayectoria nació H2V Systems.",
+    "disclaimer": "Los nombres describen la trayectoria profesional de Hiury Vilanova como desarrollador y analista de sistemas (contrato directo o asignación vía consultora). No son clientes de H2V Systems, no implican alianza comercial vigente ni un respaldo. No se muestran logotipos de terceros. Las marcas pertenecen a sus titulares y se citan solo para identificar dónde actuó el fundador.",
+    "viewAll": "Ver trayectoria completa",
+    "viaRedspark": "vía Redspark",
+    "viaCast": "vía Cast Group",
+    "viaGdf": "vínculo con el GDF",
+    "roleAnalyst": "Analista programador",
+    "roleAnalystSr": "Analista programador sénior",
+    "roleDev": "Programador sénior",
+    "roleDevJava": "Desarrollador web / Java",
+    "orgMarket": "B3",
+    "orgBanking": "Banco do Brasil",
+    "orgEdu": "RNP / PNLD",
+    "orgBenefits": "Ben Visa Vale (Santander)",
+    "orgFintech": "Pluxee",
+    "orgGovGeo": "AGEFIS · Gobierno del DF",
+    "sectorMarket":   "Mercado financiero",
+    "tagMarket":      "Clearing · Mensajería crítica",
+    "descMarket":     "Arquitectura de microservicios en Java/Spring Cloud con front-end Angular, para plataformas de mensajería crítica y procesamiento transaccional en ventanas ajustadas.",
+    "sectorBanking":  "Bancario / Pagos",
+    "tagBanking":     "Core bancario · PIX/SPB",
+    "descBanking":    "Sistemas corporativos distribuidos de alto rendimiento para conciliación, flujos de pagos instantáneos e integración con el SPB.",
+    "sectorEdu":      "Educación / Gobierno",
+    "tagEdu":         "Logística · Distribución",
+    "descEdu":        "Pipelines escalables de distribución logística en Kotlin, Spring WebFlux y procesamiento asíncrono en AWS para programas educativos a gran escala.",
+    "sectorBenefits": "Fintech de beneficios",
+    "tagBenefits":    "Tarjetas · Alta disponibilidad",
+    "descBenefits":   "Sistemas de alta disponibilidad en Java/React con mensajería Apache Kafka para el control financiero de tarjetas de beneficio en alto volumen.",
+    "sectorFintech":  "Fintech internacional",
+    "tagFintech":     "Serverless · Procesamiento",
+    "descFintech":    "Modelado de microservicios serverless en AWS con Node.js y Java para el procesamiento de transacciones bajo demanda en varios países.",
+    "sectorGovGeo":   "Gobierno / Geoprocesamiento",
+    "tagGovGeo":      "Móvil · Operación de campo",
+    "descGovGeo":     "Modernización de sistemas de fiscalización geoespacial en Java/Angular con apps móviles nativas de soporte offline e informes de campo."
   },
   "Testimonials": {
     "tag": "Testimonios",
@@ -323,7 +371,7 @@
     ],
     "faq": [
       { "q": "¿Cómo se determina el cronograma de desarrollo?", "a": "Utilizamos metodologías iterativas basadas en hitos de entrega. MVPs funcionales son implantados en 4 a 8 semanas, mientras que sistemas complejos suelen tener cronogramas de 3 a 6 meses." },
-      { "q": "¿Qué stacks son adoptados preferentemente?", "a": "Garantizamos el uso de stacks maduras, con fuerte soporte comunitario y corporativo, incluyendo Java, Kotlin, TypeScript, Python y Go." },
+      { "q": "¿Qué stacks son adoptados preferentemente?", "a": "Preferimos stacks maduras, con soporte comunitario y corporativo, incluyendo Java, Kotlin, TypeScript, Python y Go. La elección final depende del contexto del proyecto." },
       { "q": "¿Cómo funciona el seguimiento del proyecto?", "a": "El cliente posee acceso a demos quincenales, paneles en tiempo real y canal directo con la ingeniería responsable." }
     ]
   },

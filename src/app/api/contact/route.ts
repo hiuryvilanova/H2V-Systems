@@ -14,13 +14,14 @@ import {
 export const runtime = 'nodejs'
 
 type ContactPayload = {
-  nome?:     unknown
-  email?:    unknown
-  empresa?:  unknown
-  telefone?: unknown
-  servico?:  unknown
-  mensagem?: unknown
-  hp?:       unknown
+  nome?:        unknown
+  email?:       unknown
+  empresa?:     unknown
+  telefone?:    unknown
+  servico?:     unknown
+  mensagem?:    unknown
+  hp?:          unknown
+  lgpdConsent?: unknown
 }
 
 const TO_EMAIL   = process.env.CONTACT_TO_EMAIL   || 'hiuryhenrique2012@gmail.com'
@@ -45,6 +46,9 @@ export async function POST(req: Request) {
     // Honeypot: bots preenchem o campo oculto — respondemos 200 sem enviar nada.
     if (typeof raw.hp === 'string' && raw.hp.length > 0) {
       return NextResponse.json({ ok: true })
+    }
+    if (raw.lgpdConsent !== true) {
+      return NextResponse.json({ ok: false, error: 'Consent required' }, { status: 400 })
     }
 
     const data = {

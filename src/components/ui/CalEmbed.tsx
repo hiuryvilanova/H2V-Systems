@@ -92,7 +92,7 @@ export default function CalEmbed({
           aria-hidden="true"
         >
           <Calendar size={28} className="text-orange-500/70 animate-pulse" />
-          <span className="text-xs font-medium text-neutral-500 uppercase tracking-wider">
+          <span className="text-xs font-medium text-neutral-300 uppercase tracking-wider">
             Carregando agenda...
           </span>
         </div>

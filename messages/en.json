@@ -13,10 +13,10 @@
     "cta": "Talk to an Expert"
   },
   "Hero": {
-    "badgeTop": "Immediate Technical Availability",
+    "badgeTop": "Technical consulting by appointment",
     "title": "Precision engineering for",
     "titleAccent": "high-impact systems.",
-    "description": "Robust, transparent software engineering with absolute predictability.",
+    "description": "Robust, transparent software engineering with strong delivery predictability.",
     "ctaPrimary": "Book a Diagnostic",
     "ctaSecondary": "View Specialties",
     "badgePerformance": "Extreme Performance",
@@ -25,10 +25,12 @@
     "badgeSecurity": "Enterprise Security"
   },
   "Stats": {
-    "projectsLabel": "Critical Systems Delivered",
-    "satisfactionLabel": "Uptime & Delivery SLA",
-    "reductionLabel": "Cloud Cost Optimization",
-    "supportLabel": "Support & DevOps 24/7"
+    "srTitle": "Operational targets and engineering track record",
+    "projectsLabel": "Critical systems delivered (founder track record)",
+    "satisfactionLabel": "Uptime SLA targeted for new platforms",
+    "reductionLabel": "Typical cloud FinOps savings in selected projects",
+    "supportLabel": "Support window under contract",
+    "disclaimer": "The figures above reflect operational targets and the founder's accumulated track record on corporate and government projects. Actual results vary based on scope, architecture and the maturity of the client's operation."
   },
   "PainPoints": {
     "tag": "IT Bottlenecks",
@@ -44,7 +46,7 @@
       },
       {
         "pain": "Slowdowns & Production Outages",
-        "solution": "Targeted database audits and distributed messaging (Kafka), eliminating crashes in production."
+        "solution": "Targeted database audits and distributed messaging (Kafka), aimed at reducing production instability."
       },
       {
         "pain": "Lack of Ownership in the Environment",
@@ -75,11 +77,11 @@
       },
       {
         "title": "Databases & Big Data",
-        "desc": "Advanced modeling, query optimization, and scalable data pipelines. We guarantee data integrity under heavy load and full data protection compliance."
+        "desc": "Advanced modeling, query optimization, and scalable data pipelines. Designed to preserve data integrity under heavy load and to follow the data-protection requirements applicable to each project."
       },
       {
         "title": "Integrations & Automation",
-        "desc": "Secure, native connection between enterprise systems (ERP, CRM, and Gateways). Automation of complex operational pipelines, reducing manual errors to zero."
+        "desc": "Secure, native connection between enterprise systems (ERP, CRM, and Gateways). Automation of complex operational pipelines, substantially reducing manual operations."
       },
       {
         "title": "Consulting & Tech Audit",
@@ -91,7 +93,7 @@
     "title": "Precision engineering,",
     "titleHighlight": "zero operational friction",
     "p1": "H2V Systems, founded by systems analyst <strong>Hiury Vilanova</strong>, is focused on solving high-scale bottlenecks, legacy modernization, and highly complex technical development.",
-    "p2": "The brand is built on a pillar of <cyan>absolute transparency</cyan>: communication direct between engineers and clients, scientifically justified technical decisions, and data-driven delivery.",
+    "p2": "The brand is built on a pillar of <cyan>end-to-end transparency</cyan>: direct communication between engineers and clients, data-driven technical decisions and traceable deliveries at each iteration.",
     "missionTitle": "Mission",
     "missionDesc": "Consolidate our clients' technology infrastructure through robust code, precise documentation, and predictable deployments.",
     "visionTitle": "Vision",
@@ -117,7 +119,7 @@
       {
         "title": "Solution Design",
         "desc": "Data modeling, systems architecture, API definitions, and security plans approved before writing a single line of code.",
-        "highlight": "Validated architecture. Zero surprises."
+        "highlight": "Validated architecture. Minimal surprises."
       },
       {
         "title": "Iterative Development",
@@ -127,7 +129,7 @@
       {
         "title": "DevOps & Evolution",
         "desc": "24/7 proactive monitoring, complete telemetry, cloud cost optimization, and specialized technical support.",
-        "highlight": "Guaranteed uptime. Costs under control."
+        "highlight": "High uptime target. Costs under control."
       }
     ]
   },
@@ -149,20 +151,20 @@
         "a": "We select the ideal stack based on business and infrastructure requirements. We have deep expertise in Java, Kotlin, TypeScript/JavaScript (Next.js/React/Node.js), Python, and Go."
       },
       {
-        "q": "How do you guarantee data security and confidentiality?",
+        "q": "How do you handle data security and confidentiality?",
         "a": "We adopt OWASP best practices, encryption at rest and in transit, and sign non-disclosure agreements (NDAs) before any technical deep dive."
       },
       {
         "q": "Is it possible to modernize legacy systems without impacting the operation?",
-        "a": "Yes. We use proven architectural patterns such as Strangler Fig for gradual migration and automated regression testing, ensuring zero downtime in production."
+        "a": "Yes. We use proven architectural patterns such as Strangler Fig for gradual migration and automated regression testing, aiming to minimize production impact."
       },
       {
         "q": "How can I track the progress of development?",
-        "a": "We guarantee full visibility through alignment meetings, progress dashboards integrated into Jira/GitLab, and direct access to staging repositories."
+        "a": "We maintain a high level of project visibility through alignment meetings, progress dashboards integrated into Jira/GitLab, and direct access to staging repositories."
       },
       {
         "q": "Do you offer post-deployment support?",
-        "a": "Yes, we have structured support and monitoring contracts (SLAs) to ensure long-term stability and system evolution."
+        "a": "Yes. When agreed in the proposal, we offer support and monitoring contracts with written service targets (SLA) — not as a generic promise on this website."
       }
     ]
   },
@@ -190,7 +192,11 @@
     "formMessage": "Describe your scenario and challenges *",
     "formMessagePlaceholder": "Briefly describe the system context, technologies involved, and the main problem...",
     "formSubmit": "Send via WhatsApp + Email",
-    "formSubmitHint": "On submit, we open the specialist's WhatsApp with your message pre-filled and also send a copy by email.",
+    "formSubmitHint": "On submit, we open the specialist's WhatsApp with your message pre-filled and also send a copy by email. Company, phone and service are optional.",
+    "formConsent": "I authorize processing the data in this form solely to reply to this inquiry, under the",
+    "formConsentLink": "Privacy Policy",
+    "formErrorConsent": "Please confirm consent so we can send your message.",
+    "schedulePrivacy": "Bookings are processed by Cal.com. Name and email are used only to pre-fill the slot. Details in the",
     "formSubmitting": "Processing...",
     "formErrorRequired": "Please fill in the required fields (*).",
     "formErrorEmail": "Enter a valid corporate email address.",
@@ -228,7 +234,12 @@
     "linkIntegrations": "Integrations",
     "linkConsulting": "Consulting",
     "linkAbout": "About Us",
-    "linkMethodology": "Methodology"
+    "linkMethodology": "Methodology",
+    "legalNav": "Legal documents",
+    "linkPrivacy": "Privacy",
+    "linkTerms": "Terms",
+    "linkRefund": "Refunds",
+    "linkCookies": "Cookie settings"
   },
   "Whatsapp": {
     "tooltip": "Chat with our technical team!",
@@ -240,10 +251,11 @@
   "Cookies": {
     "aria": "Cookie Consent Notice",
     "title": "Cookie Consent",
-    "description": "We use necessary cookies for technical operations and analytical cookies to optimize your browsing experience.",
-    "accept": "Accept All",
-    "reject": "Reject",
-    "close": "Close"
+    "description": "We use essential cookies so the site works. Analytics cookies (Vercel Analytics and Speed Insights) load only if you accept — we do not use advertising.",
+    "accept": "Accept analytics",
+    "reject": "Essentials only",
+    "close": "Close",
+    "privacyLink": "Read the privacy policy"
   },
   "Newsletter": {
     "title": "H2V Technical Update",
@@ -253,13 +265,49 @@
     "submitting": "Processing...",
     "success": "Subscription successful! Welcome.",
     "errorEmail": "Please enter a valid email address.",
-    "errorServer": "Could not complete registration. Please try again later."
+    "errorServer": "Could not complete registration. Please try again later.",
+    "errorConsent": "Please confirm consent to receive the newsletter.",
+    "consent": "I agree to receive the technical newsletter at the email provided, according to the",
+    "consentLink": "Privacy Policy"
   },
   "Cases": {
-    "title": "Proven engineering",
-    "titleHighlight": "track record",
-    "subtitle": "Solid experience in developing and optimizing critical platforms in the corporate and government sectors.",
-    "viewAll": "View Full Track Record"
+    "title": "Founder's track record",
+    "headlineLead": "Where Hiury Vilanova",
+    "headlineAccent": "worked as a developer",
+    "subtitle": "Organizations where the founder worked as a software developer — on internal teams or staffed through a consultancy. That path is what led to H2V Systems.",
+    "disclaimer": "The names below describe Hiury Vilanova’s professional history as a developer and systems analyst (direct hire or allocation via a consultancy). They are not H2V Systems clients, do not imply a current commercial partnership, and are not an endorsement. No third-party logos are shown. Trademarks belong to their owners and are used only to identify where the founder worked.",
+    "viewAll": "View full track record",
+    "viaRedspark": "via Redspark",
+    "viaCast": "via Cast Group",
+    "viaGdf": "with the Federal District government",
+    "roleAnalyst": "Programmer analyst",
+    "roleAnalystSr": "Senior programmer analyst",
+    "roleDev": "Senior programmer",
+    "roleDevJava": "Web / Java developer",
+    "orgMarket": "B3",
+    "orgBanking": "Banco do Brasil",
+    "orgEdu": "RNP / PNLD",
+    "orgBenefits": "Ben Visa Vale (Santander)",
+    "orgFintech": "Pluxee",
+    "orgGovGeo": "AGEFIS · Government of the Federal District",
+    "sectorMarket":   "Capital markets",
+    "tagMarket":      "Clearing · Critical messaging",
+    "descMarket":     "Microservices architecture in Java/Spring Cloud with an Angular front-end for critical-messaging platforms and transactional processing within tight windows.",
+    "sectorBanking":  "Banking / Payments",
+    "tagBanking":     "Core banking · Instant payments",
+    "descBanking":    "Highly distributed corporate systems for reconciliation, instant-payment flows and integration with national clearing networks.",
+    "sectorEdu":      "Education / Government",
+    "tagEdu":         "Logistics · Distribution",
+    "descEdu":        "Scalable distribution pipelines in Kotlin, Spring WebFlux and asynchronous processing on AWS for large-scale educational programs.",
+    "sectorBenefits": "Benefits fintech",
+    "tagBenefits":    "Cards · High availability",
+    "descBenefits":   "High-availability systems in Java/React with Apache Kafka messaging for the financial control of benefit cards at high volume.",
+    "sectorFintech":  "International fintech",
+    "tagFintech":     "Serverless · Processing",
+    "descFintech":    "Serverless microservices on AWS using Node.js and Java for on-demand transaction processing across multiple countries.",
+    "sectorGovGeo":   "Government / Geospatial",
+    "tagGovGeo":      "Mobile · Field operations",
+    "descGovGeo":     "Modernization of geospatial inspection systems in Java/Angular with native mobile apps supporting offline work and field reports."
   },
   "Testimonials": {
     "tag": "Testimonials",
@@ -278,7 +326,7 @@
         "role": "Public Institution"
       },
       {
-        "quote": "On-time deliveries, absolute transparency in pull requests, and highly maintainable code. Highly recommended.",
+        "quote": "On-time deliveries, consistent transparency in pull requests, and highly maintainable code. Highly recommended.",
         "author": "Head of Product",
         "role": "Fintech"
       }
@@ -315,7 +363,7 @@
     "subtitle": "Robust corporate solutions tailored to the operational specificities of your business.",
     "intro": "Off-the-shelf software models often fail to handle custom business rules and data scalability. We create highly flexible applications structured on modern and secure code, ready to grow linearly.",
     "benefits": [
-      "Total mitigation of manual processing errors",
+      "Strong reduction of manual-processing errors",
       "Average reduction of up to 70% in operational rework",
       "Full ownership of the source code, eliminating vendor lock-in",
       "Scalable architecture built to handle 10x more traffic",
@@ -323,7 +371,7 @@
     ],
     "faq": [
       { "q": "How is the development timeline determined?", "a": "We use iterative methodologies based on delivery milestones. Functional MVPs are deployed in 4 to 8 weeks, while complex systems typically have schedules of 3 to 6 months." },
-      { "q": "Which stacks are preferentially adopted?", "a": "We ensure the use of mature stacks with strong community and enterprise support, including Java, Kotlin, TypeScript, Python, and Go." },
+      { "q": "Which stacks are preferentially adopted?", "a": "We prefer mature stacks with community and enterprise support, including Java, Kotlin, TypeScript, Python, and Go. The final choice depends on the project context." },
       { "q": "How is project progress monitored?", "a": "The client has access to biweekly demos, real-time dashboards, and a direct channel with the responsible technical team." }
     ]
   },
@@ -335,11 +383,11 @@
     "subtitle": "Fast, responsive, and intuitive interfaces focused on high-performance digital engagement.",
     "intro": "Modern systems require fluid interfaces. We develop digital experiences optimized at the network and rendering level, with excellent performance across mobile and desktop devices.",
     "benefits": [
-      "Lighthouse performance certified above 90 points",
+      "Designed targeting high Lighthouse scores (goal: 90+ on new projects)",
       "Extreme optimization for search engine indexing (SEO)",
       "Cross-platform development with business logic reuse",
-      "Full offline compatibility via PWA technologies",
-      "Accessibility support in compliance with WCAG guidelines"
+      "Offline support via PWA technologies when the project scope allows",
+      "Accessibility best practices guided by WCAG (conformance level assessed per project)"
     ],
     "faq": [
       { "q": "What is the best approach: PWA, hybrid, or native?", "a": "We analyze hardware requirements. PWAs or frameworks like React Native and Flutter meet the vast majority of business scenarios with lower maintenance costs." },
@@ -364,7 +412,7 @@
     "faq": [
       { "q": "When should we migrate from a monolith to microservices?", "a": "Migration is recommended when different teams need to work independently or when specific parts of the system require very different scale boundaries." },
       { "q": "Which cloud providers are supported?", "a": "We work with the leading market players, with an emphasis on AWS, Google Cloud Platform (GCP), and Microsoft Azure solutions." },
-      { "q": "How does the infrastructure migration process occur?", "a": "We follow controlled transition strategies with parallel validations, mitigating service outage risks (Zero Downtime)." }
+      { "q": "How does the infrastructure migration process occur?", "a": "We follow controlled transition strategies with parallel validations, aiming to minimize downtime windows (near-zero downtime approach)." }
     ]
   },
   "Services_dados": {
@@ -382,7 +430,7 @@
       "Full technical compliance with GDPR data governance requirements"
     ],
     "faq": [
-      { "q": "How to decide between relational and non-relational databases?", "a": "We analyze the nature of the data. SQL models guarantee complex ACID transactions, while NoSQL is recommended for large unstructured volumes." },
+      { "q": "How to decide between relational and non-relational databases?", "a": "We analyze the nature of the data. SQL models provide strong ACID guarantees for complex transactions, while NoSQL is recommended for large unstructured volumes." },
       { "q": "Do you perform complex migrations of active data schemas?", "a": "Yes, we structure logical replication plans to move terabytes of data without lockups or application operation downtime." },
       { "q": "How does the database optimization service work?", "a": "We audit server configurations, indexing, and slow queries, delivering immediate performance improvements in the first weeks." }
     ]
@@ -403,7 +451,7 @@
     ],
     "faq": [
       { "q": "Is it possible to integrate with legacy software without an API?", "a": "Yes, we develop integrators that interact directly with the database or implement secure synchronization bots." },
-      { "q": "How do you guarantee integrity during third-party network failures?", "a": "We implement messaging-based architectures with retry queues configured for guaranteed asynchronous processing." },
+      { "q": "How do you handle integrity during third-party network failures?", "a": "We implement messaging-based architectures with retry queues configured to favor consistent and idempotent asynchronous processing." },
       { "q": "How long does an integration project usually take?", "a": "It depends on the systems integrated. Common scenarios from ERP to Web platforms are usually implemented in a few weeks." }
     ]
   },

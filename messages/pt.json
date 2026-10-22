@@ -13,10 +13,10 @@
     "cta": "Fale com um Especialista"
   },
   "Hero": {
-    "badgeTop": "Disponibilidade Técnica Imediata",
+    "badgeTop": "Consultoria técnica sob agendamento",
     "title": "Engenharia de precisão para",
     "titleAccent": "sistemas de alto impacto.",
-    "description": "Engenharia de software robusta, transparente e com previsibilidade absoluta.",
+    "description": "Engenharia de software robusta, transparente e com forte previsibilidade de entregas.",
     "ctaPrimary": "Agendar Diagnóstico",
     "ctaSecondary": "Ver Especialidades",
     "badgePerformance": "Performance Extrema",
@@ -25,10 +25,12 @@
     "badgeSecurity": "Segurança Enterprise"
   },
   "Stats": {
-    "projectsLabel": "Sistemas Críticos Entregues",
-    "satisfactionLabel": "Uptime & SLA de Entrega",
-    "reductionLabel": "Otimização de Custos Cloud",
-    "supportLabel": "Sustentação & DevOps 24/7"
+    "srTitle": "Metas operacionais e trajetória de engenharia",
+    "projectsLabel": "Sistemas críticos entregues (trajetória do fundador)",
+    "satisfactionLabel": "SLA de uptime projetado para novas plataformas",
+    "reductionLabel": "Economia típica em FinOps cloud em projetos selecionados",
+    "supportLabel": "Janela de atendimento sob contrato",
+    "disclaimer": "Números apresentados refletem metas operacionais e a trajetória profissional acumulada do fundador em projetos corporativos e governamentais. Resultados reais variam conforme escopo, arquitetura e maturidade da operação do cliente."
   },
   "PainPoints": {
     "tag": "Gargalos de TI",
@@ -44,7 +46,7 @@
       },
       {
         "pain": "Lentidões & Indisponibilidade",
-        "solution": "Auditoria cirúrgica de banco de dados e mensageria distribuída (Kafka), eliminando quedas de produção."
+        "solution": "Auditoria de banco de dados e mensageria distribuída (Kafka), com o objetivo de reduzir instabilidades em produção."
       },
       {
         "pain": "Falta de Responsabilidade no Ambiente",
@@ -75,11 +77,11 @@
       },
       {
         "title": "Bancos de Dados & Big Data",
-        "desc": "Modelagem avançada, otimização de consultas e pipelines de dados escaláveis. Garantimos integridade de dados sob alta carga e conformidade total com a LGPD."
+        "desc": "Modelagem avançada, otimização de consultas e pipelines de dados escaláveis. Projetamos para preservar a integridade dos dados sob alta carga e seguir os requisitos da LGPD aplicáveis ao projeto."
       },
       {
         "title": "Integrações & Automações",
-        "desc": "Conexão nativa e segura entre sistemas corporativos (ERP, CRM e Gateways). Automatização de pipelines operacionais complexos, reduzindo erros manuais a zero."
+        "desc": "Conexão nativa e segura entre sistemas corporativos (ERP, CRM e Gateways). Automatização de pipelines operacionais complexos, reduzindo substancialmente a dependência de operações manuais."
       },
       {
         "title": "Consultoria e Tech Audit",
@@ -91,7 +93,7 @@
     "title": "Engenharia de precisão",
     "titleHighlight": "sem atrito operacional",
     "p1": "A H2V Systems, fundada pelo analista de sistemas <strong>Hiury Vilanova</strong>, é focada em resolver gargalos de alta escala, modernização de legados e desenvolvimento técnico de alta complexidade.",
-    "p2": "A marca tem como pilar a <cyan>transparência absoluta</cyan>: comunicação direta entre engenheiros e clientes, decisões técnicas justificadas cientificamente e entregas guiadas por dados.",
+    "p2": "A marca tem como pilar a <cyan>transparência de ponta a ponta</cyan>: comunicação direta entre engenheiros e clientes, decisões técnicas justificadas por dados e entregas rastreáveis em cada iteração.",
     "missionTitle": "Missão",
     "missionDesc": "Consolidar a infraestrutura de tecnologia de nossos clientes através de código robusto, documentação precisa e deploys previsíveis.",
     "visionTitle": "Visão",
@@ -127,7 +129,7 @@
       {
         "title": "DevOps & Evolução",
         "desc": "Monitoramento pró-ativo 24/7, telemetria completa, otimização de custos de nuvem e suporte técnico especializado.",
-        "highlight": "Uptime garantido. Custos sob controle."
+        "highlight": "Alvo de uptime elevado. Custos sob controle."
       }
     ]
   },
@@ -154,15 +156,15 @@
       },
       {
         "q": "É possível modernizar sistemas legados sem impactar a operação?",
-        "a": "Sim. Utilizamos padrões reconhecidos de arquitetura como Strangler Fig para migração gradual e testes automatizados de regressão, garantindo impacto zero em produção."
+        "a": "Sim. Utilizamos padrões reconhecidos de arquitetura como Strangler Fig para migração gradual e testes automatizados de regressão, buscando minimizar o impacto em produção."
       },
       {
         "q": "Como acompanho a evolução do desenvolvimento?",
-        "a": "Garantimos visibilidade total através de reuniões de alinhamento, painéis de progresso integrados ao Jira/GitLab, e acesso direto aos repositórios de homologação."
+        "a": "Mantemos alto nível de visibilidade do projeto através de reuniões de alinhamento, painéis de progresso integrados ao Jira/GitLab e acesso direto aos repositórios de homologação."
       },
       {
         "q": "Vocês oferecem suporte pós-implantação?",
-        "a": "Sim, possuímos contratos estruturados de suporte e monitoramento (SLA) para garantir a estabilidade e evolução do sistema a longo prazo."
+        "a": "Sim. Quando acordado na proposta, oferecemos contratos de suporte e monitoramento com metas de atendimento (SLA) definidas por escrito — não como promessa genérica deste site."
       }
     ]
   },
@@ -190,7 +192,11 @@
     "formMessage": "Descreva o seu cenário e desafios *",
     "formMessagePlaceholder": "Descreva brevemente o contexto do sistema, tecnologias envolvidas e o problema principal...",
     "formSubmit": "Enviar pelo WhatsApp + E-mail",
-    "formSubmitHint": "Ao enviar, abrimos o WhatsApp do especialista com sua mensagem já pré-preenchida e também disparamos uma cópia por e-mail.",
+    "formSubmitHint": "Ao enviar, abrimos o WhatsApp do especialista com sua mensagem já pré-preenchida e também disparamos uma cópia por e-mail. Empresa, telefone e serviço são opcionais.",
+    "formConsent": "Autorizo o tratamento dos dados deste formulário apenas para responder este contato, nos termos da",
+    "formConsentLink": "Política de Privacidade",
+    "formErrorConsent": "Confirme o consentimento para enviarmos sua mensagem.",
+    "schedulePrivacy": "O agendamento é processado pelo Cal.com. Nome e e-mail servem só para pré-preencher o horário. Detalhes na",
     "formSubmitting": "Processando...",
     "formErrorRequired": "Por favor, preencha os campos obrigatórios (*).",
     "formErrorEmail": "Insira um endereço de e-mail corporativo válido.",
@@ -228,7 +234,12 @@
     "linkIntegrations": "Integrações",
     "linkConsulting": "Consultoria",
     "linkAbout": "Sobre Nós",
-    "linkMethodology": "Metodologia"
+    "linkMethodology": "Metodologia",
+    "legalNav": "Documentos legais",
+    "linkPrivacy": "Privacidade",
+    "linkTerms": "Termos",
+    "linkRefund": "Reembolso",
+    "linkCookies": "Configurar cookies"
   },
   "Whatsapp": {
     "tooltip": "Fale com nossa equipe técnica!",
@@ -240,10 +251,11 @@
   "Cookies": {
     "aria": "Aviso de Consentimento de Cookies",
     "title": "Consentimento de Cookies",
-    "description": "Utilizamos cookies necessários para o funcionamento técnico e cookies analíticos para otimizar sua experiência de navegação.",
-    "accept": "Aceitar Todos",
-    "reject": "Recusar",
-    "close": "Fechar"
+    "description": "Usamos cookies essenciais para o site funcionar. Cookies analíticos (Vercel Analytics e Speed Insights) só são carregados se você aceitar — não usamos publicidade.",
+    "accept": "Aceitar analíticos",
+    "reject": "Somente essenciais",
+    "close": "Fechar",
+    "privacyLink": "Leia a política de privacidade"
   },
   "Newsletter": {
     "title": "Informativo Técnico H2V",
@@ -253,13 +265,49 @@
     "submitting": "Processando...",
     "success": "Inscrição efetuada com sucesso! Bem-vindo.",
     "errorEmail": "Insira um endereço de e-mail válido.",
-    "errorServer": "Não foi possível concluir a inscrição. Tente novamente mais tarde."
+    "errorServer": "Não foi possível concluir a inscrição. Tente novamente mais tarde.",
+    "errorConsent": "Confirme o consentimento para receber o informativo.",
+    "consent": "Concordo em receber o informativo técnico no e-mail informado, conforme a",
+    "consentLink": "Política de Privacidade"
   },
   "Cases": {
-    "title": "Histórico de engenharia",
-    "titleHighlight": "comprovada",
-    "subtitle": "Experiência sólida no desenvolvimento e otimização de plataformas críticas no mercado corporativo e governamental.",
-    "viewAll": "Ver Trajetória Completa"
+    "title": "Trajetória do fundador",
+    "headlineLead": "Onde Hiury Vilanova",
+    "headlineAccent": "atuou como desenvolvedor",
+    "subtitle": "Empresas e órgãos em que o fundador trabalhou como pessoa desenvolvedora — em times internos ou alocado por consultoria. Dessa trajetória nasceu a H2V Systems.",
+    "disclaimer": "Os nomes abaixo descrevem a trajetória profissional de Hiury Vilanova como desenvolvedor e analista de sistemas (vínculo direto ou alocação via consultoria). Não são clientes da H2V Systems, não indicam parceria comercial vigente e não constituem endosso. Nenhum logotipo de terceiro é exibido. As marcas pertencem aos respectivos titulares e são citadas apenas para identificar onde o fundador atuou.",
+    "viewAll": "Ver trajetória completa",
+    "viaRedspark": "via Redspark",
+    "viaCast": "via Cast Group",
+    "viaGdf": "vínculo com o GDF",
+    "roleAnalyst": "Analista programador",
+    "roleAnalystSr": "Analista programador sênior",
+    "roleDev": "Programador sênior",
+    "roleDevJava": "Desenvolvedor web / Java",
+    "orgMarket": "B3",
+    "orgBanking": "Banco do Brasil",
+    "orgEdu": "RNP / PNLD",
+    "orgBenefits": "Ben Visa Vale (Santander)",
+    "orgFintech": "Pluxee",
+    "orgGovGeo": "AGEFIS · Governo do DF",
+    "sectorMarket":   "Mercado financeiro",
+    "tagMarket":      "Clearing · Mensageria crítica",
+    "descMarket":     "Arquitetura de microsserviços em Java/Spring Cloud com front-end Angular, para plataformas de mensageria crítica e processamento transacional em janelas apertadas.",
+    "sectorBanking":  "Bancário / Pagamentos",
+    "tagBanking":     "Core bancário · PIX/SPB",
+    "descBanking":    "Sistemas corporativos distribuídos de alta performance para conciliação, fluxos de pagamentos instantâneos e integração com o SPB.",
+    "sectorEdu":      "Educação / Governo",
+    "tagEdu":         "Logística · Distribuição",
+    "descEdu":        "Pipelines escaláveis de distribuição logística em Kotlin, Spring WebFlux e processamento assíncrono na AWS para programas educacionais de larga escala.",
+    "sectorBenefits": "Fintech de benefícios",
+    "tagBenefits":    "Cartões · Alta disponibilidade",
+    "descBenefits":   "Sistemas de alta disponibilidade em Java/React com mensageria Apache Kafka para controle financeiro de cartões de benefício em volume elevado.",
+    "sectorFintech":  "Fintech internacional",
+    "tagFintech":     "Serverless · Processamento",
+    "descFintech":    "Modelagem de microsserviços serverless na AWS com Node.js e Java para processamento de transações sob demanda em múltiplos países.",
+    "sectorGovGeo":   "Governo / Geoprocessamento",
+    "tagGovGeo":      "Mobile · Operação de campo",
+    "descGovGeo":     "Modernização de sistemas de fiscalização geoespacial em Java/Angular com apps móveis nativos de suporte offline e relatórios de campo."
   },
   "Testimonials": {
     "tag": "Depoimentos",
@@ -278,7 +326,7 @@
         "role": "Instituição Pública"
       },
       {
-        "quote": "Entregas dentro do prazo, transparência absoluta em pull requests e código de excelente manutenibilidade. Altamente recomendados.",
+        "quote": "Entregas dentro do prazo, transparência consistente em pull requests e código de excelente manutenibilidade. Altamente recomendados.",
         "author": "Head de Produto",
         "role": "Fintech"
       }
@@ -315,7 +363,7 @@
     "subtitle": "Soluções corporativas robustas sob medida para as especificidades operacionais de seu negócio.",
     "intro": "Modelos de software pré-fabricados frequentemente falham em lidar com regras de negócio customizadas e escalabilidade de dados. Criamos aplicações altamente flexíveis estruturadas sobre código moderno e seguro, prontas para crescer linearmente.",
     "benefits": [
-      "Mitigação total de erros de processamento manual",
+      "Forte redução de erros oriundos de processamento manual",
       "Redução média de até 70% em retrabalho operacional",
       "Propriedade integral do código-fonte, eliminando vendor lock-in",
       "Arquitetura escalável construída para suportar 10x mais tráfego",
@@ -323,7 +371,7 @@
     ],
     "faq": [
       { "q": "Como é determinado o cronograma de desenvolvimento?", "a": "Utilizamos metodologias iterativas baseadas em marcos de entrega. MVPs funcionais são implantados em 4 a 8 semanas, enquanto sistemas complexos costumam ter cronogramas de 3 a 6 meses." },
-      { "q": "Quais stacks são adotadas preferencialmente?", "a": "Garantimos o uso de stacks maduras, com forte suporte comunitário e corporativo, incluindo Java, Kotlin, TypeScript, Python e Go." },
+      { "q": "Quais stacks são adotadas preferencialmente?", "a": "Preferimos stacks maduras, com suporte comunitário e corporativo, incluindo Java, Kotlin, TypeScript, Python e Go. A escolha final depende do contexto do projeto." },
       { "q": "Como o progresso do projeto é monitorado?", "a": "O cliente possui acesso a demos quinzenais, painéis em tempo real e canal direto com a equipe técnica responsável." }
     ]
   },
@@ -335,11 +383,11 @@
     "subtitle": "Interfaces rápidas, responsivas e intuitivas focadas em engajamento digital de alta performance.",
     "intro": "Sistemas modernos exigem interfaces fluidas. Desenvolvemos experiências digitais otimizadas no nível de rede e renderização, com excelente desempenho em dispositivos móveis e desktop.",
     "benefits": [
-      "Performance no Lighthouse atestada acima de 90 pontos",
-      "Otimização extrema para indexação em mecanismos de busca (SEO)",
+      "Projetamos buscando pontuações elevadas no Lighthouse (meta: 90+ em projetos novos)",
+      "Boas práticas aplicadas de SEO técnico para favorecer a indexação",
       "Desenvolvimento multiplataforma com reuso de lógica de negócios",
-      "Compatibilidade offline total via tecnologias de PWA",
-      "Suporte a acessibilidade em conformidade com as diretrizes do WCAG"
+      "Suporte offline por meio de tecnologias de PWA quando o escopo permitir",
+      "Boas práticas de acessibilidade orientadas pelas diretrizes WCAG (nível de conformidade avaliado por projeto)"
     ],
     "faq": [
       { "q": "Qual é a melhor abordagem: PWA, híbrido ou nativo?", "a": "Analisamos as necessidades de hardware. PWAs ou frameworks como React Native e Flutter atendem à vasta maioria dos cenários de negócios com menor custo de manutenção." },
@@ -364,7 +412,7 @@
     "faq": [
       { "q": "Quando migrar de um monolito para microsserviços?", "a": "A migração é recomendada quando equipes distintas precisam trabalhar de forma independente ou quando partes específicas do sistema exigem limites de escala muito diferentes." },
       { "q": "Quais provedores de nuvem são suportados?", "a": "Trabalhamos com os principais players do mercado, com ênfase em soluções AWS, Google Cloud Platform (GCP) e Microsoft Azure." },
-      { "q": "Como ocorre o processo de migração de infraestrutura?", "a": "Seguimos estratégias de transição controlada com validações paralelas, mitigando riscos de quedas de serviços (Zero Downtime)." }
+      { "q": "Como ocorre o processo de migração de infraestrutura?", "a": "Seguimos estratégias de transição controlada com validações paralelas, buscando minimizar janelas de indisponibilidade (abordagem orientada a near-zero downtime)." }
     ]
   },
   "Services_dados": {
@@ -403,7 +451,7 @@
     ],
     "faq": [
       { "q": "É possível realizar integração com softwares legados sem API?", "a": "Sim, desenvolvemos integradores que interagem com o banco de dados diretamente ou implementam bots de sincronização seguros." },
-      { "q": "Como garantem a integridade em falhas de rede de terceiros?", "a": "Implementamos arquiteturas baseadas em mensageria, com filas de retry configuradas para processamento assíncrono garantido." },
+      { "q": "Como vocês tratam a integridade em falhas de rede de terceiros?", "a": "Implementamos arquiteturas baseadas em mensageria, com filas de retry configuradas para favorecer o processamento assíncrono consistente e idempotente." },
       { "q": "Quanto tempo costuma levar um projeto de integração?", "a": "Depende dos sistemas integrados. Cenários comuns de ERP para plataformas Web costumam ser implementados em poucas semanas." }
     ]
   },

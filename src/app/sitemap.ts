@@ -26,6 +26,9 @@ const PAGES: Array<{ path: string; priority: number; changeFrequency: MetadataRo
   { path: '/servicos/integracoes',              priority: 0.8, changeFrequency: 'monthly' },
   { path: '/servicos/consultoria',              priority: 0.8, changeFrequency: 'monthly' },
   { path: '/insights',                          priority: 0.7, changeFrequency: 'weekly'  },
+  { path: '/legal/privacidade',                 priority: 0.3, changeFrequency: 'yearly'  },
+  { path: '/legal/termos',                      priority: 0.3, changeFrequency: 'yearly'  },
+  { path: '/legal/reembolso',                   priority: 0.3, changeFrequency: 'yearly'  },
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {

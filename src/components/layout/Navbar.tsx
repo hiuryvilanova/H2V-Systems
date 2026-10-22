@@ -20,6 +20,15 @@ function LanguageSwitcher({ onOrange }: { onOrange?: boolean }) {
     setOpen(false)
   }
 
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [open])
+
   const btnBorder = onOrange ? 'rgba(255,255,255,0.38)' : 'var(--border)'
   const btnColor  = onOrange ? 'rgba(255,255,255,0.95)' : 'var(--text-70)'
 
@@ -31,6 +40,8 @@ function LanguageSwitcher({ onOrange }: { onOrange?: boolean }) {
           cursor-pointer bg-transparent border transition-all duration-300"
         style={{ borderColor: btnBorder, color: btnColor }}
         aria-label="Trocar idioma"
+        aria-haspopup="listbox"
+        aria-expanded={open}
       >
         <LocaleFlag
           locale={locale}
@@ -53,6 +64,8 @@ function LanguageSwitcher({ onOrange }: { onOrange?: boolean }) {
             aria-hidden="true"
           />
           <div
+            role="listbox"
+            aria-label="Idiomas"
             className="absolute right-0 top-full mt-2 z-50 rounded-xl overflow-hidden min-w-[120px]
               border shadow-2xl"
             style={{
@@ -66,6 +79,8 @@ function LanguageSwitcher({ onOrange }: { onOrange?: boolean }) {
             {routing.locales.map((loc) => (
               <button
                 key={loc}
+                role="option"
+                aria-selected={loc === locale}
                 onClick={() => switchTo(loc)}
                 className="w-full flex items-center gap-2.5 px-4 py-3 text-sm font-medium
                   cursor-pointer bg-transparent border-0 text-left transition-colors duration-200"
@@ -90,16 +105,18 @@ function LanguageSwitcher({ onOrange }: { onOrange?: boolean }) {
 
 export default function Navbar() {
   const t = useTranslations('Nav')
+  const locale = useLocale()
   const [scrolled,  setScrolled]  = useState(false)
   const [menuOpen,  setMenuOpen]  = useState(false)
+  const sectionHref = (hash: string) => (locale === 'pt' ? `/${hash}` : `/${locale}/${hash}`)
 
   const NAV_LINKS = [
-    { href: '#servicos',  label: t('services') },
-    { href: '#cases',     label: t('cases')    },
-    { href: '#sobre',     label: t('about')    },
-    { href: '#processo',  label: t('process')  },
-    { href: '#faq',       label: 'FAQ'         },
-    { href: '#contato',   label: t('contact')  },
+    { href: sectionHref('#servicos'),  label: t('services') },
+    { href: sectionHref('#cases'),     label: t('cases')    },
+    { href: sectionHref('#sobre'),     label: t('about')    },
+    { href: sectionHref('#processo'),  label: t('process')  },
+    { href: sectionHref('#faq'),       label: 'FAQ'         },
+    { href: sectionHref('#contato'),   label: t('contact')  },
   ]
 
   useEffect(() => {
@@ -112,6 +129,14 @@ export default function Navbar() {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [menuOpen])
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMenuOpen(false)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [])
 
   return (
     <>
@@ -139,13 +164,13 @@ export default function Navbar() {
         <div className="max-w-[1200px] xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-5 sm:px-6 flex items-center justify-between gap-2 sm:gap-4 min-w-0">
           {/* Logo */}
           <a
-            href="#hero"
+            href={sectionHref('#hero')}
             className="flex items-center gap-2 sm:gap-2.5 no-underline flex-shrink-0 min-w-0 group"
             aria-label="H2V Systems — Início"
           >
             <Image
               src="/logo-mark.png"
-              alt="H2V Systems logo"
+              alt="Logotipo da H2V Systems"
               width={38}
               height={38}
               className="rounded-lg transition-transform duration-300 group-hover:scale-105 shrink-0"
@@ -188,7 +213,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
             <LanguageSwitcher onOrange />
             <a
-              href="#contato"
+              href={sectionHref('#contato')}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-lg
                 font-semibold text-sm no-underline hover:-translate-y-0.5 transition-all duration-300"
               style={{
@@ -207,8 +232,9 @@ export default function Navbar() {
             <button
               onClick={() => setMenuOpen((o) => !o)}
               className="flex flex-col items-center justify-center gap-[5px] min-h-11 min-w-11 p-2 bg-transparent border-0 cursor-pointer rounded-lg"
-              aria-label="Abrir menu"
+              aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
               aria-expanded={menuOpen}
+              aria-controls="mobile-nav"
             >
               <span
                 className={`block w-6 h-0.5 rounded transition-all duration-300 ${
@@ -235,6 +261,10 @@ export default function Navbar() {
 
       {/* Mobile overlay */}
       <div
+        id="mobile-nav"
+        role={menuOpen ? 'dialog' : undefined}
+        aria-modal={menuOpen || undefined}
+        aria-label="Menu"
         className={`fixed inset-0 z-[999] flex flex-col items-center justify-center gap-5 sm:gap-6
           transition-opacity duration-300 lg:hidden overflow-y-auto overscroll-y-contain px-6
           ${menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
@@ -260,7 +290,7 @@ export default function Navbar() {
           </a>
         ))}
         <a
-          href="#contato"
+          href={sectionHref('#contato')}
           onClick={() => setMenuOpen(false)}
           className="mt-2 min-h-12 px-8 py-3.5 rounded-lg font-semibold no-underline text-white inline-flex items-center justify-center text-center"
           style={{ background: 'var(--cyan)', boxShadow: '0 8px 28px rgba(234,88,12,0.25)' }}

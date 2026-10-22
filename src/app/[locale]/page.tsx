@@ -14,13 +14,9 @@ const PainPoints   = dynamic(() => import('@/components/sections/PainPoints'))
 const Cases        = dynamic(() => import('@/components/sections/Cases'))
 const About        = dynamic(() => import('@/components/sections/About'))
 const Process      = dynamic(() => import('@/components/sections/Process'))
-const Testimonials = dynamic(() => import('@/components/sections/Testimonials'))
 const Faq          = dynamic(() => import('@/components/sections/Faq'))
 const Contact      = dynamic(() => import('@/components/sections/Contact'))
 const ArchitectureSimulator = dynamic(() => import('@/components/sections/ArchitectureSimulator'))
-
-// UI utilitário não-crítico: defer pra depois da hidratação inicial.
-const CookieBanner = dynamic(() => import('@/components/ui/CookieBanner'))
 
 export default function Home() {
   return (
@@ -43,8 +39,6 @@ export default function Home() {
         <GlowDivider />
         <Process />
         <GlowDivider />
-        <Testimonials />
-        <GlowDivider />
         <Faq />
         <GlowDivider />
         <Contact />
@@ -52,7 +46,6 @@ export default function Home() {
       <Footer />
       <BackToTop />
       <WhatsAppFloat />
-      <CookieBanner />
     </>
   )
 }

@@ -8,6 +8,7 @@ import { Mail, CheckCircle, MapPin, MessageSquare, Calendar, ExternalLink } from
 import { WhatsAppIcon, LinkedInIcon } from '@/components/ui/BrandIcons'
 import { useToast } from '@/components/ui/Toast'
 import { WHATSAPP_LINK, WHATSAPP_DISPLAY, EMAIL, LINKEDIN_URL, LOCATION, CAL_LINK } from '@/lib/constants'
+import { Link } from '@/i18n/navigation'
 
 // Cal.com embed só carrega quando o usuário muda para a aba "Agendar".
 const CalEmbed = dynamic(() => import('@/components/ui/CalEmbed'), { ssr: false })
@@ -66,6 +67,7 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false)
   const [loading,   setLoading]   = useState(false)
   const [scheduledOk, setScheduledOk] = useState(false)
+  const [lgpdConsent, setLgpdConsent] = useState(false)
 
   const validate = (k: FieldKey, v: string): boolean => {
     if (k === 'nome')     return v.trim().length >= 2
@@ -109,6 +111,10 @@ export default function Contact() {
       toast.error(t('formErrorEmail'))
       return
     }
+    if (!lgpdConsent) {
+      toast.error(t('formErrorConsent'))
+      return
+    }
 
     // Abre o WhatsApp do especialista no mesmo gesto do clique para evitar
     // bloqueio de popup. A mensagem leva nome, contato e o texto digitado.
@@ -123,7 +129,7 @@ export default function Contact() {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, lgpdConsent: true }),
       })
       const data = await res.json().catch(() => ({}))
       if (!res.ok || !data.ok) {
@@ -329,7 +335,24 @@ export default function Contact() {
                       <textarea id="c-mensagem" className={`input-base min-h-[130px] resize-none ${fieldState('mensagem')}`} name="mensagem" required maxLength={5000} placeholder={t('formMessagePlaceholder')} value={form.mensagem} onChange={handleChange} onBlur={handleBlur} aria-invalid={fieldState('mensagem') === 'is-invalid'} />
                     </div>
 
-                    <button type="submit" disabled={loading}
+                    <label className="flex items-start gap-3 text-xs leading-relaxed text-neutral-300 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        required
+                        checked={lgpdConsent}
+                        onChange={(e) => setLgpdConsent(e.target.checked)}
+                        className="mt-0.5 h-4 w-4 accent-orange-600 shrink-0"
+                      />
+                      <span>
+                        {t('formConsent')}{' '}
+                        <Link href="/legal/privacidade" className="text-orange-400 underline underline-offset-2">
+                          {t('formConsentLink')}
+                        </Link>
+                        .
+                      </span>
+                    </label>
+
+                    <button type="submit" disabled={loading || !lgpdConsent}
                       className="w-full py-4 rounded-xl text-white font-bold text-base cursor-pointer border-0 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-70 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2 group"
                       style={{ background: 'var(--cyan)', boxShadow: '0 4px 20px rgba(234,88,12,0.25), inset 0 1px 1px rgba(255,255,255,0.2)' }}>
                       {loading ? (
@@ -341,7 +364,7 @@ export default function Contact() {
                         </>
                       )}
                     </button>
-                    <p className="text-[11px] text-neutral-500 leading-relaxed text-center -mt-1">
+                    <p className="text-[11px] text-neutral-300 leading-relaxed text-center -mt-1">
                       {t('formSubmitHint')}
                     </p>
                   </motion.form>
@@ -399,6 +422,14 @@ export default function Contact() {
                         {canScheduleDirect ? labels.scheduleReady : labels.scheduleHint}
                       </span>
                     </div>
+
+                    <p className="text-[11px] leading-relaxed text-neutral-300">
+                      {t('schedulePrivacy')}{' '}
+                      <Link href="/legal/privacidade" className="text-orange-400 underline underline-offset-2">
+                        {t('formConsentLink')}
+                      </Link>
+                      .
+                    </p>
 
                     <div className="rounded-2xl overflow-hidden border border-neutral-800 bg-neutral-950">
                       <CalEmbed

@@ -70,6 +70,8 @@ function StatCard({ s, index }: { s: { target: number; suffix: string; label: st
 export default function Stats() {
   const t = useTranslations('Stats')
 
+  // Números representam metas operacionais / alvo de SLA, não médias auditadas.
+  // Disclaimer explícito abaixo da grade cobre a natureza aspiracional.
   const items = [
     { target: 50,  suffix: '+',   label: t('projectsLabel')    },
     { target: 99,  suffix: '.9%', label: t('satisfactionLabel') },
@@ -81,10 +83,13 @@ export default function Stats() {
     <section
       id="stats"
       className="py-16 sm:py-20 relative overflow-hidden bg-neutral-950 border-y border-neutral-900"
+      aria-labelledby="stats-heading"
     >
+      <h2 id="stats-heading" className="sr-only">{t('srTitle')}</h2>
+
       {/* Background glow points */}
-      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-80 h-80 rounded-full bg-orange-950/15 blur-[100px] pointer-events-none" />
-      <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-80 h-80 rounded-full bg-red-950/15 blur-[100px] pointer-events-none" />
+      <div aria-hidden="true" className="absolute top-1/2 left-1/4 -translate-y-1/2 w-80 h-80 rounded-full bg-orange-950/15 blur-[100px] pointer-events-none" />
+      <div aria-hidden="true" className="absolute top-1/2 right-1/4 -translate-y-1/2 w-80 h-80 rounded-full bg-red-950/15 blur-[100px] pointer-events-none" />
 
       <div className="max-w-[1200px] xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-5 sm:px-6 relative z-10">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 xl:gap-10">
@@ -92,6 +97,9 @@ export default function Stats() {
             <StatCard key={s.label} s={s} index={i} />
           ))}
         </div>
+        <p className="mt-8 sm:mt-10 text-center text-[11px] sm:text-xs leading-relaxed text-neutral-400 max-w-[640px] mx-auto">
+          {t('disclaimer')}
+        </p>
       </div>
     </section>
   )

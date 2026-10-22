@@ -3,9 +3,9 @@ import { Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, getTranslations } from 'next-intl/server'
 import { notFound } from 'next/navigation'
-import { Analytics } from '@vercel/analytics/next'
-import { SpeedInsights } from '@vercel/speed-insights/next'
 import { routing } from '@/i18n/routing'
+import CookieBanner from '@/components/ui/CookieBanner'
+import AnalyticsGate from '@/components/ui/AnalyticsGate'
 import { ToastProvider } from '@/components/ui/Toast'
 import SkipToContent from '@/components/ui/SkipToContent'
 import SWRegister from '@/components/ui/SWRegister'
@@ -130,8 +130,8 @@ export default async function LocaleLayout({ children, params }: Props) {
     '@id': `${SITE_URL}/#organization`,
     name: 'H2V Systems',
     url: SITE_URL,
-    logo: `${SITE_URL}/logo.png`,
-    image: `${SITE_URL}/logo.png`,
+    logo: `${SITE_URL}/logo-mark.png`,
+    image: `${SITE_URL}/logo-mark.png`,
     description: 'Consultoria e desenvolvimento de software de alta performance. Transformamos desafios operacionais em soluções digitais robustas e escaláveis.',
     email: 'hiuryhenrique2012@gmail.com',
     telephone: '+55-61-99172-0301',
@@ -177,14 +177,6 @@ export default async function LocaleLayout({ children, params }: Props) {
     description: 'Consultoria e desenvolvimento de software de alta performance.',
     publisher: { '@id': `${SITE_URL}/#organization` },
     inLanguage: locale === 'pt' ? 'pt-BR' : locale === 'es' ? 'es-ES' : 'en-US',
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: `${SITE_URL}/search?q={search_term_string}`,
-      },
-      'query-input': 'required name=search_term_string',
-    },
   }
 
   const localBusinessLd = {
@@ -192,24 +184,17 @@ export default async function LocaleLayout({ children, params }: Props) {
     '@type': ['LocalBusiness', 'ProfessionalService'],
     '@id': `${SITE_URL}/#localbusiness`,
     name: 'H2V Systems',
-    image: `${SITE_URL}/logo.png`,
-    logo: `${SITE_URL}/logo.png`,
+    image: `${SITE_URL}/logo-mark.png`,
+    logo: `${SITE_URL}/logo-mark.png`,
     url: SITE_URL,
     telephone: '+55-61-99172-0301',
     email: 'hiuryhenrique2012@gmail.com',
-    priceRange: '$$$',
     description: 'Consultoria e desenvolvimento de software de alta performance — engenharia de sistemas, arquitetura cloud, microsserviços e modernização de legados.',
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Brasília',
       addressRegion: 'DF',
-      postalCode: '70000-000',
       addressCountry: 'BR',
-    },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: -15.7942,
-      longitude: -47.8822,
     },
     areaServed: [
       { '@type': 'Country', name: 'Brazil' },
@@ -327,8 +312,8 @@ export default async function LocaleLayout({ children, params }: Props) {
           </ToastProvider>
         </NextIntlClientProvider>
         <SWRegister />
-        <Analytics />
-        <SpeedInsights />
+        <CookieBanner />
+        <AnalyticsGate />
       </body>
     </html>
   )
